@@ -1,0 +1,1 @@
+Script for analyzing contributions to conferences organized via [ras.papercept.net](https://ras.papercept.net/). Provides top 15 authors, institutions and keywords for a conference. To reuse this code look at the ```robotics_conference_scraper.py``` script.
