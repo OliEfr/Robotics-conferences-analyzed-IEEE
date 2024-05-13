@@ -5,26 +5,26 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 #### ROBOSOFT 2024 ####
-# conference = "ROBOSOFT_2024"
-# daily_programs = [
-#     "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_2.html",
-#     "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_3.html",
-#     "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_4.html",
-# ]
-
-# keyword_indx = "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_KeywordIndexWeb.html"
-
-#### ICRA 2024 ####
-conference = "ICRA_2024"
+conference = "ROBOSOFT_2024"
 daily_programs = [
-    "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_1.html",
-    "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_2.html",
-    "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_3.html",
+    "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_2.html",
+    "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_3.html",
+    "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_4.html",
 ]
 
-keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_KeywordIndexWeb.html"
+keyword_indx = "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_KeywordIndexWeb.html"
 
-author_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_AuthorIndexWeb.html"
+#### ICRA 2024 ####
+# conference = "ICRA_2024"
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_1.html",
+#     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_3.html",
+# ]
+
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_KeywordIndexWeb.html"
+
+# author_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_AuthorIndexWeb.html"
 
 
 # Unfortunately, uni names are not uniquely identified. I perform a coarse search to eliminate ambiguity. Note that the results are not 100% correct of course.
@@ -149,7 +149,6 @@ def get_keywords_list():
 
 
 def plot(list, title, xlabel, filename):
-    sb.set_theme(rc={"figure.figsize": (15, 8.27)})
     sb.set(font_scale=1.3)
     ax = sb.countplot(
         y=list,
@@ -157,9 +156,11 @@ def plot(list, title, xlabel, filename):
         color="#485fc7",
         orient="h",
     )
+    ax.figure.set_size_inches(20, 8.75)
     ax.set_xlabel(xlabel)
-    ax.set_title(title, fontsize=20, fontweight="bold", x=0.4, y=1.03)
-    ax.get_figure().savefig(filename, bbox_inches="tight")
+    ax.set_title(title, fontweight="bold", x=0.35, y=1.03)
+    plt.gcf().subplots_adjust(left=.35, right=.99)
+    ax.get_figure().savefig(filename, bbox_inches=None)
     plt.clf()
 
 
@@ -168,18 +169,18 @@ keywords_list = get_keywords_list()
 
 print("Number of total contributions: ", len(university_list))
 
-plot(
-    university_list,
-    "Top 15 Institutions by Contributions",
-    "Number of Contributions",
-    f"university_contributions_{conference}.png",
-)
+# plot(
+#     university_list,
+#     "Top 15 Institutions by Contributions",
+#     "Number of Contributions",
+#     f"university_contributions_{conference}.png",
+# )
 
 plot(
     contributors_list,
     "Top 15 Authors by Contributions",
     "Number of Contributions",
-    f"authors_contribution_{conference}.png",
+    f"authors_contributions_{conference}.png",
 )
 
 plot(
