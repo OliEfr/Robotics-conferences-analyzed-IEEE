@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 #### ROBOSOFT 2024 ####
-
+conference = "ROBOSOFT_2024"
 # daily_programs = [
 #     "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_2.html",
 #     "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_3.html",
@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 # keyword_indx = "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_KeywordIndexWeb.html"
 
 #### ICRA 2024 ####
-
+conference = "ICRA_2024"
 daily_programs = [
     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_1.html",
     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_2.html",
@@ -166,24 +166,25 @@ def plot(list, title, xlabel, filename):
 university_list, contributors_list = get_university_contributors_list()
 keywords_list = get_keywords_list()
 
+print("Number of total contributions: ", len(university_list))
 
 plot(
     university_list,
     "Top 15 Institutions by Contributions",
     "Number of Contributions",
-    "university_contributions.png",
+    f"university_contributions{conference}.png",
 )
 
 plot(
     contributors_list,
     "Top 15 Authors by Contributions",
     "Number of Contributions",
-    "authors_contribution.png",
+    f"authors_contribution{conference}.png",
 )
 
 plot(
     keywords_list,
     "Top 15 Keywords by Contributions",
     "Number of Contributions",
-    "keywords_contributions.png",
+    f"keywords_contributions{conference}.png",
 )
