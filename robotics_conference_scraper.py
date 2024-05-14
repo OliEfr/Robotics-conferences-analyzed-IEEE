@@ -27,8 +27,10 @@ keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program
 author_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_AuthorIndexWeb.html"
 
 
-# Unfortunately, uni names are not uniquely identified. I perform a coarse search to eliminate ambiguity. Note that the results are not 100% correct of course.
-def clean_university_list(unis):
+# Unfortunately, institution names are not unique.
+# I perform a coarse search to eliminate ambiguity for the most popular unis.
+# Note that the results are not 100% accurate.
+def remove_university_name_ambiguity(unis):
 
     for i, item in enumerate(unis):
         if (
@@ -36,7 +38,7 @@ def clean_university_list(unis):
             or "TU Munich" in item
             or "Technische Universität München" in item
             or "(TUM)" in item
-            or item == "TUM"
+            or item == "TUM"  # check equality
         ):
             unis[i] = "Technical University of Munich"
         if "ETH" in item:
@@ -48,7 +50,7 @@ def clean_university_list(unis):
             or "Hong Kong University of Science and Technology" in item
         ):
             unis[i] = "The Hong Kong University of Science and Technology"
-        if "(CMU)" in item or item == "CMU":
+        if "(CMU)" in item or item == "CMU":  # check equality
             unis[i] = "Carnegie Mellon University"
         if "Zhejiang University" in item:
             unis[i] = "Zhejiang University"
@@ -59,7 +61,7 @@ def clean_university_list(unis):
         if (
             "Massachusetts Institute of Technology" in item
             or "(MIT)" in item
-            or item == "MIT"
+            or item == "MIT"  # check equality
         ):
             unis[i] = "Massachusetts Institute of Technology"
         if "Stanford University" in item:
@@ -82,7 +84,7 @@ def clean_university_list(unis):
         if (
             "Karlsruhe Institute of Technology" in item
             or "(KIT)" in item
-            or item == "KIT"
+            or item == "KIT"  # check equality
         ):
             unis[i] = "Karlsruhe Institute of Technology"
         if "RWTH" in item or "RWTH Aachen" in item:
@@ -95,7 +97,11 @@ def clean_university_list(unis):
             or "Norwegian University of Science and Technology" in item
         ):
             unis[i] = "Norwegian University of Science and Technology"
-        if "EPFL" in item or "École Polytechnique Fédérale De Lausanne" in item or "Swiss Federal Institute of Technology" in item:
+        if (
+            "EPFL" in item
+            or "École Polytechnique Fédérale De Lausanne" in item
+            or "Swiss Federal Institute of Technology" in item
+        ):
             unis[i] = "École Polytechnique Fédérale De Lausanne (EPFL)"
         if "TU Delft" in item or "Delft University of Technology" in item:
             unis[i] = "Delft University of Technology"
@@ -105,17 +111,20 @@ def clean_university_list(unis):
     return unis
 
 
-# NOTE I am using the daily program to get the list of contributors. This also includes program chairs and co-chairs. I found that the information under author_index does the same thing.
+# I am using the daily program to get the list of contributors.
+# This includes program chairs and co-chairs.
+# The information under .../ICRA24_AuthorIndexWeb.html does the same thing.
 def get_university_contributors_list():
     university_list, contributors_list = [], []
     for daily_program in daily_programs:
 
         response = requests.get(daily_program)
-
         soup = BeautifulSoup(response.content, "html.parser")
 
         # Find all anchor tags (<a>) with the text "Click to go to the Author Index"
-        contributions = soup.find_all("a", {"title": "Click to go to the Author Index"})
+        contributions = soup.find_all(
+            "a", {"title": "Click to go to the Author Index"}
+        )
 
         university_list += [
             contribution.parent.findNext("td").text.strip()
@@ -125,7 +134,7 @@ def get_university_contributors_list():
             contribution.text.strip() for contribution in contributions
         ]
 
-    return clean_university_list(university_list), contributors_list
+    return remove_university_name_ambiguity(university_list), contributors_list
 
 
 def get_keywords_list():
@@ -133,17 +142,19 @@ def get_keywords_list():
 
     response = requests.get(keyword_indx)
     soup = BeautifulSoup(response.content, "html.parser")
-    # get all rows of table
+
+    # get all rows of the table
     rows = soup.find("table", {"class": "kT"}).find_all("tr")
     for row in rows:
         # elements we look for have no attribute
         if bool(row.attrs):
             continue
         else:
-            as_ = row.find_all("a")
-            # this is dirty but it makes it compatible with the data structures for authors and institutions
-            for _ in range(1, len(as_)):
-                keywords_list.append(as_[0].text.strip())
+            links = row.find_all("a")
+            # this is dirty but makes it compatible with the data structures for
+            # university_list and contributors_list
+            for _ in range(1, len(links)):
+                keywords_list.append(links[0].text.strip())
 
     return keywords_list
 
@@ -159,20 +170,20 @@ def plot(list, title, xlabel, filename):
     ax.figure.set_size_inches(20, 8.75)
     ax.set_xlabel(xlabel)
     ax.set_title(title, fontweight="bold", x=0.35, y=1.03)
-    plt.gcf().subplots_adjust(left=.35, right=.99)
-    ax.get_figure().savefig(filename, bbox_inches=None)
+    plt.gcf().subplots_adjust(left=0.35, right=0.99)
+    ax.get_figure().savefig(filename)
     plt.clf()
 
 
 university_list, contributors_list = get_university_contributors_list()
 keywords_list = get_keywords_list()
 
-# plot(
-#     university_list,
-#     "Top 15 Institutions by Contributions",
-#     "Number of Contributions",
-#     f"university_contributions_{conference}.svg",
-# )
+plot(
+    university_list,
+    "Top 15 Institutions by Contributions",
+    "Number of Contributions",
+    f"university_contributions_{conference}.svg",
+)
 
 plot(
     contributors_list,
