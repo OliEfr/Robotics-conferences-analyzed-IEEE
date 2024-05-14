@@ -3,6 +3,21 @@ import requests
 import seaborn as sb
 import pandas as pd
 import matplotlib.pyplot as plt
+import pickle
+
+#### ARSO 2024 ####
+# ARSO website looks a bit different
+# TODO implement parsing
+
+# conference = "ARSO_2024"
+
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/ARSO24/program/ARSO24_ContentListWeb_1.html",
+#     "https://ras.papercept.net/conferences/conferences/ARSO24/program/ARSO24_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/ARSO24/program/ARSO24_ContentListWeb_3.html",
+# ]
+
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/ARSO24/program/ARSO24_KeywordIndexWeb.html"
 
 #### ROBOSOFT 2024 ####
 # conference = "ROBOSOFT_2024"
@@ -23,8 +38,6 @@ daily_programs = [
 ]
 
 keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_KeywordIndexWeb.html"
-
-author_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_AuthorIndexWeb.html"
 
 
 # Unfortunately, institution names are not unique.
@@ -178,23 +191,34 @@ def plot(list, title, xlabel, filename):
 university_list, contributors_list = get_university_contributors_list()
 keywords_list = get_keywords_list()
 
+# saving .pkl is suboptimal for git, but its quick for now
+with open(f"./output/{conference}_data.pkl", "wb") as f:
+    pickle.dump(
+        {
+            "university_list": university_list,
+            "contributors_list": contributors_list,
+            "keywords_list": keywords_list,
+        },
+        f,
+    )
+
 plot(
     university_list,
     "Top 15 Institutions by Contributions",
     "Number of Contributions",
-    f"university_contributions_{conference}.svg",
+    f"./output/university_contributions_{conference}.svg",
 )
 
 plot(
     contributors_list,
     "Top 15 Authors by Contributions",
     "Number of Contributions",
-    f"authors_contributions_{conference}.svg",
+    f"./output/authors_contributions_{conference}.svg",
 )
 
 plot(
     keywords_list,
     "Top 15 Keywords by Contributions",
     "Number of Contributions",
-    f"keywords_contributions_{conference}.svg",
+    f"./output/keywords_contributions_{conference}.svg",
 )
