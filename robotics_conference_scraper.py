@@ -5,6 +5,16 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import pickle
 
+#### International Conference on Ubiquitous Robots (UR) 2024 ####
+conference = "International Conference on Ubiquitous Robots (UR) 2024"
+
+daily_programs = [
+    "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_2.html",
+    "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_3.html",
+]
+
+keyword_indx = "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_KeywordIndexWeb.html"
+
 #### ARSO 2024 ####
 # ARSO website looks a bit different
 # TODO implement parsing
@@ -30,14 +40,14 @@ import pickle
 # keyword_indx = "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_KeywordIndexWeb.html"
 
 #### ICRA 2024 ####
-conference = "ICRA_2024"
-daily_programs = [
-    "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_1.html",
-    "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_2.html",
-    "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_3.html",
-]
+# conference = "ICRA_2024"
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_1.html",
+#     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_3.html",
+# ]
 
-keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_KeywordIndexWeb.html"
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_KeywordIndexWeb.html"
 
 
 # Unfortunately, institution names are not unique.
