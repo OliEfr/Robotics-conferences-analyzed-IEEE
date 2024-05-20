@@ -1,0 +1,2054 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta content="en-us" http-equiv="Content-Language"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width" name="viewport"/>
+  <script src="https://ras.papercept.net/conferences/scripts/dom-drag.js" type="text/javascript">
+  </script>
+  <script src="jquery-1.11.1.min.js">
+  </script>
+  <title>
+   ARSO 2024 Program | Tuesday May 21, 2024
+  </title>
+  <style type="text/css">
+   body, table, td, th{
+	Font-Family : sans-serif;
+	Font-Size : 10pt;
+}
+.r {text-align: right}
+.blue {color: #0000FF;}
+td {vertical-align: top; text-align: left}
+.c {text-align: center}
+table.s {
+	border-collapse:collapse;
+	border-width: 1px;
+}
+table.s td{
+	border-width: 1px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+table.t {
+	border-collapse: collapse;
+	border-width: 0px;
+}
+table.t td{
+	border-width: 0px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+.dots {
+    background:url('./images/dot.gif') repeat-x center;
+}
+.field {
+    background-color: #FFFFFF;
+}
+#pTitle { /* Page title */
+   font-size: 14pt;
+   line-height: 1.5em;
+}
+#pSubTitle { /* Page subtitle */
+   color: #909090;
+   font-size: 10pt; 
+   line-height: 1.5em;
+}
+#container {
+	position: absolute;
+	width: 100%;
+	margin-top: 2px;
+/*	overflow: hidden; */
+}
+
+.sHdr {   /* Session header Content list */
+   background-color: #F0E68C
+}
+      
+.sSHdr {   /* Subsession header Content list */
+   background-color: #f8f3c6 
+}
+      
+table.trk { /* Track table Content list */
+   border-collapse: collapse;
+   border-width: 0px;
+   margin: auto;
+/**   width: 640px; **/
+   width: 720px;
+}
+table.trk td{
+   border-width: 0px;
+   padding: 4px;
+   border-style: solid;
+   border-color: gray;
+ }
+      
+.pHdr {  /* Paper header Content list */
+   background-color: #E6E6FA;
+   color: black;
+}
+hr.thin { /* Horizontal rule content list */
+   border: 0px; 
+   height: .8px; 
+   background-color: #8888FF;
+}
+      
+.pTtl {  /* Paper title Content list */
+   font-size: 11pt;
+   font-style: italic;
+}
+      
+.ssHdr {  /* Subsession header container session Content list */
+   background-color: #DDDDDD;
+   color: black;
+}
+      
+.ssTtl {  /* Subsession title container session Content list */
+   font-size: 10pt;
+   font-style: normal;
+   font-weight: bold;
+}
+  </style>
+  <script language="JavaScript">
+   function initXMLHttp(){
+   var oRequest = false;
+   try {
+      oRequest = new XMLHttpRequest();
+   }  catch (trymicrosoft) {
+      try {
+         oRequest = new ActiveXObject("Msxml2.XMLHTTP");
+      }  catch (othermicrosoft) {
+         try {
+            oRequest = new ActiveXObject("Microsoft.XMLHTTP");
+         }  catch (failed) {
+            oRequest = false;
+         }
+      }
+   }
+   if (!oRequest){
+      alert("Error initializing XMLHttpRequest! Your browser does not support AJAX");
+   }
+   return oRequest;
+}
+function modify(number,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'Add';
+   }
+   else{
+      action = 'Delete';
+   }
+   
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=447&' + action + number;
+//   window.open(url,'myprogrampage');
+
+   modifyItem("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","447",action,number)
+
+}
+
+
+function modifyItem(url,ConfID,action,number){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&Number=' + number;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+var iIntervalId;  // Global variable
+function modsession(id,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'AddSession';
+   }
+   else{
+      action = 'DelSession';
+   }
+
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=447&' + action + id;
+//   window.open(url,'myprogrampage');
+
+   modifySession("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","447",action,id)
+
+}
+
+function modifySession(url,ConfID,action,id){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&ID=' + id;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+function getCookie(sName){
+   var sRE = "(?:; )?" + sName + "=([^;]*);?";   
+   var oRE = new RegExp(sRE);
+   if (oRE.test(document.cookie)){
+      return decodeURIComponent(RegExp["$1"]);}
+   else{
+      return null;
+   }
+}
+function loadprogram(){
+   var list = getCookie("ARSO24");
+   if (list){
+      var List = list.split(",");
+      for (var i=0; i<List.length; i++){
+         var names = document.getElementsByName('modify' + List[i]);
+         if (names.length){
+            for (var j=0; j<names.length; j++){
+               names[j].checked = true;
+            }
+         }
+      }
+   }
+}
+function reset(){
+
+   // Uncheck all modify and addsession checkboxes
+
+   var ins = document.getElementsByTagName('input');
+   for (var i=0; i<ins.length; i++){
+      if (ins[i].type == 'checkbox' && ins[i].id && ins[i].id.substring(0,3) == 'mod'){
+         ins[i].checked = false;
+      }
+   }
+   
+   // Reload the program
+   
+   loadprogram();
+}
+function startreset(){
+   iIntervalId = setInterval(reset,2000);
+}
+function viewAbstract(number){
+   var box = document.getElementById('Ab' + number);
+   if (box.style.display == 'block'){
+      box.style.display = 'none';
+   }
+   else if (box && box.style.display == 'none'){
+      box.style.display = 'block';
+   }
+}
+function openAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   var count = d.length;
+   if (count == 0){return;}
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab' && d[i].style.display == 'none'){
+         d[i].style.display = 'block';
+      }
+   }
+}
+function closeAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab'){
+         d[i].style.display = 'none';
+      }
+   }
+}
+var uhash;
+var pColor;
+$(function() { 
+
+   // Check for URL hash
+
+   uhash = location.hash.substring(1);
+   if (uhash.slice(-1) == '_'){
+      uhash = null;
+   }
+   if (uhash){
+   
+      // Mark the session
+   
+      pColor = $('#' + uhash).parent().css('backgroundColor');
+      $('#' + uhash).parent().css('backgroundColor','#FF8888');
+   }
+});
+  </script>
+ </head>
+ <body onload="loadprogram(); startreset()">
+  <form action="https://ras.papercept.net/conferences/scripts/myprogram.pl" name="myprogram">
+   <div id="container">
+    <body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+     <link href="//fonts.googleapis.com/css?family=Chango" rel="stylesheet" type="text/css"/>
+     <table ,="" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+       <td alt="" background="/images/arso/arso24_bg.png" border="0" height="140" nowrap="" width="100%">
+        <span style="font-size: 48px; font-family: Chango; color: #006599;text-shadow: 0px 0px 1px #fff; position: absolute; left: 20px; top:0px; line-height:48px;
+-webkit-filter: drop-shadow(1px 1px 0px #fff); filter: drop-shadow(1px 1px 1px #fff);z-index:1;">
+         <center>
+          <b>
+           ARSO2024
+          </b>
+         </center>
+        </span>
+        <span style="font-size: 22px; font-family:Open Sans Condensed,sans-serif, arial; color: #006599;text-shadow: 0px 0px 1px #fff; position: absolute; left: 20px; top:85px;
+-webkit-filter: drop-shadow(0px 0px 1px #fff); filter: drop-shadow(0px 0px 1px #fff);z-index:1;">
+         <strong>
+          2024 IEEE Conference on Advanced Robotics and its Social Impact
+         </strong>
+        </span>
+        <span style="font-size: 18px; font-family:Open Sans Condensed,sans-serif, arial; color: #006599;text-shadow: 0px 0px 1px #fff; position: absolute; left: 20px; top:115px;
+-webkit-filter: drop-shadow(0px 0px 1px #fff); filter: drop-shadow(0px 0px 1px #fff);z-index:1;">
+         Hong Kong, China | May 20-22, 2024
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <td height="1" style="background-color:#006599;" width="100%">
+       </td>
+      </tr>
+     </table>
+     <table border="0" cellpadding="0" cellspacing="0" height="80%" width="100%">
+      <tr>
+       <td height="100%" style="background-color:#006599;" width="5">
+       </td>
+       <td width="5">
+       </td>
+       <td height="100%" valign="top" width="100%">
+        <br/>
+        <div class="c" id="TheTop">
+         <span id="pTitle">
+          <a href="http://ieee-arso.org" target="_blank">
+           <b>
+            2024 IEEE International Conference on Advanced Robotics and Its Social Impacts (ARSO)
+           </b>
+          </a>
+          <br/>
+         </span>
+         <span id="pSubTitle">
+          <b>
+           May 20-22, 2024, Hong Kong, China
+          </b>
+         </span>
+         <br/>
+         <br/>
+        </div>
+        <div class="c" style="position: relative">
+         <a href="ARSO24_ProgramAtAGlanceWeb.html">
+          Program at a Glance
+         </a>
+         <a href="ARSO24_ContentListWeb_1.html">
+          Monday
+         </a>
+         <a href="ARSO24_ContentListWeb_2.html">
+          Tuesday
+         </a>
+         <a href="ARSO24_ContentListWeb_3.html">
+          Wednesday
+         </a>
+         <a href="ARSO24_AuthorIndexWeb.html">
+          Author Index
+         </a>
+         <a href="ARSO24_KeywordIndexWeb.html">
+          Keyword Index
+         </a>
+         <a href="#TheTop" onclick="window.open('https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=447','myprogrampage')">
+          My Program
+         </a>
+        </div>
+        <div class="c">
+         <p style="color: gray">
+          Last updated on May 18, 2024. This conference program is tentative and subject to change
+         </p>
+        </div>
+        <div class="c">
+         <h3>
+          Technical Program for Tuesday May 21, 2024
+         </h3>
+        </div>
+        <p class="c">
+        </p>
+        <div class="c">
+         <span style="color:gray ">
+          To show or hide the keywords and abstract (text summary) of a paper (if available), click on the paper title
+         </span>
+         <br/>
+         <a href="javascript:openAllAbstracts()" title="Click to open all abstracts">
+          Open all abstracts
+         </a>
+         <a href="javascript:closeAllAbstracts()" title="Click to close all abstracts">
+          Close all abstracts
+         </a>
+        </div>
+        <div class="c">
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="tup2l">
+             <b>
+              TuP2L
+             </b>
+             Plenary Session, 17W_MFHall2
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod25" name="modifyTuP2L" onclick="modsession(135,25)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ARSO24_ProgramAtAGlanceWeb.html#tup2l" title="Click to go to the Program at a Glance">
+             <b>
+              Plenary Talk II
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#132532" title="Click to go to the Author Index">
+             Chen, Fei
+            </a>
+           </td>
+           <td class="r">
+            The Chinese University of Hong Kong
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tup2l_">
+             , Paper TuP2L.
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod26" name="modify73" onclick="modify(73,26)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             The AI Robot for 2050
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#101162" title="Click to go to the Author Index">
+             Fukuda, Toshio
+            </a>
+            (Nagoya University)
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="tuk2n">
+             <b>
+              TuK2N
+             </b>
+             Plenary Session, 17W_MFHall2
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod27" name="modifyTuK2N" onclick="modsession(141,27)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ARSO24_ProgramAtAGlanceWeb.html#tuk2n" title="Click to go to the Program at a Glance">
+             <b>
+              Keynote Talk II
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#133349" title="Click to go to the Author Index">
+             Shen, Yajing
+            </a>
+           </td>
+           <td class="r">
+            The Hong Kong University of Science and Technology
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tuk2n_">
+             , Paper TuK2N.
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod28" name="modify70" onclick="modify(70,28)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Human Factors in Robotics: A Multidisciplinary Journey
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#160252" title="Click to go to the Author Index">
+             Barresi, Giacinto
+            </a>
+            (Istituto Italiano di Tecnologia)
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="tuai">
+             <b>
+              TuAI
+             </b>
+             Plenary Session, 17W_MFHall2
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod29" name="modifyTuAI" onclick="modsession(149,29)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ARSO24_ProgramAtAGlanceWeb.html#tuai" title="Click to go to the Program at a Glance">
+             <b>
+              Invited Session II
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#132532" title="Click to go to the Author Index">
+             Chen, Fei
+            </a>
+           </td>
+           <td class="r">
+            The Chinese University of Hong Kong
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tuai_01">
+             11:00-11:20, Paper TuAI.1
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod30" name="modify79" onclick="modify(79,30)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Sustainable Robotic-Based Additive Manufacturing with Continuous Fiber
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#198649" title="Click to go to the Author Index">
+             Duan, Molong
+            </a>
+            (Hong Kong University of Science and Technology)
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tuai_02">
+             11:20-11:40, Paper TuAI.2
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod31" name="modify80" onclick="modify(80,31)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Bioinspired Soft Robots for Dexterous Manipulation
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#204703" title="Click to go to the Author Index">
+             Scharff, Rob B.N.
+            </a>
+            (The Hong Kong University of Science and Technology)
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tuai_03">
+             11:40-12:00, Paper TuAI.3
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod32" name="modify81" onclick="modify(81,32)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Dexterous In-Hand Manipulation towards General Manipulation
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#208757" title="Click to go to the Author Index">
+             Zhou, Jianshu
+            </a>
+            (The Chinese University of Hong Kong)
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="tuk3n">
+             <b>
+              TuK3N
+             </b>
+             Plenary Session, 17W_MFHall2
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod33" name="modifyTuK3N" onclick="modsession(143,33)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ARSO24_ProgramAtAGlanceWeb.html#tuk3n" title="Click to go to the Program at a Glance">
+             <b>
+              Keynote Talk III
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#110978" title="Click to go to the Author Index">
+             Lai, King Wai Chiu
+            </a>
+           </td>
+           <td class="r">
+            City University of Hong Kong
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tuk3n_">
+             , Paper TuK3N.
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod34" name="modify71" onclick="modify(71,34)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Humans and Robots Working Better Together
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#406570" title="Click to go to the Author Index">
+             Fok, Crystal
+            </a>
+            (Digital Service Hub, Hong Kong Science and Technology Park Corporation, Hong Kong)
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="tubt">
+             <b>
+              TuBT
+             </b>
+             Regular Session, 17W_MFHall2
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod35" name="modifyTuBT" onclick="modsession(155,35)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ARSO24_ProgramAtAGlanceWeb.html#tubt" title="Click to go to the Program at a Glance">
+             <b>
+              Technical Session III - Medical and Healthcare Robotics
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#344157" title="Click to go to the Author Index">
+             Han, Yen-Lin
+            </a>
+           </td>
+           <td class="r">
+            Seattle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Co-Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#389629" title="Click to go to the Author Index">
+             Wang, Yupeng
+            </a>
+           </td>
+           <td class="r">
+            The Chinese University of Hong Kong
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tubt_01">
+             14:30-14:45, Paper TuBT.1
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod36" name="modify25" onclick="modify(25,36)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('25'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Spider Legs Inspired Soft Robotic Extensor for Hand Rehabilitation
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#399819" title="Click to go to the Author Index">
+             Cooperrider Young, Jhet
+            </a>
+            (Seattle University),
+            <a href="ARSO24_AuthorIndexWeb.html#401423" title="Click to go to the Author Index">
+             Olson, Eric
+            </a>
+            (Seattle University),
+            <a href="ARSO24_AuthorIndexWeb.html#402045" title="Click to go to the Author Index">
+             Do, Tony
+            </a>
+            (Seattle University),
+            <a href="ARSO24_AuthorIndexWeb.html#401300" title="Click to go to the Author Index">
+             Shuman, Mariana
+            </a>
+            (University of Washington),
+            <a href="ARSO24_AuthorIndexWeb.html#401353" title="Click to go to the Author Index">
+             Ohta, Davin
+            </a>
+            (Seattle University),
+            <a href="ARSO24_AuthorIndexWeb.html#344157" title="Click to go to the Author Index">
+             Han, Yen-Lin
+            </a>
+            (Seattle University)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab25" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#medical_and_healthcare_robotics" title="Click to go to the Keyword Index">
+               Medical and healthcare robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#service_and_assistive_robotics" title="Click to go to the Keyword Index">
+               Service and assistive robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#socio_economic_impacts" title="Click to go to the Keyword Index">
+               Socio-economic Impacts
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Soft robotics, which could be operated with higher degrees of freedom than their rigid counterparts, have a wide range of applications. Although 3D printing technologies have significantly advanced the development of soft robotics with fast iterations of designs and direct construction of complex structures, most 3D-printed soft robots to date are designed to rest in a straight line and bend when actuated. Inspired by the joints of a spider leg, this paper presents a novel soft robot design that curves in its resting position and extends when pneumatically actuated with the intent to form an easy-to-use hand rehabilitation device for stroke survivors with curled fingers and hands. Two prototypes were fabricated using Fused Deposition Modeling (FDM) 3D printing technology with thermoplastic polyurethane (TPU) filament. A testing apparatus was designed and built to investigate the relationship between the forces created by the soft robotic extensor and the air pressures supplied for actuation. Comparing our extensor prototypes' preliminary force testing results to available literature focusing on hand rehabilitation demonstrates the likelihood of using our spider legs-inspired, 3D-printed soft robotic extensor for at-home hand rehabilitation.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tubt_02">
+             14:45-15:00, Paper TuBT.2
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod37" name="modify35" onclick="modify(35,37)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('35'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Design, Analysis, and Experiment of the Drug Delivery Millirobot with In-Situ Adhesive Hydrogel Formation
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#388844" title="Click to go to the Author Index">
+             Zhao, Haoxiang
+            </a>
+            (The Hong Kong University of Science and Technology),
+            <a href="ARSO24_AuthorIndexWeb.html#133349" title="Click to go to the Author Index">
+             Shen, Yajing
+            </a>
+            (The Hong Kong University of Science and Technology)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab35" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#medical_and_healthcare_robotics" title="Click to go to the Keyword Index">
+               Medical and healthcare robotics
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Due to the small size and remote-control ability, swallowable robots have made various advances in non-invasive treatments, especially in the healing of some diseases induced in the gastrointestinal (GI) tract. However, problems that the swallowable robots for these treatments encountered are the limited movement ability, targeted drug delivery ability, and insufficient therapeutic effect due to the complex and humid environment in the gastrointestinal tract. In this paper, a novel millirobot for the drug delivery with in-situ formation of adhesive hydrogel is proposed for the treatment of the disease occurred in the gastrointestinal (GI) tract. In the working process, the robot being controlled by the external magnetic field moves to the gastrointestinal tract lesion, and the adhesive hydrogel is in-situ formed between the tissue and the robot, which further guarantees the firm connection of the drug core and the working hours of robot for targeted drug delivery to enhance therapeutic effect. Ex-vivo experimental results show the stable adhere ability of the millirobot to the ex-vivo porcine stomach which can be easily lifted by the adhesive hydrogel and millirobot with the adhesion strength arriving at 69.38 kPa.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tubt_03">
+             15:00-15:15, Paper TuBT.3
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod38" name="modify37" onclick="modify(37,38)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('37'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Navigational Augmented Reality for Robotic Drilling
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#389629" title="Click to go to the Author Index">
+             Wang, Yupeng
+            </a>
+            (The Chinese University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#380597" title="Click to go to the Author Index">
+             Ma, Yan
+            </a>
+            (The Chinese University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#106795" title="Click to go to the Author Index">
+             Ren, Hongliang
+            </a>
+            (Chinese Univ Hong Kong (CUHK) &amp; National Univ Singapore(NUS))
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab37" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#medical_and_healthcare_robotics" title="Click to go to the Keyword Index">
+               Medical and healthcare robotics
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Fracture fixation surgery is a complex procedure that requires precise placement and drilling of screws or plates to stabilize the broken bone. Precise drilling during surgery can be achieved by orthopedic robots, which can help achieve minimally invasive surgery in terms of preoperative planning and precise intraoperative control, ultimately reducing the surgical pressure on doctors. However, the current assistance in existing systems mainly uses 2D images, and thus, doctors need a more intuitive understanding of the surgical situation. As a technology of overlaying the virtual world on the real world, Augmented Reality (AR) can be used to provide more intuitive guidance. Therefore, this article proposes an AR-assisted robotic bone-drilling system to help improve drilling accuracy and reduce the difficulty of drilling surgery. In this system, AR overlays virtual bones on the natural human body and provides an intuitive way to place target drilling sites. The robotic arm will then be navigated to the target drilling site during the surgery, where the doctor can complete the drilling operation accurately. The proposed system was finally evaluated in terms of AR placement accuracy and drilling accuracy. The AR placement experiments were performed on a bone phantom with errors of 4.53 ± 2.05 mm and 5.05 ± 2.82°. Moreover, the final drilling accuracy on four pig femur heads is 4.06 ± 2.40 mm and 3.62 ± 2.40°.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tubt_04">
+             15:15-15:30, Paper TuBT.4
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod39" name="modify47" onclick="modify(47,39)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('47'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Effects of a Memory-Engaging Secondary Task in a Virtual Setting for Stimulating the Embodiment of an Artificial Upper Limb
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#390157" title="Click to go to the Author Index">
+             Lucaroni, Andrea
+            </a>
+            (Istituto Italiano Di Tecnologia),
+            <a href="ARSO24_AuthorIndexWeb.html#296807" title="Click to go to the Author Index">
+             Bottino, Andrea
+            </a>
+            (Politecnico Di Torino),
+            <a href="ARSO24_AuthorIndexWeb.html#321452" title="Click to go to the Author Index">
+             Lamberti, Fabrizio
+            </a>
+            (Politecnico Di Torino),
+            <a href="ARSO24_AuthorIndexWeb.html#386189" title="Click to go to the Author Index">
+             Mariani, Giulia
+            </a>
+            (Istituto Italiano Di Tecnologia),
+            <a href="ARSO24_AuthorIndexWeb.html#274012" title="Click to go to the Author Index">
+             Marinelli, Andrea
+            </a>
+            (University of Genova, Italian Institute of Technologies),
+            <a href="ARSO24_AuthorIndexWeb.html#232991" title="Click to go to the Author Index">
+             Boccardo, Nicolò
+            </a>
+            (IIT - Istituto Italiano Di Tecnologia),
+            <a href="ARSO24_AuthorIndexWeb.html#122072" title="Click to go to the Author Index">
+             Gruppioni, Emanuele
+            </a>
+            (INAIL Prosthesis Center),
+            <a href="ARSO24_AuthorIndexWeb.html#112282" title="Click to go to the Author Index">
+             De Michieli, Lorenzo
+            </a>
+            (Istituto Italiano Di Tecnologia),
+            <a href="ARSO24_AuthorIndexWeb.html#123069" title="Click to go to the Author Index">
+             Laffranchi, Matteo
+            </a>
+            (Istituto Italiano Di Tecnologia),
+            <a href="ARSO24_AuthorIndexWeb.html#160252" title="Click to go to the Author Index">
+             Barresi, Giacinto
+            </a>
+            (Istituto Italiano Di Tecnologia)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab47" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#medical_and_healthcare_robotics" title="Click to go to the Keyword Index">
+               Medical and healthcare robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#intelligent_robots_for_rehabilitation" title="Click to go to the Keyword Index">
+               Intelligent robots for rehabilitation
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#service_and_assistive_robotics" title="Click to go to the Keyword Index">
+               Service and assistive robotics
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             The embodiment (the sensation that an external object is part of one’s body scheme) is one of the processes targeted by the research in bionic prosthetics as a potential strategy to increase the acceptance of artificial limbs. This study investigates how one of the components of the embodiment, the body ownership (the sensation of possessing the external object), may be affected by a secondary task (possibly competing for cognitive resources requested for the embodiment itself) in a virtual exergame for prosthetic training. In this preliminary study participants, without impairments, are asked to perform activities of pick-and-place in two conditions by using a digital model of the Hannes bionic hand: (i) one is cognitively challenging, requiring to memorize the sequence of objects to move before it disappears; (ii) the other is non-challenging for the subject’s memory, with a constantly visible sequence. In both conditions, each subject is asked to catch objects according to the presented sequence. According to questionnaire data, we noticed how this procedure is feasible. Interestingly, the proprioceptive drift (the person is asked to indicate where they perceive their own real limb without looking at it) in a subsequent Rubber Hand Illusion session with the real bionic hand seems highlighting that the working memory-engaging secondary task can impair the embodiment process in terms of body ownership of the robotic hand. Probably, the memory task actually requires a type of cognitive resources that are necessary for the body ownership process itself during the multisensory stimulation. This allows for envisioning further investigations and novel design concepts for prosthetic training paradigms.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tubt_05">
+             15:30-15:45, Paper TuBT.5
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod40" name="modify54" onclick="modify(54,40)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('54'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Design and Validation of a Multimodal Dataset of Robot-Assisted Suturing Gestures Based on Kinematic and Force Information
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#256836" title="Click to go to the Author Index">
+             Iacono, Cristina
+            </a>
+            (Università Degli Studi Di Napoli Federico II),
+            <a href="ARSO24_AuthorIndexWeb.html#317859" title="Click to go to the Author Index">
+             Caianiello, Marco
+            </a>
+            (University of Naples Federico II),
+            <a href="ARSO24_AuthorIndexWeb.html#386343" title="Click to go to the Author Index">
+             Bartiromo, Serena
+            </a>
+            (Università Degli Studi Di Napoli Federico II),
+            <a href="ARSO24_AuthorIndexWeb.html#390320" title="Click to go to the Author Index">
+             Smaldone, Aldo
+            </a>
+            (Università Degli Studi Di Napoli Federico II),
+            <a href="ARSO24_AuthorIndexWeb.html#137686" title="Click to go to the Author Index">
+             Ficuciello, Fanny
+            </a>
+            (Università Di Napoli Federico II)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab54" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#medical_and_healthcare_robotics" title="Click to go to the Keyword Index">
+               Medical and healthcare robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#machine_learning_and_robot_learning" title="Click to go to the Keyword Index">
+               Machine Learning and Robot Learning
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Surgical activity knowledge is a fundamental skill for the automation of robot-assisted surgical interventions. Surgical robots need not only to recognize kinematic patterns that constitute the surgical tasks but also to provide physical interpretation to understand the surgical workflow. Data are essential for training robots to recognize the procedure being performed and eventually automatize it with a customized control strategy based on the specific sub-task. Moreover, the interaction of the robot with the environment plays a crucial role in safely performing complex tasks and operating with greater autonomy and precision. The open access design of the da Vinci Research Kit (dVRK) control architecture incentivizes and enables researchers to easily access and collect data. For these reasons, this work proposes a novel dataset based on the suturing task on the dVRK from several surgeons with different skill levels. The dataset includes kinematics and interaction force data labeled with the surgical gestures part of the suture procedure.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tubt_06">
+             15:45-16:00, Paper TuBT.6
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod41" name="modify57" onclick="modify(57,41)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('57'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Optimizing Safety and Efficiency in the Suturing Task: A Comparison of Model Predictive Control and Control Barrier Function Framework
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#317859" title="Click to go to the Author Index">
+             Caianiello, Marco
+            </a>
+            (University of Naples Federico II),
+            <a href="ARSO24_AuthorIndexWeb.html#390201" title="Click to go to the Author Index">
+             Ricci, Micol
+            </a>
+            (Università Degli Studi Di Napoli Federico II),
+            <a href="ARSO24_AuthorIndexWeb.html#390320" title="Click to go to the Author Index">
+             Smaldone, Aldo
+            </a>
+            (Università Degli Studi Di Napoli Federico II),
+            <a href="ARSO24_AuthorIndexWeb.html#368248" title="Click to go to the Author Index">
+             Hussain, Sajjad
+            </a>
+            (University of Naples Federico II),
+            <a href="ARSO24_AuthorIndexWeb.html#256836" title="Click to go to the Author Index">
+             Iacono, Cristina
+            </a>
+            (Università Degli Studi Di Napoli Federico II),
+            <a href="ARSO24_AuthorIndexWeb.html#137686" title="Click to go to the Author Index">
+             Ficuciello, Fanny
+            </a>
+            (Università Di Napoli Federico II)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab57" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#medical_and_healthcare_robotics" title="Click to go to the Keyword Index">
+               Medical and healthcare robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#intelligent_robots_for_rehabilitation" title="Click to go to the Keyword Index">
+               Intelligent robots for rehabilitation
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Robot Assisted Minimally Invasive Surgery (RAMIS) has revolutionized surgical practices by reducing pain, hospital stays, and complications. However, current surgical robots struggle with autonomously managing complex tasks due to strict safety requirements. The Model Predictive Control (MPC) and the Control Barrier Function (CBF) framework are emerged as valuable approaches to determine control variables while satisfying numerous constraints. In this work, we compare them in the autonomous execution of suturing task according to the medical guidelines. The test involves a da Vinci Research Kit and in the first phase the end-effect targets a goal pose while avoiding a self-collision with the other tools. In the second phase, a planar circular trajectory is imposed to minimize the tissue stress and the robot-human interaction. The comparison demonstrates the robustness and adaptability of MPC in the surgical environment while highlighting the optimization capabilities of the CBF framework in terms of safety and computational efficiency at each time-step.
+            </div>
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="tuct">
+             <b>
+              TuCT
+             </b>
+             Regular Session, 17W_MFHall2
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod42" name="modifyTuCT" onclick="modsession(157,42)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ARSO24_ProgramAtAGlanceWeb.html#tuct" title="Click to go to the Program at a Glance">
+             <b>
+              Technical Session IV - AI and Machine Learning
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#186996" title="Click to go to the Author Index">
+             Cao, Wujing
+            </a>
+           </td>
+           <td class="r">
+            Shenzhen Institute of Advanced Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Co-Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#132532" title="Click to go to the Author Index">
+             Chen, Fei
+            </a>
+           </td>
+           <td class="r">
+            The Chinese University of Hong Kong
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tuct_01">
+             16:30-16:45, Paper TuCT.1
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod43" name="modify15" onclick="modify(15,43)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('15'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Learning and Simulation of Spatiotemporally Multi-Scale Pedestrian Flow Model
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#299359" title="Click to go to the Author Index">
+             Sakurai, Akihiro
+            </a>
+            (University of Tokyo),
+            <a href="ARSO24_AuthorIndexWeb.html#117307" title="Click to go to the Author Index">
+             Yamamoto, Ko
+            </a>
+            (University of Tokyo)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab15" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#human_movement_modeling" title="Click to go to the Keyword Index">
+               Human Movement Modeling
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#machine_learning_and_robot_learning" title="Click to go to the Keyword Index">
+               Machine Learning and Robot Learning
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#socio_economic_impacts" title="Click to go to the Keyword Index">
+               Socio-economic Impacts
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Congestion in urban spaces can lead to serious accidents, and mathematical modeling of pedestrian flows is important for prediction and prevention. Pedestrian flow behavior can be spatio-temporally divided into macro and micro scales, and most conventional models focus on a single block of urban space, the micro scale. In this study, we propose a model that simultaneously considers the macro-scale. Information at each scale is encoded and decoded by LSTM to make predictions with interaction. The proposed model is trained from a dummy dataset reproducing the area in front of Shibuya station and measured data for basic investigation. Simulations will be conducted using the learned model to verify whether it is possible to reproduce the pedestrian flow in front of Shibuya Station.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tuct_02">
+             16:45-17:00, Paper TuCT.2
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod44" name="modify18" onclick="modify(18,44)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('18'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Lateral Walking Gait Phase Detection with Data Optimization for a Hip Exoskeleton in Resistance Exercise
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#186996" title="Click to go to the Author Index">
+             Cao, Wujing
+            </a>
+            (Shenzhen Institute of Advanced Technology),
+            <a href="ARSO24_AuthorIndexWeb.html#387986" title="Click to go to the Author Index">
+             Zhu, Xinbo
+            </a>
+            (Nanjing University of Aeronautics and Astronautics),
+            <a href="ARSO24_AuthorIndexWeb.html#387988" title="Click to go to the Author Index">
+             Xu, Rui
+            </a>
+            (Nanjing University of Aeronautics and Astronautics),
+            <a href="ARSO24_AuthorIndexWeb.html#387990" title="Click to go to the Author Index">
+             Li, Changyu
+            </a>
+            (Jining Zhongke Intelligent Technology Co., Ltd),
+            <a href="ARSO24_AuthorIndexWeb.html#386251" title="Click to go to the Author Index">
+             Yu, Hongliu
+            </a>
+            (University of Shanghai for Science and Technology),
+            <a href="ARSO24_AuthorIndexWeb.html#181799" title="Click to go to the Author Index">
+             Zhang, Mingming
+            </a>
+            (Southern University of Science and Technology),
+            <a href="ARSO24_AuthorIndexWeb.html#107709" title="Click to go to the Author Index">
+             Yu, Haoyong
+            </a>
+            (National University of Singapore),
+            <a href="ARSO24_AuthorIndexWeb.html#387992" title="Click to go to the Author Index">
+             Worawarit, Kobsiriphat
+            </a>
+            (National Metal and Materials Technology Center, Thailand),
+            <a href="ARSO24_AuthorIndexWeb.html#100984" title="Click to go to the Author Index">
+             Wu, Xinyu
+            </a>
+            (CAS)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab18" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#intelligent_robots_for_rehabilitation" title="Click to go to the Keyword Index">
+               Intelligent robots for rehabilitation
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#service_and_assistive_robotics" title="Click to go to the Keyword Index">
+               Service and assistive robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#machine_learning_and_robot_learning" title="Click to go to the Keyword Index">
+               Machine Learning and Robot Learning
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             The accurate detection of lateral walking gait phases is essential for the effective implementation of hip exoskeleton systems in lateral resistance walking exercises. However, limitations in hardware, such as memory and computing power, in the microcontrollers of wearable devices, significantly impact the size and training speed of the lateral walking gait phase detection model, thus affecting the exoskeleton system. This study proposes a data optimization algorithm that utilizes K-means clustering combined with commonly used machine learning algorithms, including Random Forests (RF), Support Vector Machines (SVM), and k-Nearest Neighbors (KNN), to reduce both the training time and size of the model. With the implementation of this algorithm, the training time and model size of RF, SVM, and KNN-based models are reduced by 89.6%, 99.8%, and 97.9%, and 89.6%, 92.7%, and 95.2% respectively. The corresponding gait phase prediction accuracy experiences only a slight decrease of 1.6%, 1.7%, and 2.8% respectively. This method ensures a sufficiently high accuracy in detecting lateral walking gait phases while simultaneously achieving higher efficiency and a smaller model size.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tuct_03">
+             17:00-17:15, Paper TuCT.3
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod45" name="modify23" onclick="modify(23,45)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('23'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              The Robot's Understanding of Classification Concepts Based on Large Language Model
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#387948" title="Click to go to the Author Index">
+             Shi, Bao
+            </a>
+            (Dalian University of Technology),
+            <a href="ARSO24_AuthorIndexWeb.html#387947" title="Click to go to the Author Index">
+             Cai, Haiyang
+            </a>
+            (School of Computer Science and Technology, Dalian University Of),
+            <a href="ARSO24_AuthorIndexWeb.html#388118" title="Click to go to the Author Index">
+             Gao, Hui
+            </a>
+            (Dalian University of Technology),
+            <a href="ARSO24_AuthorIndexWeb.html#112946" title="Click to go to the Author Index">
+             Ou, Yongsheng
+            </a>
+            (Dalian University of Technology),
+            <a href="ARSO24_AuthorIndexWeb.html#388018" title="Click to go to the Author Index">
+             Wang, Degang
+            </a>
+            (Dalian University of Technology)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab23" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#the_role_of_ai_in_the_implementation_of_cognitive_robots" title="Click to go to the Keyword Index">
+               The role of AI in the implementation of cognitive robots
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#robotics_for_manufacturing" title="Click to go to the Keyword Index">
+               Robotics for manufacturing
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#machine_learning_and_robot_learning" title="Click to go to the Keyword Index">
+               Machine Learning and Robot Learning
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Cognition of classification concepts empowers robots to enhance their planning and task execution capabilities. By incorporating classification cognition of the environment and tasks, robots can make more informed decisions and improve their autonomy. In various domains, specific concept classification is crucial, such as disease categorization in medical diagnosis, transaction classification in the financial field, etc. Therefore, this article conducts an in-depth exploration of the cognition and understanding of abstract classification concepts (object color, object type, object size, etc.), and builds a programmed classification structure based on a large language model (PCS-LLM) to improve the robot's ability to classify the different categories. First, through the programmed definition of interactive objects and executable action libraries in the scene, constraints are added to the prediction of general LLM, thereby improving the executability of predicted actions. Secondly, for abstract classification concepts, typical tasks and decomposed actions performed by robots are programmatically defined as an example of LLM generating new task decomposed actions. Finally, in mixed scenarios, the robot's understanding and decomposition of any concept combination task is verified based on the UR5 robotic arm. Experimental results show that the robot can achieve corresponding classification operations when faced with tasks involving any combination of concepts.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tuct_04">
+             17:15-17:30, Paper TuCT.4
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod46" name="modify31" onclick="modify(31,46)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('31'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Good Looking: How Gaze Patterns Affect Users' Perceptions of an Interactive Social Robot
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#358640" title="Click to go to the Author Index">
+             Somashekarappa, Vidya
+            </a>
+            (University of Gothenburg),
+            <a href="ARSO24_AuthorIndexWeb.html#359422" title="Click to go to the Author Index">
+             Howes, Christine
+            </a>
+            (University of Gothenburg),
+            <a href="ARSO24_AuthorIndexWeb.html#359877" title="Click to go to the Author Index">
+             Sayeed, Asad
+            </a>
+            (University of Gothenburg)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab31" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#the_role_of_ai_in_the_implementation_of_cognitive_robots" title="Click to go to the Keyword Index">
+               The role of AI in the implementation of cognitive robots
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#human_movement_modeling" title="Click to go to the Keyword Index">
+               Human Movement Modeling
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Gaze automation in social robots is pivotal for enhancing Human-Robot Interaction (HRI) by promoting engagement and effectiveness in communication. This paper investigates whether different gaze patterns from a Furhat robot can lead to more effective, natural and engaging interactions. As the robots are integrating increasingly in human-rich environments, it is important to exhibit social cues to be perceived as a collaborative and socially-adaptive member. The experiment consisting of random, experimental and neutral conditions are rated for anthropomorphism, animacy, likeability, intelligence and safety by the participants after each session. The results indicate that gaze manipulations based on different gaze patterns from human-human interaction positively impact user perceptions in experimental conditions compared to the neutral and random scenarios. The findings contribute to understanding the impact of robot gaze on user perceptions and engagement, offering insights for the design and improvement of interactive social robots.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tuct_05">
+             17:30-17:45, Paper TuCT.5
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod47" name="modify43" onclick="modify(43,47)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('43'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Navigation of Tendon-Driven Flexible Robotic Endoscope through Deep Reinforcement Learning
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#385823" title="Click to go to the Author Index">
+             Ng, Chikit
+            </a>
+            (The Chinese University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#286380" title="Click to go to the Author Index">
+             Gao, Huxin
+            </a>
+            (National University of Singapore),
+            <a href="ARSO24_AuthorIndexWeb.html#381017" title="Click to go to the Author Index">
+             Ren, Tianao
+            </a>
+            (Stanford University),
+            <a href="ARSO24_AuthorIndexWeb.html#223899" title="Click to go to the Author Index">
+             Lai, Jiewen
+            </a>
+            (The Chinese University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#106795" title="Click to go to the Author Index">
+             Ren, Hongliang
+            </a>
+            (Chinese Univ Hong Kong (CUHK) &amp; National Univ Singapore(NUS))
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab43" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#machine_learning_and_robot_learning" title="Click to go to the Keyword Index">
+               Machine Learning and Robot Learning
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#the_role_of_ai_in_the_implementation_of_cognitive_robots" title="Click to go to the Keyword Index">
+               The role of AI in the implementation of cognitive robots
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#medical_and_healthcare_robotics" title="Click to go to the Keyword Index">
+               Medical and healthcare robotics
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Robotic endoscopes play a crucial role in diagnosing gastrointestinal disease and performing tumor resections. While current research primarily focuses on autonomously controlling rigid robots, establishing control models for flexible robots remains challenging. To address this, model-free deep reinforcement learning (DRL) presents a promising approach for enabling agents to make decisions under uncertainty. In this paper, we investigate the control policy of flexible endoscope using Simulation Open Framework Architecture (SOFA) platform. We design a flexible tendon-driven robotic endoscope (TDRE) and develop a custom simulation environment within SOFA to train DRL agents. Our approach involves implementing the Proximal Policy Optimization (PPO) algorithm to approximate an optimal policy for trajectory planning. The optimal policy facilitates trajectory tracking tasks for the TDRE's end-effector, such as circle trajectories and action disturbances, without requiring fine-tuning policy network parameters. Experimental results demonstrate that our approach achieves near real-time performance (30 FPS). The feedforward neural network of the policy provides feedback, enabling closed-loop control of TDRE. Furthermore, our experiments show that the navigation success rate of TDRE exceeds 90% within a tolerant error of 3 mm in free space. Notably, compared direct training with contact, navigation task with contact retrained by pre-trained policy in free space exhibit enhanced navigation capabilities.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tuct_06">
+             17:45-18:00, Paper TuCT.6
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod48" name="modify44" onclick="modify(44,48)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('44'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Surface Electromyography Relation Network
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#321022" title="Click to go to the Author Index">
+             Liu, Yanchen
+            </a>
+            (City University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#110978" title="Click to go to the Author Index">
+             Lai, King Wai Chiu
+            </a>
+            (City University of Hong Kong)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab44" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#machine_learning_and_robot_learning" title="Click to go to the Keyword Index">
+               Machine Learning and Robot Learning
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#intelligent_robots_for_rehabilitation" title="Click to go to the Keyword Index">
+               Intelligent robots for rehabilitation
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#service_and_assistive_robotics" title="Click to go to the Keyword Index">
+               Service and assistive robotics
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Metric-based learning combined with few-shots learning is efficient in learning similarity. This paper presents a metric learning based methodology for hand gesture recognition based on surface electromyography (sEMG) signals. We designed a model based on the relation network architecture to generate relation scores for assessing the similarity between the input sEMG signals, thereby achieving hand gesture recognition. In this proposed Surface Electromyography Relation Network (SE-RN), we first extracted the features of different input signals through a feature extraction part. Then, we concatenated this extracted information with the features from the referenced sEMG signals before feeding it into the relation module. Finally, with the relation module, we determined the similarity levels through the relation scores generated by the final classification layer. We performed experiments on C (C=5, 10) way one-shot experiment, and results showed that the designed SE-RN can achieve accuracies of 0.922~0.931 in these two experiments.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tuct_07">
+             18:00-18:15, Paper TuCT.7
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod49" name="modify51" onclick="modify(51,49)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('51'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Understanding, Describing and Mitigating the Flow of Personal Data in ROS 2 Systems to Comply with the GDPR and Beyond
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#390198" title="Click to go to the Author Index">
+             Zander, Tim
+            </a>
+            (Karlsruhe Institute of Technology),
+            <a href="ARSO24_AuthorIndexWeb.html#390203" title="Click to go to the Author Index">
+             Wohnig, Jonas
+            </a>
+            (Salzburg Research),
+            <a href="ARSO24_AuthorIndexWeb.html#101480" title="Click to go to the Author Index">
+             Beyerer, Jürgen
+            </a>
+            (Fraunhofer Gesellschaft)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab51" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#legal_and_ethical_regulations_for_ai_and_robotic_systems" title="Click to go to the Keyword Index">
+               Legal and ethical regulations for AI and robotic systems
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#legal_aspects" title="Click to go to the Keyword Index">
+               Legal Aspects
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             With the introduction of privacy protection laws such as the GDPR in the EU, carrying out privacy impact assessments (PIA) for new robotics applications interacting with humans is becoming a necessary part of the development process. We discuss a methodology and develop and release software to describe and mitigate the flow of personal data as part of the development process or retroactively in the Robot Operating System - ROS 2.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="tuct_08">
+             18:15-18:30, Paper TuCT.8
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod50" name="modify56" onclick="modify(56,50)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('56'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Community Robotics: A New Paradigm for Robotic Design and Innovation
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#356027" title="Click to go to the Author Index">
+             Maule, Ella
+            </a>
+            (University of Bristol, University of the West of England, Bristo),
+            <a href="ARSO24_AuthorIndexWeb.html#184690" title="Click to go to the Author Index">
+             Philamore, Hemma
+            </a>
+            (University of Bristol),
+            <a href="ARSO24_AuthorIndexWeb.html#146473" title="Click to go to the Author Index">
+             Studley, Matthew
+            </a>
+            (University of the West of England, Bristol),
+            <a href="ARSO24_AuthorIndexWeb.html#390240" title="Click to go to the Author Index">
+             Manchester, Helen
+            </a>
+            (University of Bristol),
+            <a href="ARSO24_AuthorIndexWeb.html#390244" title="Click to go to the Author Index">
+             Goudswaard, Mark
+            </a>
+            (University of Bristol)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab56" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#socio_economic_impacts" title="Click to go to the Keyword Index">
+               Socio-economic Impacts
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#legal_and_ethical_regulations_for_ai_and_robotic_systems" title="Click to go to the Keyword Index">
+               Legal and ethical regulations for AI and robotic systems
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             This paper introduces Community Robotics, a new paradigm for robotic design and innovation that centres communities as users and stakeholders. Community Robotics involves designing and innovating to create robotic and autonomous systems that work in service of community and for social value. The paper argues that the values and needs of communities are different from traditional enterprises and individual consumers and as such need dedicated consideration by roboticists in the design of robotic and autonomous systems. Different design approaches are also required, with parallels drawn with existing community design and innovation practices from across design disciplines. These practices indicate the importance of including the needs of communities in the design and development of technology more broadly. However, we argue that robotic and autonomous systems are a special case and require separate examination. We propose that research and development into community robotics is relevant across the field of robotics as it works to extend the possible contexts and enrich the research and innovation space, it unlocks additional opportunities for technology and knowledge creation. Finally, we propose a conceptual framework for Community Robotics, applying it to three robotic application scenarios, and suggest research avenues for future work within this new area.
+            </div>
+           </td>
+          </tr>
+         </table>
+        </div>
+        <p>
+         <br/>
+        </p>
+        <p>
+         <br/>
+        </p>
+       </td>
+       <td height="100%" style="background-color:#006599;" width="5">
+       </td>
+      </tr>
+      <tr>
+       <td alt="" border="0" colspan="4" height="8" style="background-color:#006599;" valign="center" width="100%">
+        <p align="center">
+         <span style="font-size:8pt;line-height:10pt;color:white;">
+          Technical Content ©
+IEEE Robotics &amp; Automation Society
+         </span>
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <td colspan="4" width="100%">
+        <p align="right">
+         <span style="text-decoration:none;">
+          <img align="right" border="0" src="/images/pc_logo_small.png" style="margin-left: 10px; margin-right: 10px"/>
+          This site is protected
+by copyright and trademark laws under US and International law.
+          <br/>
+          All rights
+reserved. © 2002-2024 PaperCept, Inc.
+          <br/>
+          Page generated 2024-05-18  03:18:03 PST
+          <a href="" onclick="window.open('/conferences/scripts/about.pl','tc','width=1000,scrollbars=yes'); return false">
+           Terms
+of use
+          </a>
+         </span>
+        </p>
+       </td>
+      </tr>
+     </table>
+    </body>
+   </div>
+  </form>
+ </body>
+</html>

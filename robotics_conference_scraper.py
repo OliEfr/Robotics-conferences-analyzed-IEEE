@@ -6,14 +6,14 @@ import matplotlib.pyplot as plt
 import pickle
 
 #### International Conference on Ubiquitous Robots (UR) 2024 ####
-conference = "International Conference on Ubiquitous Robots (UR) 2024"
+# conference = "International Conference on Ubiquitous Robots (UR) 2024"
 
-daily_programs = [
-    "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_2.html",
-    "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_3.html",
-]
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_3.html",
+# ]
 
-keyword_indx = "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_KeywordIndexWeb.html"
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_KeywordIndexWeb.html"
 
 #### ARSO 2024 ####
 # ARSO website looks a bit different
@@ -30,14 +30,14 @@ keyword_indx = "https://ras.papercept.net/conferences/conferences/UR24/program/U
 # keyword_indx = "https://ras.papercept.net/conferences/conferences/ARSO24/program/ARSO24_KeywordIndexWeb.html"
 
 #### ROBOSOFT 2024 ####
-# conference = "ROBOSOFT_2024"
-# daily_programs = [
-#     "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_2.html",
-#     "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_3.html",
-#     "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_4.html",
-# ]
+conference = "ROBOSOFT_2024"
+daily_programs = [
+    "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_2.html",
+    "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_3.html",
+    "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_4.html",
+]
 
-# keyword_indx = "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_KeywordIndexWeb.html"
+keyword_indx = "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_KeywordIndexWeb.html"
 
 #### ICRA 2024 ####
 # conference = "ICRA_2024"
@@ -144,6 +144,13 @@ def get_university_contributors_list():
         response = requests.get(daily_program)
         soup = BeautifulSoup(response.content, "html.parser")
 
+        with open(
+            f'./output/scraped_html/{daily_program.replace("/", "_").replace(":", "_")}',
+            mode="wt",
+            encoding="utf-8",
+        ) as file:
+            file.write(soup.prettify())
+
         # Find all anchor tags (<a>) with the text "Click to go to the Author Index"
         contributions = soup.find_all(
             "a", {"title": "Click to go to the Author Index"}
@@ -165,6 +172,13 @@ def get_keywords_list():
 
     response = requests.get(keyword_indx)
     soup = BeautifulSoup(response.content, "html.parser")
+
+    with open(
+        f'./output/scraped_html/{keyword_indx.replace("/", "_").replace(":", "_")}',
+        mode="wt",
+        encoding="utf-8",
+    ) as file:
+        file.write(soup.prettify())
 
     # get all rows of the table
     rows = soup.find("table", {"class": "kT"}).find_all("tr")
@@ -212,19 +226,19 @@ with open(f"./output/{conference}_data.pkl", "wb") as f:
         f,
     )
 
-plot(
-    university_list,
-    "Top 15 Institutions by Contributions",
-    "Number of Contributions",
-    f"./output/university_contributions_{conference}.svg",
-)
+# plot(
+#     university_list,
+#     "Top 15 Institutions by Author- and Co-Authorships",
+#     "Number of Contributions",
+#     f"./output/university_contributions_{conference}.svg",
+# )
 
-plot(
-    contributors_list,
-    "Top 15 Authors by Contributions",
-    "Number of Contributions",
-    f"./output/authors_contributions_{conference}.svg",
-)
+# plot(
+#     contributors_list,
+#     "Top 15 Authors by Contributions",
+#     "Number of Contributions",
+#     f"./output/authors_contributions_{conference}.svg",
+# )
 
 plot(
     keywords_list,
