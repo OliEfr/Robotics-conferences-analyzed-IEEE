@@ -26,28 +26,25 @@ import pickle
 #     "https://ras.papercept.net/conferences/conferences/ARSO24/program/ARSO24_ContentListWeb_2.html",
 #     "https://ras.papercept.net/conferences/conferences/ARSO24/program/ARSO24_ContentListWeb_3.html",
 # ]
-
 # keyword_indx = "https://ras.papercept.net/conferences/conferences/ARSO24/program/ARSO24_KeywordIndexWeb.html"
 
 #### ROBOSOFT 2024 ####
-conference = "ROBOSOFT_2024"
-daily_programs = [
-    "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_2.html",
-    "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_3.html",
-    "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_4.html",
-]
-
-keyword_indx = "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_KeywordIndexWeb.html"
+# conference = "ROBOSOFT_2024"
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_3.html",
+#     "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_ContentListWeb_4.html",
+# ]
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_KeywordIndexWeb.html"
 
 #### ICRA 2024 ####
-# conference = "ICRA_2024"
-# daily_programs = [
-#     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_1.html",
-#     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_2.html",
-#     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_3.html",
-# ]
-
-# keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_KeywordIndexWeb.html"
+conference = "ICRA_2024"
+daily_programs = [
+    "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_1.html",
+    "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_2.html",
+    "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_3.html",
+]
+keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_KeywordIndexWeb.html"
 
 
 # Unfortunately, institution names are not unique.
@@ -137,6 +134,7 @@ def remove_university_name_ambiguity(unis):
 # I am using the daily program to get the list of contributors.
 # This includes program chairs and co-chairs.
 # The information under .../ICRA24_AuthorIndexWeb.html does the same thing.
+# This counts EACH contributor of EACH paper
 def get_university_contributors_list():
     university_list, contributors_list = [], []
     for daily_program in daily_programs:
@@ -165,6 +163,53 @@ def get_university_contributors_list():
         ]
 
     return remove_university_name_ambiguity(university_list), contributors_list
+
+# Gets list of contributors and universities ONLY for paper
+# Counts only ONE institution per paper
+def get_university_contributors_list_papers_adjusted():
+    university_list, contributors_list = [], []
+    for daily_program in daily_programs:
+
+        response = requests.get(daily_program)
+        soup = BeautifulSoup(response.content, "html.parser")
+
+        with open(
+            f'./output/scraped_html/{daily_program.replace("/", "_").replace(":", "_")}',
+            mode="wt",
+            encoding="utf-8",
+        ) as file:
+            file.write(soup.prettify())
+
+        # get all papers
+        papers = soup.find_all(
+            "span", {"class": "pTtl"}
+        )
+
+        # get all authors for each paper
+        # this one is a bit ugly
+        for paper in papers:
+            element = BeautifulSoup(paper, "html.parser")
+            for sub_element in element:
+
+
+
+        
+
+        # Find all anchor tags (<a>) with the text "Click to go to the Author Index"
+        contributions = soup.find_all(
+            "a", {"title": "Click to go to the Author Index"}
+        )
+
+        university_list += [
+            contribution.parent.findNext("td").text.strip()
+            for contribution in contributions
+        ]
+        contributors_list += [
+            contribution.text.strip() for contribution in contributions
+        ]
+
+    return remove_university_name_ambiguity(university_list), contributors_list
+
 
 
 def get_keywords_list():
@@ -212,11 +257,12 @@ def plot(list, title, xlabel, filename):
     plt.clf()
 
 
-university_list, contributors_list = get_university_contributors_list()
+# university_list, contributors_list = get_university_contributors_list()
+university_list, contributors_list = get_university_contributors_list_papers_adjusted()
 keywords_list = get_keywords_list()
 
 # saving .pkl is suboptimal for git, but its quick for now
-with open(f"./output/{conference}_data.pkl", "wb") as f:
+with open(f"./output_temp/{conference}_data.pkl", "wb") as f:
     pickle.dump(
         {
             "university_list": university_list,
@@ -226,23 +272,23 @@ with open(f"./output/{conference}_data.pkl", "wb") as f:
         f,
     )
 
-# plot(
-#     university_list,
-#     "Top 15 Institutions by Author- and Co-Authorships",
-#     "Number of Contributions",
-#     f"./output/university_contributions_{conference}.svg",
-# )
+plot(
+    university_list,
+    "Top 15 Institutions by Author- and Co-Authorships",
+    "Number of Contributions",
+    f"./output_2/university_contributions_{conference}.svg",
+)
 
-# plot(
-#     contributors_list,
-#     "Top 15 Authors by Contributions",
-#     "Number of Contributions",
-#     f"./output/authors_contributions_{conference}.svg",
-# )
+plot(
+    contributors_list,
+    "Top 15 Authors by Contributions",
+    "Number of Contributions",
+    f"./output_2/authors_contributions_{conference}.svg",
+)
 
 plot(
     keywords_list,
     "Top 15 Keywords by Contributions",
     "Number of Contributions",
-    f"./output/keywords_contributions_{conference}.svg",
+    f"./output_temp/keywords_contributions_{conference}.svg",
 )
