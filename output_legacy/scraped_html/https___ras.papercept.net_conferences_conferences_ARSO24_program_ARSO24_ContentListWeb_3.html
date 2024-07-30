@@ -1,0 +1,2399 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta content="en-us" http-equiv="Content-Language"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width" name="viewport"/>
+  <script src="https://ras.papercept.net/conferences/scripts/dom-drag.js" type="text/javascript">
+  </script>
+  <script src="jquery-1.11.1.min.js">
+  </script>
+  <title>
+   ARSO 2024 Program | Wednesday May 22, 2024
+  </title>
+  <style type="text/css">
+   body, table, td, th{
+	Font-Family : sans-serif;
+	Font-Size : 10pt;
+}
+.r {text-align: right}
+.blue {color: #0000FF;}
+td {vertical-align: top; text-align: left}
+.c {text-align: center}
+table.s {
+	border-collapse:collapse;
+	border-width: 1px;
+}
+table.s td{
+	border-width: 1px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+table.t {
+	border-collapse: collapse;
+	border-width: 0px;
+}
+table.t td{
+	border-width: 0px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+.dots {
+    background:url('./images/dot.gif') repeat-x center;
+}
+.field {
+    background-color: #FFFFFF;
+}
+#pTitle { /* Page title */
+   font-size: 14pt;
+   line-height: 1.5em;
+}
+#pSubTitle { /* Page subtitle */
+   color: #909090;
+   font-size: 10pt; 
+   line-height: 1.5em;
+}
+#container {
+	position: absolute;
+	width: 100%;
+	margin-top: 2px;
+/*	overflow: hidden; */
+}
+
+.sHdr {   /* Session header Content list */
+   background-color: #F0E68C
+}
+      
+.sSHdr {   /* Subsession header Content list */
+   background-color: #f8f3c6 
+}
+      
+table.trk { /* Track table Content list */
+   border-collapse: collapse;
+   border-width: 0px;
+   margin: auto;
+/**   width: 640px; **/
+   width: 720px;
+}
+table.trk td{
+   border-width: 0px;
+   padding: 4px;
+   border-style: solid;
+   border-color: gray;
+ }
+      
+.pHdr {  /* Paper header Content list */
+   background-color: #E6E6FA;
+   color: black;
+}
+hr.thin { /* Horizontal rule content list */
+   border: 0px; 
+   height: .8px; 
+   background-color: #8888FF;
+}
+      
+.pTtl {  /* Paper title Content list */
+   font-size: 11pt;
+   font-style: italic;
+}
+      
+.ssHdr {  /* Subsession header container session Content list */
+   background-color: #DDDDDD;
+   color: black;
+}
+      
+.ssTtl {  /* Subsession title container session Content list */
+   font-size: 10pt;
+   font-style: normal;
+   font-weight: bold;
+}
+  </style>
+  <script language="JavaScript">
+   function initXMLHttp(){
+   var oRequest = false;
+   try {
+      oRequest = new XMLHttpRequest();
+   }  catch (trymicrosoft) {
+      try {
+         oRequest = new ActiveXObject("Msxml2.XMLHTTP");
+      }  catch (othermicrosoft) {
+         try {
+            oRequest = new ActiveXObject("Microsoft.XMLHTTP");
+         }  catch (failed) {
+            oRequest = false;
+         }
+      }
+   }
+   if (!oRequest){
+      alert("Error initializing XMLHttpRequest! Your browser does not support AJAX");
+   }
+   return oRequest;
+}
+function modify(number,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'Add';
+   }
+   else{
+      action = 'Delete';
+   }
+   
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=447&' + action + number;
+//   window.open(url,'myprogrampage');
+
+   modifyItem("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","447",action,number)
+
+}
+
+
+function modifyItem(url,ConfID,action,number){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&Number=' + number;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+var iIntervalId;  // Global variable
+function modsession(id,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'AddSession';
+   }
+   else{
+      action = 'DelSession';
+   }
+
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=447&' + action + id;
+//   window.open(url,'myprogrampage');
+
+   modifySession("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","447",action,id)
+
+}
+
+function modifySession(url,ConfID,action,id){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&ID=' + id;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+function getCookie(sName){
+   var sRE = "(?:; )?" + sName + "=([^;]*);?";   
+   var oRE = new RegExp(sRE);
+   if (oRE.test(document.cookie)){
+      return decodeURIComponent(RegExp["$1"]);}
+   else{
+      return null;
+   }
+}
+function loadprogram(){
+   var list = getCookie("ARSO24");
+   if (list){
+      var List = list.split(",");
+      for (var i=0; i<List.length; i++){
+         var names = document.getElementsByName('modify' + List[i]);
+         if (names.length){
+            for (var j=0; j<names.length; j++){
+               names[j].checked = true;
+            }
+         }
+      }
+   }
+}
+function reset(){
+
+   // Uncheck all modify and addsession checkboxes
+
+   var ins = document.getElementsByTagName('input');
+   for (var i=0; i<ins.length; i++){
+      if (ins[i].type == 'checkbox' && ins[i].id && ins[i].id.substring(0,3) == 'mod'){
+         ins[i].checked = false;
+      }
+   }
+   
+   // Reload the program
+   
+   loadprogram();
+}
+function startreset(){
+   iIntervalId = setInterval(reset,2000);
+}
+function viewAbstract(number){
+   var box = document.getElementById('Ab' + number);
+   if (box.style.display == 'block'){
+      box.style.display = 'none';
+   }
+   else if (box && box.style.display == 'none'){
+      box.style.display = 'block';
+   }
+}
+function openAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   var count = d.length;
+   if (count == 0){return;}
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab' && d[i].style.display == 'none'){
+         d[i].style.display = 'block';
+      }
+   }
+}
+function closeAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab'){
+         d[i].style.display = 'none';
+      }
+   }
+}
+var uhash;
+var pColor;
+$(function() { 
+
+   // Check for URL hash
+
+   uhash = location.hash.substring(1);
+   if (uhash.slice(-1) == '_'){
+      uhash = null;
+   }
+   if (uhash){
+   
+      // Mark the session
+   
+      pColor = $('#' + uhash).parent().css('backgroundColor');
+      $('#' + uhash).parent().css('backgroundColor','#FF8888');
+   }
+});
+  </script>
+ </head>
+ <body onload="loadprogram(); startreset()">
+  <form action="https://ras.papercept.net/conferences/scripts/myprogram.pl" name="myprogram">
+   <div id="container">
+    <body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+     <link href="//fonts.googleapis.com/css?family=Chango" rel="stylesheet" type="text/css"/>
+     <table ,="" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+       <td alt="" background="/images/arso/arso24_bg.png" border="0" height="140" nowrap="" width="100%">
+        <span style="font-size: 48px; font-family: Chango; color: #006599;text-shadow: 0px 0px 1px #fff; position: absolute; left: 20px; top:0px; line-height:48px;
+-webkit-filter: drop-shadow(1px 1px 0px #fff); filter: drop-shadow(1px 1px 1px #fff);z-index:1;">
+         <center>
+          <b>
+           ARSO2024
+          </b>
+         </center>
+        </span>
+        <span style="font-size: 22px; font-family:Open Sans Condensed,sans-serif, arial; color: #006599;text-shadow: 0px 0px 1px #fff; position: absolute; left: 20px; top:85px;
+-webkit-filter: drop-shadow(0px 0px 1px #fff); filter: drop-shadow(0px 0px 1px #fff);z-index:1;">
+         <strong>
+          2024 IEEE Conference on Advanced Robotics and its Social Impact
+         </strong>
+        </span>
+        <span style="font-size: 18px; font-family:Open Sans Condensed,sans-serif, arial; color: #006599;text-shadow: 0px 0px 1px #fff; position: absolute; left: 20px; top:115px;
+-webkit-filter: drop-shadow(0px 0px 1px #fff); filter: drop-shadow(0px 0px 1px #fff);z-index:1;">
+         Hong Kong, China | May 20-22, 2024
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <td height="1" style="background-color:#006599;" width="100%">
+       </td>
+      </tr>
+     </table>
+     <table border="0" cellpadding="0" cellspacing="0" height="80%" width="100%">
+      <tr>
+       <td height="100%" style="background-color:#006599;" width="5">
+       </td>
+       <td width="5">
+       </td>
+       <td height="100%" valign="top" width="100%">
+        <br/>
+        <div class="c" id="TheTop">
+         <span id="pTitle">
+          <a href="http://ieee-arso.org" target="_blank">
+           <b>
+            2024 IEEE International Conference on Advanced Robotics and Its Social Impacts (ARSO)
+           </b>
+          </a>
+          <br/>
+         </span>
+         <span id="pSubTitle">
+          <b>
+           May 20-22, 2024, Hong Kong, China
+          </b>
+         </span>
+         <br/>
+         <br/>
+        </div>
+        <div class="c" style="position: relative">
+         <a href="ARSO24_ProgramAtAGlanceWeb.html">
+          Program at a Glance
+         </a>
+         <a href="ARSO24_ContentListWeb_1.html">
+          Monday
+         </a>
+         <a href="ARSO24_ContentListWeb_2.html">
+          Tuesday
+         </a>
+         <a href="ARSO24_ContentListWeb_3.html">
+          Wednesday
+         </a>
+         <a href="ARSO24_AuthorIndexWeb.html">
+          Author Index
+         </a>
+         <a href="ARSO24_KeywordIndexWeb.html">
+          Keyword Index
+         </a>
+         <a href="#TheTop" onclick="window.open('https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=447','myprogrampage')">
+          My Program
+         </a>
+        </div>
+        <div class="c">
+         <p style="color: gray">
+          Last updated on May 18, 2024. This conference program is tentative and subject to change
+         </p>
+        </div>
+        <div class="c">
+         <h3>
+          Technical Program for Wednesday May 22, 2024
+         </h3>
+        </div>
+        <p class="c">
+        </p>
+        <div class="c">
+         <span style="color:gray ">
+          To show or hide the keywords and abstract (text summary) of a paper (if available), click on the paper title
+         </span>
+         <br/>
+         <a href="javascript:openAllAbstracts()" title="Click to open all abstracts">
+          Open all abstracts
+         </a>
+         <a href="javascript:closeAllAbstracts()" title="Click to close all abstracts">
+          Close all abstracts
+         </a>
+        </div>
+        <div class="c">
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="wep3l">
+             <b>
+              WeP3L
+             </b>
+             Plenary Session, 17W_MFHall2
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod51" name="modifyWeP3L" onclick="modsession(137,51)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ARSO24_ProgramAtAGlanceWeb.html#wep3l" title="Click to go to the Program at a Glance">
+             <b>
+              Plenary Talk III
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#110978" title="Click to go to the Author Index">
+             Lai, King Wai Chiu
+            </a>
+           </td>
+           <td class="r">
+            City University of Hong Kong
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wep3l_">
+             , Paper WeP3L.
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod52" name="modify75" onclick="modify(75,52)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Human-Robot Collaboration and Interaction
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#100071" title="Click to go to the Author Index">
+             Tomizuka, Masayoshi
+            </a>
+            (University of California)
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="wek4n">
+             <b>
+              WeK4N
+             </b>
+             Plenary Session, 17W_MFHall2
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod53" name="modifyWeK4N" onclick="modsession(145,53)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ARSO24_ProgramAtAGlanceWeb.html#wek4n" title="Click to go to the Program at a Glance">
+             <b>
+              Keynote Talk IV
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#160128" title="Click to go to the Author Index">
+             Liu, Jun
+            </a>
+           </td>
+           <td class="r">
+            City University of Hong Kong
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wek4n_">
+             , Paper WeK4N.
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod54" name="modify72" onclick="modify(72,54)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Revolutionizing the Construction Industry by Integrating Robotics and AI
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#247479" title="Click to go to the Author Index">
+             Luo, Xiaowei
+            </a>
+            (City University, HONG KONG)
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="weat">
+             <b>
+              WeAT
+             </b>
+             Regular Session, 17W_MFHall2
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod55" name="modifyWeAT" onclick="modsession(159,55)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ARSO24_ProgramAtAGlanceWeb.html#weat" title="Click to go to the Program at a Glance">
+             <b>
+              Technical Session V - Robot Vision and Sensing
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#320115" title="Click to go to the Author Index">
+             Zhang, Jiashi
+            </a>
+           </td>
+           <td class="r">
+            Zhejiang University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Co-Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#132532" title="Click to go to the Author Index">
+             Chen, Fei
+            </a>
+           </td>
+           <td class="r">
+            The Chinese University of Hong Kong
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="weat_01">
+             11:00-11:15, Paper WeAT.1
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod56" name="modify10" onclick="modify(10,56)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('10'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              LiDAR-Inertial 3D SLAM with Plane Constraint for Multi-Story Building
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#320115" title="Click to go to the Author Index">
+             Zhang, Jiashi
+            </a>
+            (Zhejiang University),
+            <a href="ARSO24_AuthorIndexWeb.html#387431" title="Click to go to the Author Index">
+             Su, Yuzhu
+            </a>
+            (Zhejiang University),
+            <a href="ARSO24_AuthorIndexWeb.html#321204" title="Click to go to the Author Index">
+             Zhang, Chengyang
+            </a>
+            (Zhejiang University),
+            <a href="ARSO24_AuthorIndexWeb.html#387434" title="Click to go to the Author Index">
+             Jin, Jianxiang
+            </a>
+            (Zhejiang University),
+            <a href="ARSO24_AuthorIndexWeb.html#343116" title="Click to go to the Author Index">
+             Wu, Jun
+            </a>
+            (Zhejiang University),
+            <a href="ARSO24_AuthorIndexWeb.html#113216" title="Click to go to the Author Index">
+             Xiong, Rong
+            </a>
+            (Zhejiang University),
+            <a href="ARSO24_AuthorIndexWeb.html#232612" title="Click to go to the Author Index">
+             Zhu, Qiuguo
+            </a>
+            (Zhejiang University)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab10" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#robot_vision_and_sensing" title="Click to go to the Keyword Index">
+               Robot Vision and Sensing
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#industrial_robotics" title="Click to go to the Keyword Index">
+               Industrial robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#off_road_mobile_robots__search_and_rescue_robots" title="Click to go to the Keyword Index">
+               Off-road mobile robots, search and rescue robots
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             The ubiquitous planes and structural consistency are the most apparent features of indoor multi-story buildings compared with outdoor environments. In this paper, we propose a tightly coupled LiDAR-Inertial 3D SLAM framework with plane features for the multi-story building. The framework we proposed is mainly composed of three parts: tightly coupled LiDAR-Inertial odometry, extraction of structural representative planes, and factor graph optimization. By building a local map and inertial measurement unit (IMU) pre-integration, we get LiDAR scan-to-local-map matching and IMU measurements, respectively. Minimize the joint cost function to obtain the LiDAR-Inertial odometry information. Once a new keyframe is added to the graph, all the planes of this keyframe that can represent structural features are extracted to find the constraint between different poses and stories. A keyframe-based factor graph is conducted with the constraint of planes, and LiDAR-Inertial odometry for keyframe poses refinement. The experimental results show that our algorithm has outstanding performance in accuracy compared with the state-of-the-art algorithms.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="weat_02">
+             11:15-11:30, Paper WeAT.2
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod57" name="modify13" onclick="modify(13,57)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('13'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              An Active Tacking and Projection-Based 3D Reconstruction Method for Moving Objects
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#228324" title="Click to go to the Author Index">
+             Chen, Mengjuan
+            </a>
+            (Hiroshima University),
+            <a href="ARSO24_AuthorIndexWeb.html#202812" title="Click to go to the Author Index">
+             Shimasaki, Kohei
+            </a>
+            (Hiroshima University),
+            <a href="ARSO24_AuthorIndexWeb.html#253702" title="Click to go to the Author Index">
+             Hu, Shaopeng
+            </a>
+            (Hiroshima University),
+            <a href="ARSO24_AuthorIndexWeb.html#131451" title="Click to go to the Author Index">
+             Gu, Qingyi
+            </a>
+            (Institute of Automation, Chinese Academy of Sciences),
+            <a href="ARSO24_AuthorIndexWeb.html#111980" title="Click to go to the Author Index">
+             Ishii, Idaku
+            </a>
+            (Hiroshima University)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab13" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#robot_vision_and_sensing" title="Click to go to the Keyword Index">
+               Robot Vision and Sensing
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#industrial_robotics" title="Click to go to the Keyword Index">
+               Industrial robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#robotics_for_manufacturing" title="Click to go to the Keyword Index">
+               Robotics for manufacturing
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             基于结构光投影的三维（3D）重建方法因其精度高、速度快、不依赖物体纹理信息等特点，在工业领域得到广泛应用。然而，现有的结构光 3D 重建系统在重建移动物体方面面临挑战，因为结构光系统中传统光源的静态特性限制了它们投射到移动物体上的有效性。本研究介绍了一种使用结构光的基于主动跟踪和投影的 3D 重建方法，该方法专为移动物体而设计。使用基于振镜的主动相机系统跟踪结果并将其反馈给类似装备的主动投影系统，该方法可以实时投射移动物体上的图案以进行 3D 重建。设计了一系列用于多个&amp;#
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="weat_03">
+             11:30-11:45, Paper WeAT.3
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod58" name="modify33" onclick="modify(33,58)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('33'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              A Chameleon-Inspired Flexible Tactile Sensor
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#388665" title="Click to go to the Author Index">
+             Ra, Hoonjoo
+            </a>
+            (Hong Kong University of Science and Technology),
+            <a href="ARSO24_AuthorIndexWeb.html#363900" title="Click to go to the Author Index">
+             Li, Gen
+            </a>
+            (City University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#133349" title="Click to go to the Author Index">
+             Shen, Yajing
+            </a>
+            (The Hong Kong University of Science and Technology)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab33" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#robot_vision_and_sensing" title="Click to go to the Keyword Index">
+               Robot Vision and Sensing
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             To enhance the robotic system to recognize its environment, an accurate tactile sensing system is needed. Inspired by the chameleon’s ability to change its color, a non-biological replica of the chameleon’s color-changing skin is fabricated and used as the sensing film for the tactile sensor. The sensing film can represent the normal force application by visualizing the color distribution on it. By building a lightweight neural network model based on the measured input force and pre-processed imaged data, our sensing system is able to reconstruct a normal force map out of the sensing film, resulting in a root mean square error value of 20.7 mN for normal force distribution measurement.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="weat_04">
+             11:45-12:00, Paper WeAT.4
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod59" name="modify40" onclick="modify(40,59)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('40'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Depth Camera-Based Monitoring and Simulation System for Weight Training Assessment
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#367345" title="Click to go to the Author Index">
+             Qu, Zijia
+            </a>
+            (City University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#310288" title="Click to go to the Author Index">
+             Chan, Colin Pak Yu
+            </a>
+            (City University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#321022" title="Click to go to the Author Index">
+             Liu, Yanchen
+            </a>
+            (City University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#367366" title="Click to go to the Author Index">
+             Xue, Jiaqi
+            </a>
+            (City University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#110978" title="Click to go to the Author Index">
+             Lai, King Wai Chiu
+            </a>
+            (City University of Hong Kong)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab40" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#robot_vision_and_sensing" title="Click to go to the Keyword Index">
+               Robot Vision and Sensing
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             This paper introduces a depth camera-based monitoring and simulation system, specifically designed for assessing weight training. Recognizing the limitations of IoT and wearable sensors in providing direct exercise guidance, this study employs a depth camera for real-time posture monitoring. The system integrates skeleton recognition to capture joint trajectories, feeding them into an OpenSim-based upper limb model for detailed muscle and joint analysis. This approach allows for assessment of muscle fiber and tendon forces through inverse kinematics and dynamics calculations. Camera setup tests in various exercise scenarios ensure optimal tracking accuracy. The study's findings indicate the system's effectiveness in enhancing safety and efficiency in weight training, providing a method for non-contact training monitoring.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="weat_05">
+             12:00-12:15, Paper WeAT.5
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod60" name="modify41" onclick="modify(41,60)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('41'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              3DHoNR: A 3D Object Recognition Using an Efficient and Fast Low-Dimensional 3D Descriptor for a Real-Time Application
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#389533" title="Click to go to the Author Index">
+             Joshi, Piyush
+            </a>
+            (IIIT Sri City),
+            <a href="ARSO24_AuthorIndexWeb.html#389535" title="Click to go to the Author Index">
+             Mukherjee, Varun
+            </a>
+            (IIIT Sri City),
+            <a href="ARSO24_AuthorIndexWeb.html#389537" title="Click to go to the Author Index">
+             Garg, Pratham
+            </a>
+            (IIIT Sri City),
+            <a href="ARSO24_AuthorIndexWeb.html#389538" title="Click to go to the Author Index">
+             Kumar, Vinay
+            </a>
+            (IIIT Sri City)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab41" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#robot_vision_and_sensing" title="Click to go to the Keyword Index">
+               Robot Vision and Sensing
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#the_role_of_ai_in_the_implementation_of_cognitive_robots" title="Click to go to the Keyword Index">
+               The role of AI in the implementation of cognitive robots
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#autonomous_vehicles" title="Click to go to the Keyword Index">
+               Autonomous Vehicles
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Recognition methods for 3D objects, which depend on local features, play a key role in ensuring robust recognition. Moreover, training-free approaches that require only a sample for recognition prove beneficial in real-time applications such as robotics, as they do not involve extensive learning processes. This paper proposes a training-free method for object recognition, introducing a resilient and efficient 3D descriptor generated from local features around keypoints. The approach ensures robustness by converting 3D keypoints into a new space and computing features in the original space. These features are derived from the Histogram of Point Distributions (HoPD) and the Histogram of Neighbors Relationship (HoNR). We conducted experiments on three prominent 3D datasets—Bologna, FEVOR and Kinect. Our proposed technique demonstrated a remarkable 100 % recognition rate on the Bologna dataset and surpassed state-of-the-art methods on FEVOR dataset. Additionally, the proposed technique is well-suited for real-time applications due to its low computation time requirements for object detection.
+            </div>
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="webt">
+             <b>
+              WeBT
+             </b>
+             Regular Session, 17W_MFHall2
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod61" name="modifyWeBT" onclick="modsession(161,61)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ARSO24_ProgramAtAGlanceWeb.html#webt" title="Click to go to the Program at a Glance">
+             <b>
+              Technical Session VI - Service and Assistive Robotics
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#348207" title="Click to go to the Author Index">
+             Sievers, Thomas
+            </a>
+           </td>
+           <td class="r">
+            University of Lübeck
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Co-Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#358500" title="Click to go to the Author Index">
+             Sienkiewicz, Barbara
+            </a>
+           </td>
+           <td class="r">
+            Jagiellonian University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="webt_01">
+             14:00-14:15, Paper WeBT.1
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod62" name="modify19" onclick="modify(19,62)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('19'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Interacting with a Sentimental Robot - Making Human Emotions Tangible for a Social Robot Via ChatGPT
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#348207" title="Click to go to the Author Index">
+             Sievers, Thomas
+            </a>
+            (University of Lübeck),
+            <a href="ARSO24_AuthorIndexWeb.html#358849" title="Click to go to the Author Index">
+             Russwinkel, Nele
+            </a>
+            (Universität Zu Lübeck)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab19" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#humanoid_robots" title="Click to go to the Keyword Index">
+               Humanoid Robots
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Recognizing and correctly assessing the emotions of a human conversation partner is - if successful - a milestone in social interaction between humans and social robots. The robot should recognize human emotions and take them into account in its reactions. It is also important that humans and robots assess the content of the dialog from an emotional perspective in the same way. But how can the emotional state of a person in a dialog with a robot be accessed? We examined this question more closely in our study. A Large Language Model (LLM) from OpenAI (ChatGPT) was used for conversations with a Pepper robot. We had the course of the dialog assessed once by the human interlocutor and once by the GPT model itself using sentiment analysis. In addition, the predominant emotion was named by both conversation partners after the dialog. A comparison of these evaluations provided an assessment of whether the human and the social robot arrived at the same results. We were also investigating whether the transmission of emotion recognition data had a noticeable influence on the tonality of the conversation. To do this, we used the robot's emotion recognition capabilities to send cues to the GPT model about the current emotional state of the human at each turn of the conversation, so that the LLM could take this into account in the generation of the robot's utterances. It was found that the predominant emotion of the human and the general mood of a conversation were interpreted by humans and the GPT model in largely the same way, whereby an existing emotion recognition made the robot's assessment of the general mood deviate noticeably.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="webt_02">
+             14:15-14:30, Paper WeBT.2
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod63" name="modify26" onclick="modify(26,63)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('26'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Dealing with Moral Assistance in Robot-Supported Decision Making for Sustainable Consumption
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#227665" title="Click to go to the Author Index">
+             Krummheuer, Antonia
+            </a>
+            (Aalborg University),
+            <a href="ARSO24_AuthorIndexWeb.html#158245" title="Click to go to the Author Index">
+             Rehm, Matthias
+            </a>
+            (Aalborg University)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab26" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#service_and_assistive_robotics" title="Click to go to the Keyword Index">
+               Service and assistive robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#socio_economic_impacts" title="Click to go to the Keyword Index">
+               Socio-economic Impacts
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Aiming to foster responsible and sustainable consumption, we developed a shopping scenario with an assistive robot that intervenes with shopping requests when they are at odds with the agreed shopping agenda. While a former quantitative analysis of the experimental setup gave insights on participants’ acceptance of the robot interventions, this paper reports the results of a qualitative analysis of the decision-making processes with the assistive shopping robot. Inspired by conversation analysis, we explore how test participants (TPs) react to the robot's interventions. The analysis shows that TPs are doing much more than just rejecting or accepting the robot's interventions, but rather e.g. reformulate their requests, ask for help or give accounts for their choices. The paper differentiates six different response formats and discusses what we can learn from them about decision-making with assistive shopping robots and sustainable shopping.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="webt_03">
+             14:30-14:45, Paper WeBT.3
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod64" name="modify27" onclick="modify(27,64)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('27'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              A Participatory Design Approach to Using Social Robots for Elderly Care
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#358500" title="Click to go to the Author Index">
+             Sienkiewicz, Barbara
+            </a>
+            (Jagiellonian University),
+            <a href="ARSO24_AuthorIndexWeb.html#387958" title="Click to go to the Author Index">
+             Radosz-Knawa, Zuzanna
+            </a>
+            (Jagiellonian University Collegium Medicum),
+            <a href="ARSO24_AuthorIndexWeb.html#213740" title="Click to go to the Author Index">
+             Indurkhya, Bipin
+            </a>
+            (Jagiellonian University)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab27" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#service_and_assistive_robotics" title="Click to go to the Keyword Index">
+               Service and assistive robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#medical_and_healthcare_robotics" title="Click to go to the Keyword Index">
+               Medical and healthcare robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             We present our ongoing research on applying a participatory design approach to using social robots for elderly care. Our approach involves four different groups of stakeholders: the elderly, (non-professional) caregivers, medical professionals, and psychologists. We focus on card sorting and storyboarding techniques to elicit the concerns of the stakeholders towards deploying social robots for elderly care. This is followed by semi-structured interviews to assess their attitudes towards social robots individually. Then we are conducting two-stage workshops with different elderly groups to understand how to engage them with the technology and to identify the challenges in this task.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="webt_04">
+             14:45-15:00, Paper WeBT.4
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod65" name="modify28" onclick="modify(28,65)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('28'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              CelesTE, Theomorphic Device for Cognitive Support of Older Adults
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#150234" title="Click to go to the Author Index">
+             Trovato, Gabriele
+            </a>
+            (Shibaura Institute of Technology),
+            <a href="ARSO24_AuthorIndexWeb.html#346088" title="Click to go to the Author Index">
+             Du, Yegang
+            </a>
+            (Waseda University),
+            <a href="ARSO24_AuthorIndexWeb.html#327864" title="Click to go to the Author Index">
+             Mitchell, Scean
+            </a>
+            (Waseda University),
+            <a href="ARSO24_AuthorIndexWeb.html#250408" title="Click to go to the Author Index">
+             Pariasca, Franco
+            </a>
+            (Pontificia Universidad Catolica Del Peru),
+            <a href="ARSO24_AuthorIndexWeb.html#388221" title="Click to go to the Author Index">
+             Obe, Rio
+            </a>
+            (Waseda University),
+            <a href="ARSO24_AuthorIndexWeb.html#388222" title="Click to go to the Author Index">
+             Lopez Condori, Rodrigo
+            </a>
+            (Pontificia Universidad Catolica Del Peru),
+            <a href="ARSO24_AuthorIndexWeb.html#327866" title="Click to go to the Author Index">
+             Katagiri, Masao
+            </a>
+            (Waseda University),
+            <a href="ARSO24_AuthorIndexWeb.html#388223" title="Click to go to the Author Index">
+             Gawande, Manishk
+            </a>
+            (Shibaura Institute of Technology),
+            <a href="ARSO24_AuthorIndexWeb.html#163373" title="Click to go to the Author Index">
+             Cosentino, Sarah
+            </a>
+            (Waseda University),
+            <a href="ARSO24_AuthorIndexWeb.html#388224" title="Click to go to the Author Index">
+             Manavi, Mehrbod
+            </a>
+            (Siegen University),
+            <a href="ARSO24_AuthorIndexWeb.html#282055" title="Click to go to the Author Index">
+             Carros, Felix
+            </a>
+            (Siegen University),
+            <a href="ARSO24_AuthorIndexWeb.html#388225" title="Click to go to the Author Index">
+             Wieching, Rainer
+            </a>
+            (Siegen University)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab28" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#service_and_assistive_robotics" title="Click to go to the Keyword Index">
+               Service and assistive robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#medical_and_healthcare_robotics" title="Click to go to the Keyword Index">
+               Medical and healthcare robotics
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Healthy ageing is a challenge in societies that can be coped with the help of socially assistive robots. This study introduces CelesTE, a theomorphic device designed to support the well-being of older adults. Building upon the foundations laid by SanTO, the Catholic robot, CelesTE takes the form of an angel in prayer and aims to engage users, particularly those of the Christian Catholic faith. The paper delves into CelesTE's conceptual evolution, addressing challenges related to religious perceptions, fallibility, and user interaction. Quantitative and qualitative feedback was collected from 14 participants across three European countries. Results indicate generally positive acceptance, although limitation were found. Negative responses are considered particularly valuable for CelesTE's future development.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="webt_05">
+             15:00-15:15, Paper WeBT.5
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod66" name="modify29" onclick="modify(29,66)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('29'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              An Open-Source Software-Hardware Integration Scheme for Embodied Human Perception in Service Robotics
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#286607" title="Click to go to the Author Index">
+             Okunevich, Iaroslav
+            </a>
+            (University of Technology of Belfort-Montbéliard),
+            <a href="ARSO24_AuthorIndexWeb.html#340611" title="Click to go to the Author Index">
+             Hilaire, Vincent
+            </a>
+            (UTBM),
+            <a href="ARSO24_AuthorIndexWeb.html#339846" title="Click to go to the Author Index">
+             Galland, Stephane
+            </a>
+            (Université De Technologie De Belfort Montvéliard),
+            <a href="ARSO24_AuthorIndexWeb.html#344307" title="Click to go to the Author Index">
+             ​Lamotte, ​Olivier
+            </a>
+            (Université De Technologie De Belfort Montbéliard (UTBM)),
+            <a href="ARSO24_AuthorIndexWeb.html#127659" title="Click to go to the Author Index">
+             Ruichek, Yassine
+            </a>
+            (University of Technology of Belfort-Montbeliard - France),
+            <a href="ARSO24_AuthorIndexWeb.html#141450" title="Click to go to the Author Index">
+             Yan, Zhi
+            </a>
+            (University of Technology of Belfort-Montbéliard (UTBM))
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab29" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#robot_vision_and_sensing" title="Click to go to the Keyword Index">
+               Robot Vision and Sensing
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#service_and_assistive_robotics" title="Click to go to the Keyword Index">
+               Service and assistive robotics
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Perception of human beings is one of the basic capabilities of service robots and is the prerequisite for interaction between robots and humans. Although enabling hardware and software technologies have made great strides, there are not many open-source solutions that organically integrate the two. To address this shortfall, this paper introduces an open-source scheme of hardware and software integration for robotic embodied human perception. The embodied entity includes a robot chassis, a computing unit based on ARM architecture, a 3D lidar, a 2D lidar and four RGB-D cameras for robot exterior perception, a display panel for human-robot interaction, a set of LED lights to show the robot's status and a sonar strip for low-level obstacle avoidance. The perception software is fully based on the Robot Operating System (ROS) which allows high modularity, fully deployed to the embodied entity and running at a rate of 30 Hz. The entire integration solution is very portable and publicly available at https://github.com/Nedzhaken/human_aware_navigation.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="webt_06">
+             15:15-15:30, Paper WeBT.6
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod67" name="modify39" onclick="modify(39,67)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('39'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Analyses of Parametric Relation in Ant Colony Approach for Robot Path Planning Problem
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#195034" title="Click to go to the Author Index">
+             Sharan, Sudeep
+            </a>
+            (Frankfurt University of Applied Sciences),
+            <a href="ARSO24_AuthorIndexWeb.html#390006" title="Click to go to the Author Index">
+             Ngoc Minh, Anh Tong
+            </a>
+            (Frankfurt University of Applied Sciences),
+            <a href="ARSO24_AuthorIndexWeb.html#389938" title="Click to go to the Author Index">
+             Dominguez-Jimenez, Juan José
+            </a>
+            (University of Cadiz),
+            <a href="ARSO24_AuthorIndexWeb.html#195038" title="Click to go to the Author Index">
+             Nauth, Peter
+            </a>
+            (Frankfurt University of Applied Sciences)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab39" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#service_and_assistive_robotics" title="Click to go to the Keyword Index">
+               Service and assistive robotics
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             One of the most challenging areas of robotics research is the mobile robot vehicle in a complicated obstacle environment. Recently, algorithms for autonomous mobile vehicles have largely been influenced by nature-based algorithms. The swarm behavior of many different organisms, such as ants, fireflies, honey bees, and foxes, is simulated by several algorithms in mobile robot research, and the results are highly interesting and inspiring. In this paper, we took the inspired algorithm as an ant colony which is used to solve the path planning problems for any mobile vehicle/robots. While studying and using the ant colony approaches to solve the problem, we found that the parameter selections are one of the important expects to make the results of any application worse or better. Therefore, we decided to perform the study on the parametric relation in an ant colony approach. The importance of utilization of the Ant Colony Optimization (ACO) approach is to control the parameters. In this paper, we analysed/investigated the relationship between the different control parameters of the ACO algorithm and their performance in the resolution of path planning problem. Simulation is performed with different parameter values and by the result analysis, a selection of parameter is presented.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="webt_07">
+             15:30-15:45, Paper WeBT.7
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod68" name="modify50" onclick="modify(50,68)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('50'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Multi-Purpose Dual Wire Rope Auto Balancing Climber
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#310288" title="Click to go to the Author Index">
+             Chan, Colin Pak Yu
+            </a>
+            (City University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#310165" title="Click to go to the Author Index">
+             Koh, Keng Huat
+            </a>
+            (Hong Kong Applied Science and Technology Research Institute),
+            <a href="ARSO24_AuthorIndexWeb.html#310224" title="Click to go to the Author Index">
+             Shiu, Kin Hei
+            </a>
+            (Carleton University),
+            <a href="ARSO24_AuthorIndexWeb.html#310287" title="Click to go to the Author Index">
+             So, Chun Ho
+            </a>
+            (City University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#310666" title="Click to go to the Author Index">
+             Farhan, Musthafa
+            </a>
+            (City University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#390286" title="Click to go to the Author Index">
+             Yeung, Kenny Pui Ching
+            </a>
+            (The Hong Kong and China Gas Company Limited),
+            <a href="ARSO24_AuthorIndexWeb.html#390291" title="Click to go to the Author Index">
+             Lau, Michelle Pui Yee
+            </a>
+            (The Hong Kong and China Gas Company Limited),
+            <a href="ARSO24_AuthorIndexWeb.html#390294" title="Click to go to the Author Index">
+             Cheung, Pak Kin
+            </a>
+            (The Hong Kong and China Gas Company Limited),
+            <a href="ARSO24_AuthorIndexWeb.html#110978" title="Click to go to the Author Index">
+             Lai, King Wai Chiu
+            </a>
+            (City University of Hong Kong)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab50" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#service_and_assistive_robotics" title="Click to go to the Keyword Index">
+               Service and assistive robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#industrial_robotics" title="Click to go to the Keyword Index">
+               Industrial robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#intelligent_robots_for_transportation" title="Click to go to the Keyword Index">
+               Intelligent robots for transportation
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Emergence of robotic climbers is a versatile solution for transporting goods and service robots in high-rise buildings, surpassing traditional methods such as gondolas and scaffolding. A novel dual wire rope auto-balancing climber has been developed, featuring four significant innovations: a unique wire winding topology, an auto-balancing algorithm, precise vertical position control, and a high payload capacity. The innovative wire winding topology simplifies the initial rope winding process, making it hassle-free and reducing preparation time. To ensure balance and safety, the climber has an auto-balancing feature that minimizes tilt angles and enhances climbing stability. The climber robot achieves impressive precision with a vertical resolution down to millimeters. With a maximum payload capacity of approximately 175 kg, the robotic climber can transport various equipment for diverse applications. Experimental results demonstrate the climber's ability to carry a pipe service robot and achieve precise tool positioning at different heights. Compared to traditional methods, the proposed system offers more than 3 hrs of operation time with on-board battery configuration, easier field deployment, reduced transport effort, increased payload capacity, and a promising longer pipeline service life.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="webt_08">
+             15:45-16:00, Paper WeBT.8
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod69" name="modify42" onclick="modify(42,69)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('42'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Anisotropic Friction Skin for Holonomic Snake Robot Mobility
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#388220" title="Click to go to the Author Index">
+             Chitikena, Hareesh
+            </a>
+            (University of Agder),
+            <a href="ARSO24_AuthorIndexWeb.html#154185" title="Click to go to the Author Index">
+             Mohammadi, Alireza
+            </a>
+            (University of Michigan, Dearborn),
+            <a href="ARSO24_AuthorIndexWeb.html#147409" title="Click to go to the Author Index">
+             Sanfilippo, Filippo
+            </a>
+            (University of Agder),
+            <a href="ARSO24_AuthorIndexWeb.html#188194" title="Click to go to the Author Index">
+             Poursina, Mohammad
+            </a>
+            (Associate Professor/University of Agder)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab42" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#off_road_mobile_robots__search_and_rescue_robots" title="Click to go to the Keyword Index">
+               Off-road mobile robots, search and rescue robots
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#service_and_assistive_robotics" title="Click to go to the Keyword Index">
+               Service and assistive robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Achieving effective locomotion for holonomic snake robots in diverse terrains for Search and Rescue (SAR) poses a significant challenge. While biological snakes exhibit complex mobility with the aid of anisotropic skin and a flexible body, replicating such capabilities in robotic systems demands specialised design considerations. This paper addresses designing and analysing anisotropic frictional skin to enhance the locomotion of holonomic snake robots in flat, variably friction environments. Two distinct frictional skins are developed and analysed through a peristaltic dynamic model. Moreover, comprehensive testing is conducted on various substrates to assess the effectiveness of the designed snakeskins. Experimental results indicate that a snake robot equipped with an interlocking-based skin on an Expanded Polystyrene substrate achieves small forward locomotion, while a Molecular Interaction-based skin enables sideways motion. This study provides insights into preliminary skin designs and locomotion tests conducted on flat surfaces, emphasising the need for further refinement to meet the demands of SAR applications.
+            </div>
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="wect">
+             <b>
+              WeCT
+             </b>
+             Regular Session, 17W_MFHall2
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod70" name="modifyWeCT" onclick="modsession(163,70)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ARSO24_ProgramAtAGlanceWeb.html#wect" title="Click to go to the Program at a Glance">
+             <b>
+              Technical Session VII - Autonomous Vehicles
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#325312" title="Click to go to the Author Index">
+             McConville, Alexander
+            </a>
+           </td>
+           <td class="r">
+            Univerisity of Bristol
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Co-Chair:
+            <a href="ARSO24_AuthorIndexWeb.html#377249" title="Click to go to the Author Index">
+             Chu, Kai-Fung
+            </a>
+           </td>
+           <td class="r">
+            University of Cambridge
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wect_01">
+             16:15-16:30, Paper WeCT.1
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod71" name="modify21" onclick="modify(21,71)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('21'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Adoption of UAV Swarm Technology: Survey and Opinions of Firefighters
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#325312" title="Click to go to the Author Index">
+             McConville, Alexander
+            </a>
+            (Univerisity of Bristol),
+            <a href="ARSO24_AuthorIndexWeb.html#342495" title="Click to go to the Author Index">
+             Tzoumas, Georgios
+            </a>
+            (University of Bristol),
+            <a href="ARSO24_AuthorIndexWeb.html#125140" title="Click to go to the Author Index">
+             Salinas, Lucio R.
+            </a>
+            (University of Bristol),
+            <a href="ARSO24_AuthorIndexWeb.html#381625" title="Click to go to the Author Index">
+             Munera, Marcela
+            </a>
+            (University of West England),
+            <a href="ARSO24_AuthorIndexWeb.html#118448" title="Click to go to the Author Index">
+             Hauert, Sabine
+            </a>
+            (University of Bristol)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab21" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#autonomous_vehicles" title="Click to go to the Keyword Index">
+               Autonomous Vehicles
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#socio_economic_impacts" title="Click to go to the Keyword Index">
+               Socio-economic Impacts
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             As the prevalence of wildfires has increased over the last two decades, the value of early detection and engagement has also increased. Fire services have begun implementing Uncrewed Aerial Vehicles (UAVs) in their wildfire responses. However, more research must be done on the benefits and limitations of current UAV operations in firefighting. In this work, we analyse the results of questionnaires from those involved in firefighting and a focus group with firefighters on their opinions on the usefulness of UAVs in wildfire responses. We consider how they are used and the potential future value they could offer if used in larger numbers. We gather opinions on the use of drones in current firefighting operations before describing a potential multi-drone system, then explore how such a multi-drone system would be used and the changes to current operations and organisational structures required to implement them.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wect_02">
+             16:30-16:45, Paper WeCT.2
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod72" name="modify48" onclick="modify(48,72)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('48'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Adaptive Resilient Control for Autonomous Vehicles Steering System against False Data Injection Attacks
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#390267" title="Click to go to the Author Index">
+             Li, Zhenyang
+            </a>
+            (Beijing Institute of Technology，School of Mechanical Engi),
+            <a href="ARSO24_AuthorIndexWeb.html#379490" title="Click to go to the Author Index">
+             Li, Guoqiang
+            </a>
+            (Beijing Institute of Technology),
+            <a href="ARSO24_AuthorIndexWeb.html#390280" title="Click to go to the Author Index">
+             Lu, Yu
+            </a>
+            (Beijing Institute of Technology，School of Mechanical Engi),
+            <a href="ARSO24_AuthorIndexWeb.html#379513" title="Click to go to the Author Index">
+             Wang, Zhenpo
+            </a>
+            (Beijing Institute of Technology)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab48" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#autonomous_vehicles" title="Click to go to the Keyword Index">
+               Autonomous Vehicles
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#machine_learning_and_robot_learning" title="Click to go to the Keyword Index">
+               Machine Learning and Robot Learning
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#traceability_and_safety" title="Click to go to the Keyword Index">
+               Traceability and Safety
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Autonomous vehicle (AV) whose steering system is subjected to false data injection (FDI) attacks will quickly lose stability and deviate from the correct trajectory. This paper presents an adaptive resilient control (ARC) method that integrates a learning-based stochastic model predictive control (SMPC) to mitigate the impact of FDI attacks on the AV steering system. First, a nominal error model is introduced to describe the lateral tracking trajectory control of AV. Second, a real-time online learning strategy is devised to continuously update the vehicle dynamics. Gaussian process (GP) is utilized to detect unmodeled deviations resulting from FDI attacks and incorporate the training outcomes into the nominal error model, thereby obtaining a more accurate estimated model. Then, the estimated model is integrated into SMPC to optimize motion control for trajectory tracking. Finally, simulation tests are conducted using the CarSim to confirm the effectiveness of the proposed method.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wect_03">
+             16:45-17:00, Paper WeCT.3
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod73" name="modify52" onclick="modify(52,73)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('52'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Navigating Mixed Traffic: Current State and Future Challenges in Integrating Autonomous and Human-Driven Vehicles
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#377249" title="Click to go to the Author Index">
+             Chu, Kai-Fung
+            </a>
+            (University of Cambridge),
+            <a href="ARSO24_AuthorIndexWeb.html#315737" title="Click to go to the Author Index">
+             Fan, Chenchen
+            </a>
+            (The University of Hong Kong),
+            <a href="ARSO24_AuthorIndexWeb.html#105049" title="Click to go to the Author Index">
+             Iida, Fumiya
+            </a>
+            (University of Cambridge)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab52" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#human_vehicle_interaction" title="Click to go to the Keyword Index">
+               Human Vehicle Interaction
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#autonomous_vehicles" title="Click to go to the Keyword Index">
+               Autonomous Vehicles
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#intelligent_robots_for_transportation" title="Click to go to the Keyword Index">
+               Intelligent robots for transportation
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             As autonomous vehicles (AVs) become increasingly prevalent in our society, it is crucial to address the technical challenges coexisting with human-driven vehicles (HVs) on the roads. Transportation administrators and constructors must be poised to harness the controllability and potential offered by these innovative vehicles when they gradually penetrate the roads in the near future. However, existing studies often focus on either the safe autonomous driving technology of single AVs alongside HVs or on collective coordination among AVs exclusively, neglecting the challenges inherent in heterogeneous multi-agent transportation systems. These challenges encompass critical aspects such as safety, human-robot interactions, and infrastructure adaptation, which Requires detailed exploration. This paper aims to explore the current state and future challenges in mixed traffic scenarios that lie at the intersection of artificial intelligence, multi-agent systems, safe control, and intelligent systems design in the context of advancing AV technology while ensuring safety and effective interaction between human, robot, and road infrastructure. We examine the current state-of-the-art of AV technology, identify key challenges for integrating human-centric approaches into the design, development, and deployment of AVs. Drawing upon insights from safety standards, human-robot interaction, and road infrastructure design frameworks, we highlight the importance aspects surrounding AV and HV designs to enhance user trust, acceptance, and overall societal impact.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wect_04">
+             17:00-17:15, Paper WeCT.4
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod74" name="modify53" onclick="modify(53,74)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('53'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Generalized Visual Path Following on Jetbot Using Normalization with Reinforcement Learning
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#389793" title="Click to go to the Author Index">
+             Nigam, Aarav
+            </a>
+            (Indian Institute of Information Technology, Sri-City),
+            <a href="ARSO24_AuthorIndexWeb.html#390257" title="Click to go to the Author Index">
+             Sanodiya, Rakesh Kumar
+            </a>
+            (IIIT Sri City),
+            <a href="ARSO24_AuthorIndexWeb.html#389533" title="Click to go to the Author Index">
+             Joshi, Piyush
+            </a>
+            (IIIT Sri City),
+            <a href="ARSO24_AuthorIndexWeb.html#390252" title="Click to go to the Author Index">
+             Subhangi, Subhangi
+            </a>
+            (Indian Institute of Information Technology, Sri City)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab53" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#autonomous_vehicles" title="Click to go to the Keyword Index">
+               Autonomous Vehicles
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#intelligent_robots_for_transportation" title="Click to go to the Keyword Index">
+               Intelligent robots for transportation
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#machine_learning_and_robot_learning" title="Click to go to the Keyword Index">
+               Machine Learning and Robot Learning
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Path following in robotics is pivotal for enabling autonomous navigation. However, its efficacy is often hindered by challenges such as varying environments, diverse weather conditions, and unknown parameters, which limit its adaptability. This study presents a practical application of the Reinforcement Learning Algorithm on physical robots for visual path-following tasks. It introduces a novel approach aimed at expediting training and enhancing generalization using normalization techniques. Our experimentation entails applying Deep Q learning to JetBot—a nonholonomic wheeled mobile robot—to assess the generalization capabilities of normalization techniques including Batch Normalization, Layer Normalization, Min-Max Normalization, and Z-score Normalization. Our findings reveal that the model proposed in this study, incorporating Batch Normalization, achieves 8.7 times higher expected rewards during training, operates 5 times faster, and yields 3 to 4 times greater expected rewards during testing compared to the simple Deep Q learning model.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wect_05">
+             17:15-17:30, Paper WeCT.5
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod75" name="modify30" onclick="modify(30,75)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('30'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Task Constraint-Guided Inverse Reinforcement Learning (TC-IRL) in Human-Robot Collaborative Assembly
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#216870" title="Click to go to the Author Index">
+             Chen, Yi
+            </a>
+            (Clemson University),
+            <a href="ARSO24_AuthorIndexWeb.html#292530" title="Click to go to the Author Index">
+             Wang, Weitian
+            </a>
+            (Montclair State University),
+            <a href="ARSO24_AuthorIndexWeb.html#128943" title="Click to go to the Author Index">
+             Jia, Yunyi
+            </a>
+            (Clemson University)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab30" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#robots_in_the_smart_factory" title="Click to go to the Keyword Index">
+               Robots in the Smart Factory
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#robotics_for_manufacturing" title="Click to go to the Keyword Index">
+               Robotics for manufacturing
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Collaborative robots transit from the traditional robot-in-a-cell scenarios to a human-robot-shared workspace. This demands robots to better understand their human partners and then assist them. Existing robot learning from demonstration work mainly focuses on enabling robots to repeat human demonstrated tasks alone and usually require significant training efforts but have limited scalability to new tasks. This paper proposes a new task constraint-guided inverse reinforcement learning (TC-IRL) approach to learn assembly tasks from human demonstrations with significantly reduced state and action space (leading to less training data requirement) and computational efforts (landing to better real-time performance) than the conventional IRL. The TC-IRL is also extended to new geometric-scaled tasks to generate robot assistance to human in collaborative assembly. The proposed approaches are validated and evaluated through human-robot collaborative assembly experiments.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wect_06">
+             17:30-17:45, Paper WeCT.6
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod76" name="modify36" onclick="modify(36,76)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('36'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Comparison and Analysis of Human Comfort in Virtual Reality (VR)-Based and Reality-Based Human-Robot Collaboration Tasks
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#300017" title="Click to go to the Author Index">
+             Yan, Yuchen
+            </a>
+            (Clemson University),
+            <a href="ARSO24_AuthorIndexWeb.html#286774" title="Click to go to the Author Index">
+             Zhai, Kexuan
+            </a>
+            (Clemson University),
+            <a href="ARSO24_AuthorIndexWeb.html#128943" title="Click to go to the Author Index">
+             Jia, Yunyi
+            </a>
+            (Clemson University)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab36" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#robots_in_the_smart_factory" title="Click to go to the Keyword Index">
+               Robots in the Smart Factory
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Virtual Reality (VR) has been used in robotics fields due to its convenience and cost-efficiency compared to actual reality. Whether the VR application can truly simulate the actual reality and offer a similar immersive experience has always been a research question. Most existing studies mainly focus on the usability of VR compared to actual reality. In addition to usability, whether VR can reproduce the human comfort feeling, which is different from VR motion sickness but instead the comfort while interacting with a virtual robot compared to a real robot, still remains unanswered. Therefore, this paper aims to explore this issue with a focus on human comfort through experimental studies in both VR-based and reality-based human-robot collaborations. The experiments require human subjects to collaborate with a real Yumi robot with a VR-based virtual Yumi robot to accomplish a series of tasks. A comprehensive analysis of the results is performed, including the effectiveness of the VR in reproducing human comfort feeling and the cases when VR could not do it well.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wect_07">
+             17:45-18:00, Paper WeCT.7
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod77" name="modify6" onclick="modify(6,77)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('6'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Simulation Analysis and Model Modification of the LWR Traffic Flow Theory
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#386348" title="Click to go to the Author Index">
+             Chen, Yang
+            </a>
+            (Northeastern University),
+            <a href="ARSO24_AuthorIndexWeb.html#143318" title="Click to go to the Author Index">
+             Fu, Jun
+            </a>
+            (Northeastern University),
+            <a href="ARSO24_AuthorIndexWeb.html#404891" title="Click to go to the Author Index">
+             Anton, Selivanov
+            </a>
+            (The University of Sheffield)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab6" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#autonomous_vehicles" title="Click to go to the Keyword Index">
+               Autonomous Vehicles
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             The surge in urbanization and ensuing traffic congestion underscores the imperative for contemporary traffic flow control models. This paper explores the Lighthill-Whitham-Richards (LWR) theory in the macroscopic domain of traffic flow control. It evaluates the accuracy and mathematical logic of simulation performance of related models, namely Greenshields, Newell-Daganzo, Greenberg, Underwood, and California. This paper employs thorough simulations that utilize a holistic three-dimensional(3D) analysis based on time, location, and density. It provides a comprehensive comparison and discusses specific features of each model. Additionally, a modification to the macroscopic model is proposed. The modified model overcomes the shortcomings of performing well only in some specific short ranges and achieves a full range of application effects. The study offers valuable guidance for real-life scenario selections and applications in the traffic domain.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wect_08">
+             18:00-18:15, Paper WeCT.8
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod78" name="modify9" onclick="modify(9,78)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('9'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Programming Robot Animation through Human Body Movement
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ARSO24_AuthorIndexWeb.html#303239" title="Click to go to the Author Index">
+             Frijns, Helena Anna
+            </a>
+            (TU Wien),
+            <a href="ARSO24_AuthorIndexWeb.html#299162" title="Click to go to the Author Index">
+             Stoeva, Darja
+            </a>
+            (TU Wien),
+            <a href="ARSO24_AuthorIndexWeb.html#303402" title="Click to go to the Author Index">
+             Schürer, Oliver
+            </a>
+            (TU Wien),
+            <a href="ARSO24_AuthorIndexWeb.html#303329" title="Click to go to the Author Index">
+             Gelautz, Margrit
+            </a>
+            (TU Wien)
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab9" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ARSO24_KeywordIndexWeb.html#hri_and_social_robotics" title="Click to go to the Keyword Index">
+               HRI and social robotics
+              </a>
+              ,
+              <a href="ARSO24_KeywordIndexWeb.html#humanoid_robots" title="Click to go to the Keyword Index">
+               Humanoid Robots
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             The aim of our work is to make it easier for non-programmers to program robot motion. We designed a system that translates human motion to motion of a (virtual and physical) humanoid Pepper robot. The system enables programming robot animations using pose-matching imitation of human motion. We developed a prototype that implements recording functionality, evaluated the prototype, and revised the system architecture based on feedback from participants with expertise in dance or programming the Pepper robot. We extend a conceptual design space for computer animation by including a physical robot. On the basis of this design space and the prototype development, we describe interaction design considerations for robot animation systems that implement human-humanoid imitation systems.
+            </div>
+           </td>
+          </tr>
+         </table>
+        </div>
+        <p>
+         <br/>
+        </p>
+        <p>
+         <br/>
+        </p>
+       </td>
+       <td height="100%" style="background-color:#006599;" width="5">
+       </td>
+      </tr>
+      <tr>
+       <td alt="" border="0" colspan="4" height="8" style="background-color:#006599;" valign="center" width="100%">
+        <p align="center">
+         <span style="font-size:8pt;line-height:10pt;color:white;">
+          Technical Content ©
+IEEE Robotics &amp; Automation Society
+         </span>
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <td colspan="4" width="100%">
+        <p align="right">
+         <span style="text-decoration:none;">
+          <img align="right" border="0" src="/images/pc_logo_small.png" style="margin-left: 10px; margin-right: 10px"/>
+          This site is protected
+by copyright and trademark laws under US and International law.
+          <br/>
+          All rights
+reserved. © 2002-2024 PaperCept, Inc.
+          <br/>
+          Page generated 2024-05-18  03:18:03 PST
+          <a href="" onclick="window.open('/conferences/scripts/about.pl','tc','width=1000,scrollbars=yes'); return false">
+           Terms
+of use
+          </a>
+         </span>
+        </p>
+       </td>
+      </tr>
+     </table>
+    </body>
+   </div>
+  </form>
+ </body>
+</html>

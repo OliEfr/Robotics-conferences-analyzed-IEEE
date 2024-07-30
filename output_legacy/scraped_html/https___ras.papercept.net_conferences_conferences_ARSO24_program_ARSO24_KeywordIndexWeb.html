@@ -1,0 +1,1324 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta content="en-us" http-equiv="Content-Language"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width" name="viewport"/>
+  <script src="https://ras.papercept.net/conferences/scripts/dom-drag.js" type="text/javascript">
+  </script>
+  <script src="jquery-1.11.1.min.js">
+  </script>
+  <title>
+   ARSO 2024 Program | Keyword Index
+  </title>
+  <style type="text/css">
+   body, table, td, th{
+	Font-Family : sans-serif;
+	Font-Size : 10pt;
+}
+.r {text-align: right}
+.blue {color: #0000FF;}
+td {vertical-align: top; text-align: left}
+.c {text-align: center}
+table.s {
+	border-collapse:collapse;
+	border-width: 1px;
+}
+table.s td{
+	border-width: 1px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+table.t {
+	border-collapse: collapse;
+	border-width: 0px;
+}
+table.t td{
+	border-width: 0px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+.dots {
+    background:url('./images/dot.gif') repeat-x center;
+}
+.field {
+    background-color: #FFFFFF;
+}
+#pTitle { /* Page title */
+   font-size: 14pt;
+   line-height: 1.5em;
+}
+#pSubTitle { /* Page subtitle */
+   color: #909090;
+   font-size: 10pt; 
+   line-height: 1.5em;
+}
+#container {
+	position: absolute;
+	width: 100%;
+	margin-top: 2px;
+/*	overflow: hidden; */
+}
+
+         table.kT {   /* Keyword index table */
+	        border-collapse: collapse;
+	        border-width: 0px;
+            width: 720px;
+            margin: auto;
+         }
+         table.kT td{
+	        border-width: 0px;
+	        padding: 4px;
+	        border-style: solid;
+	        border-color: gray;
+          }
+      
+         .lHdr { /* Letter header keyword index */
+            background-color: #F0E68C;
+            line-height: 1.5em;
+         }
+  </style>
+  <script language="JavaScript">
+   function initXMLHttp(){
+   var oRequest = false;
+   try {
+      oRequest = new XMLHttpRequest();
+   }  catch (trymicrosoft) {
+      try {
+         oRequest = new ActiveXObject("Msxml2.XMLHTTP");
+      }  catch (othermicrosoft) {
+         try {
+            oRequest = new ActiveXObject("Microsoft.XMLHTTP");
+         }  catch (failed) {
+            oRequest = false;
+         }
+      }
+   }
+   if (!oRequest){
+      alert("Error initializing XMLHttpRequest! Your browser does not support AJAX");
+   }
+   return oRequest;
+}
+function modify(number,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'Add';
+   }
+   else{
+      action = 'Delete';
+   }
+   
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=447&' + action + number;
+//   window.open(url,'myprogrampage');
+
+   modifyItem("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","447",action,number)
+
+}
+
+
+function modifyItem(url,ConfID,action,number){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&Number=' + number;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+var iIntervalId;  // Global variable
+function modsession(id,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'AddSession';
+   }
+   else{
+      action = 'DelSession';
+   }
+
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=447&' + action + id;
+//   window.open(url,'myprogrampage');
+
+   modifySession("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","447",action,id)
+
+}
+
+function modifySession(url,ConfID,action,id){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&ID=' + id;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+function getCookie(sName){
+   var sRE = "(?:; )?" + sName + "=([^;]*);?";   
+   var oRE = new RegExp(sRE);
+   if (oRE.test(document.cookie)){
+      return decodeURIComponent(RegExp["$1"]);}
+   else{
+      return null;
+   }
+}
+function loadprogram(){
+   var list = getCookie("ARSO24");
+   if (list){
+      var List = list.split(",");
+      for (var i=0; i<List.length; i++){
+         var names = document.getElementsByName('modify' + List[i]);
+         if (names.length){
+            for (var j=0; j<names.length; j++){
+               names[j].checked = true;
+            }
+         }
+      }
+   }
+}
+function reset(){
+
+   // Uncheck all modify and addsession checkboxes
+
+   var ins = document.getElementsByTagName('input');
+   for (var i=0; i<ins.length; i++){
+      if (ins[i].type == 'checkbox' && ins[i].id && ins[i].id.substring(0,3) == 'mod'){
+         ins[i].checked = false;
+      }
+   }
+   
+   // Reload the program
+   
+   loadprogram();
+}
+function startreset(){
+   iIntervalId = setInterval(reset,2000);
+}
+function viewAbstract(number){
+   var box = document.getElementById('Ab' + number);
+   if (box.style.display == 'block'){
+      box.style.display = 'none';
+   }
+   else if (box && box.style.display == 'none'){
+      box.style.display = 'block';
+   }
+}
+function openAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   var count = d.length;
+   if (count == 0){return;}
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab' && d[i].style.display == 'none'){
+         d[i].style.display = 'block';
+      }
+   }
+}
+function closeAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab'){
+         d[i].style.display = 'none';
+      }
+   }
+}
+var uhash;
+var pColor;
+$(function() { 
+
+   // Check for URL hash
+
+   uhash = location.hash.substring(1);
+   if (uhash.slice(-1) == '_'){
+      uhash = null;
+   }
+   if (uhash){
+   
+      // Mark the session
+   
+      pColor = $('#' + uhash).parent().css('backgroundColor');
+      $('#' + uhash).parent().css('backgroundColor','#FF8888');
+   }
+});
+  </script>
+ </head>
+ <body>
+  <form action="https://ras.papercept.net/conferences/scripts/myprogram.pl" name="myprogram">
+   <div id="container">
+    <body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+     <link href="//fonts.googleapis.com/css?family=Chango" rel="stylesheet" type="text/css"/>
+     <table ,="" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+       <td alt="" background="/images/arso/arso24_bg.png" border="0" height="140" nowrap="" width="100%">
+        <span style="font-size: 48px; font-family: Chango; color: #006599;text-shadow: 0px 0px 1px #fff; position: absolute; left: 20px; top:0px; line-height:48px;
+-webkit-filter: drop-shadow(1px 1px 0px #fff); filter: drop-shadow(1px 1px 1px #fff);z-index:1;">
+         <center>
+          <b>
+           ARSO2024
+          </b>
+         </center>
+        </span>
+        <span style="font-size: 22px; font-family:Open Sans Condensed,sans-serif, arial; color: #006599;text-shadow: 0px 0px 1px #fff; position: absolute; left: 20px; top:85px;
+-webkit-filter: drop-shadow(0px 0px 1px #fff); filter: drop-shadow(0px 0px 1px #fff);z-index:1;">
+         <strong>
+          2024 IEEE Conference on Advanced Robotics and its Social Impact
+         </strong>
+        </span>
+        <span style="font-size: 18px; font-family:Open Sans Condensed,sans-serif, arial; color: #006599;text-shadow: 0px 0px 1px #fff; position: absolute; left: 20px; top:115px;
+-webkit-filter: drop-shadow(0px 0px 1px #fff); filter: drop-shadow(0px 0px 1px #fff);z-index:1;">
+         Hong Kong, China | May 20-22, 2024
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <td height="1" style="background-color:#006599;" width="100%">
+       </td>
+      </tr>
+     </table>
+     <table border="0" cellpadding="0" cellspacing="0" height="80%" width="100%">
+      <tr>
+       <td height="100%" style="background-color:#006599;" width="5">
+       </td>
+       <td width="5">
+       </td>
+       <td height="100%" valign="top" width="100%">
+        <br/>
+        <div class="c" id="TheTop">
+         <span id="pTitle">
+          <a href="http://ieee-arso.org" target="_blank">
+           <b>
+            2024 IEEE International Conference on Advanced Robotics and Its Social Impacts (ARSO)
+           </b>
+          </a>
+          <br/>
+         </span>
+         <span id="pSubTitle">
+          <b>
+           May 20-22, 2024, Hong Kong, China
+          </b>
+         </span>
+         <br/>
+         <br/>
+        </div>
+        <div class="c" style="position: relative">
+         <a href="ARSO24_ProgramAtAGlanceWeb.html">
+          Program at a Glance
+         </a>
+         <a href="ARSO24_ContentListWeb_1.html">
+          Monday
+         </a>
+         <a href="ARSO24_ContentListWeb_2.html">
+          Tuesday
+         </a>
+         <a href="ARSO24_ContentListWeb_3.html">
+          Wednesday
+         </a>
+         <a href="ARSO24_AuthorIndexWeb.html">
+          Author Index
+         </a>
+         <a href="ARSO24_KeywordIndexWeb.html">
+          Keyword Index
+         </a>
+         <a href="#TheTop" onclick="window.open('https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=447','myprogrampage')">
+          My Program
+         </a>
+        </div>
+        <div class="c">
+         <p style="color: gray">
+          Last updated on May 18, 2024. This conference program is tentative and subject to change
+         </p>
+        </div>
+        <div class="c">
+         <h3>
+          ARSO 2024 Keyword Index
+         </h3>
+        </div>
+        <p class="c">
+         <div align="center">
+          <p>
+           <a href="#A">
+            A
+           </a>
+           <a href="#E">
+            E
+           </a>
+           <a href="#H">
+            H
+           </a>
+           <a href="#I">
+            I
+           </a>
+           <a href="#L">
+            L
+           </a>
+           <a href="#M">
+            M
+           </a>
+           <a href="#O">
+            O
+           </a>
+           <a href="#R">
+            R
+           </a>
+           <a href="#S">
+            S
+           </a>
+           <a href="#T">
+            T
+           </a>
+           <div>
+           </div>
+          </p>
+          <div class="c">
+          </div>
+          <div class="c">
+           <table class="kT">
+            <tr class="lHdr">
+             <td>
+              <a name="A">
+               <b>
+                A
+               </b>
+              </a>
+             </td>
+             <td>
+              <a href="#TheTop">
+               Top
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="autonomous_vehicles">
+               Autonomous Vehicles
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_3.html#weat_05" title="Click to go to the Content List">
+               WeAT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_01" title="Click to go to the Content List">
+               WeCT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_02" title="Click to go to the Content List">
+               WeCT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_03" title="Click to go to the Content List">
+               WeCT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_04" title="Click to go to the Content List">
+               WeCT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_07" title="Click to go to the Content List">
+               WeCT.7
+              </a>
+             </td>
+            </tr>
+            <tr class="lHdr">
+             <td>
+              <a name="E">
+               <b>
+                E
+               </b>
+              </a>
+             </td>
+             <td>
+              <a href="#TheTop">
+               Top
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="education_and_skill_transfer">
+               Education and Skill Transfer
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#moct_02" title="Click to go to the Content List">
+               MoCT.2
+              </a>
+             </td>
+            </tr>
+            <tr class="lHdr">
+             <td>
+              <a name="H">
+               <b>
+                H
+               </b>
+              </a>
+             </td>
+             <td>
+              <a href="#TheTop">
+               Top
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="hri_and_social_robotics">
+               HRI and social robotics
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#moai_01" title="Click to go to the Content List">
+               MoAI.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#mobt_01" title="Click to go to the Content List">
+               MoBT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#mobt_06" title="Click to go to the Content List">
+               MoBT.6
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#moct_02" title="Click to go to the Content List">
+               MoCT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#moct_03" title="Click to go to the Content List">
+               MoCT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#moct_04" title="Click to go to the Content List">
+               MoCT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#moct_05" title="Click to go to the Content List">
+               MoCT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#moct_06" title="Click to go to the Content List">
+               MoCT.6
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#moct_07" title="Click to go to the Content List">
+               MoCT.7
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#moct_08" title="Click to go to the Content List">
+               MoCT.8
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#mok1n_00" title="Click to go to the Content List">
+               MoK1N.0
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#mop1l_00" title="Click to go to the Content List">
+               MoP1L.0
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_04" title="Click to go to the Content List">
+               TuCT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_07" title="Click to go to the Content List">
+               TuCT.7
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_08" title="Click to go to the Content List">
+               TuCT.8
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuk2n_00" title="Click to go to the Content List">
+               TuK2N.0
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuk3n_00" title="Click to go to the Content List">
+               TuK3N.0
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tup2l_00" title="Click to go to the Content List">
+               TuP2L.0
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#weat_04" title="Click to go to the Content List">
+               WeAT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_01" title="Click to go to the Content List">
+               WeBT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_02" title="Click to go to the Content List">
+               WeBT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_03" title="Click to go to the Content List">
+               WeBT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_04" title="Click to go to the Content List">
+               WeBT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_05" title="Click to go to the Content List">
+               WeBT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_08" title="Click to go to the Content List">
+               WeBT.8
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_01" title="Click to go to the Content List">
+               WeCT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_05" title="Click to go to the Content List">
+               WeCT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_06" title="Click to go to the Content List">
+               WeCT.6
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_08" title="Click to go to the Content List">
+               WeCT.8
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wep3l_00" title="Click to go to the Content List">
+               WeP3L.0
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="human_movement_modeling">
+               Human Movement Modeling
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_2.html#tuct_01" title="Click to go to the Content List">
+               TuCT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_04" title="Click to go to the Content List">
+               TuCT.4
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="human_vehicle_interaction">
+               Human Vehicle Interaction
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_3.html#wect_03" title="Click to go to the Content List">
+               WeCT.3
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="humanoid_robots">
+               Humanoid Robots
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#moai_03" title="Click to go to the Content List">
+               MoAI.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#moct_01" title="Click to go to the Content List">
+               MoCT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#moct_08" title="Click to go to the Content List">
+               MoCT.8
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_01" title="Click to go to the Content List">
+               WeBT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_08" title="Click to go to the Content List">
+               WeCT.8
+              </a>
+             </td>
+            </tr>
+            <tr class="lHdr">
+             <td>
+              <a name="I">
+               <b>
+                I
+               </b>
+              </a>
+             </td>
+             <td>
+              <a href="#TheTop">
+               Top
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="industrial_robotics">
+               Industrial robotics
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#mobt_01" title="Click to go to the Content List">
+               MoBT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#mobt_02" title="Click to go to the Content List">
+               MoBT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#mobt_03" title="Click to go to the Content List">
+               MoBT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#mobt_04" title="Click to go to the Content List">
+               MoBT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#mobt_05" title="Click to go to the Content List">
+               MoBT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#mobt_06" title="Click to go to the Content List">
+               MoBT.6
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#weat_01" title="Click to go to the Content List">
+               WeAT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#weat_02" title="Click to go to the Content List">
+               WeAT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_07" title="Click to go to the Content List">
+               WeBT.7
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wek4n_00" title="Click to go to the Content List">
+               WeK4N.0
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="intelligent_robots_for_rehabilitation">
+               Intelligent robots for rehabilitation
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_2.html#tuai_02" title="Click to go to the Content List">
+               TuAI.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuai_03" title="Click to go to the Content List">
+               TuAI.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tubt_04" title="Click to go to the Content List">
+               TuBT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tubt_06" title="Click to go to the Content List">
+               TuBT.6
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_02" title="Click to go to the Content List">
+               TuCT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_06" title="Click to go to the Content List">
+               TuCT.6
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="intelligent_robots_for_transportation">
+               Intelligent robots for transportation
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_3.html#webt_07" title="Click to go to the Content List">
+               WeBT.7
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_03" title="Click to go to the Content List">
+               WeCT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_04" title="Click to go to the Content List">
+               WeCT.4
+              </a>
+             </td>
+            </tr>
+            <tr class="lHdr">
+             <td>
+              <a name="L">
+               <b>
+                L
+               </b>
+              </a>
+             </td>
+             <td>
+              <a href="#TheTop">
+               Top
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="legal_and_ethical_regulations_for_ai_and_robotic_systems">
+               Legal and ethical regulations for AI and robotic systems
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#moct_08" title="Click to go to the Content List">
+               MoCT.8
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_07" title="Click to go to the Content List">
+               TuCT.7
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_08" title="Click to go to the Content List">
+               TuCT.8
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="legal_aspects">
+               Legal Aspects
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_2.html#tuct_07" title="Click to go to the Content List">
+               TuCT.7
+              </a>
+             </td>
+            </tr>
+            <tr class="lHdr">
+             <td>
+              <a name="M">
+               <b>
+                M
+               </b>
+              </a>
+             </td>
+             <td>
+              <a href="#TheTop">
+               Top
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="machine_learning_and_robot_learning">
+               Machine Learning and Robot Learning
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#moct_06" title="Click to go to the Content List">
+               MoCT.6
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tubt_05" title="Click to go to the Content List">
+               TuBT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_01" title="Click to go to the Content List">
+               TuCT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_02" title="Click to go to the Content List">
+               TuCT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_03" title="Click to go to the Content List">
+               TuCT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_05" title="Click to go to the Content List">
+               TuCT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_06" title="Click to go to the Content List">
+               TuCT.6
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_02" title="Click to go to the Content List">
+               WeCT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_04" title="Click to go to the Content List">
+               WeCT.4
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="medical_and_healthcare_robotics">
+               Medical and healthcare robotics
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#moai_02" title="Click to go to the Content List">
+               MoAI.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#moct_04" title="Click to go to the Content List">
+               MoCT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tubt_01" title="Click to go to the Content List">
+               TuBT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tubt_02" title="Click to go to the Content List">
+               TuBT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tubt_03" title="Click to go to the Content List">
+               TuBT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tubt_04" title="Click to go to the Content List">
+               TuBT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tubt_05" title="Click to go to the Content List">
+               TuBT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tubt_06" title="Click to go to the Content List">
+               TuBT.6
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_05" title="Click to go to the Content List">
+               TuCT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_03" title="Click to go to the Content List">
+               WeBT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_04" title="Click to go to the Content List">
+               WeBT.4
+              </a>
+             </td>
+            </tr>
+            <tr class="lHdr">
+             <td>
+              <a name="O">
+               <b>
+                O
+               </b>
+              </a>
+             </td>
+             <td>
+              <a href="#TheTop">
+               Top
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="off_road_mobile_robots__search_and_rescue_robots">
+               Off-road mobile robots, search and rescue robots
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#moct_03" title="Click to go to the Content List">
+               MoCT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#weat_01" title="Click to go to the Content List">
+               WeAT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_08" title="Click to go to the Content List">
+               WeBT.8
+              </a>
+             </td>
+            </tr>
+            <tr class="lHdr">
+             <td>
+              <a name="R">
+               <b>
+                R
+               </b>
+              </a>
+             </td>
+             <td>
+              <a href="#TheTop">
+               Top
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="robot_vision_and_sensing">
+               Robot Vision and Sensing
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#moct_07" title="Click to go to the Content List">
+               MoCT.7
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#weat_01" title="Click to go to the Content List">
+               WeAT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#weat_02" title="Click to go to the Content List">
+               WeAT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#weat_03" title="Click to go to the Content List">
+               WeAT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#weat_04" title="Click to go to the Content List">
+               WeAT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#weat_05" title="Click to go to the Content List">
+               WeAT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_05" title="Click to go to the Content List">
+               WeBT.5
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="robotic_education_and_robots_for_education">
+               Robotic education and robots for education
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#moct_02" title="Click to go to the Content List">
+               MoCT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#moct_06" title="Click to go to the Content List">
+               MoCT.6
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="robotics_for_manufacturing">
+               Robotics for manufacturing
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#mobt_03" title="Click to go to the Content List">
+               MoBT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#mobt_05" title="Click to go to the Content List">
+               MoBT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#mobt_06" title="Click to go to the Content List">
+               MoBT.6
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuai_01" title="Click to go to the Content List">
+               TuAI.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_03" title="Click to go to the Content List">
+               TuCT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#weat_02" title="Click to go to the Content List">
+               WeAT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_05" title="Click to go to the Content List">
+               WeCT.5
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="robots_in_the_smart_factory">
+               Robots in the Smart Factory
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#mobt_03" title="Click to go to the Content List">
+               MoBT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#mobt_04" title="Click to go to the Content List">
+               MoBT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_1.html#mobt_05" title="Click to go to the Content List">
+               MoBT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_05" title="Click to go to the Content List">
+               WeCT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_06" title="Click to go to the Content List">
+               WeCT.6
+              </a>
+             </td>
+            </tr>
+            <tr class="lHdr">
+             <td>
+              <a name="S">
+               <b>
+                S
+               </b>
+              </a>
+             </td>
+             <td>
+              <a href="#TheTop">
+               Top
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="service_and_assistive_robotics">
+               Service and assistive robotics
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#moct_07" title="Click to go to the Content List">
+               MoCT.7
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tubt_01" title="Click to go to the Content List">
+               TuBT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tubt_04" title="Click to go to the Content List">
+               TuBT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_02" title="Click to go to the Content List">
+               TuCT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_06" title="Click to go to the Content List">
+               TuCT.6
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_02" title="Click to go to the Content List">
+               WeBT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_03" title="Click to go to the Content List">
+               WeBT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_04" title="Click to go to the Content List">
+               WeBT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_05" title="Click to go to the Content List">
+               WeBT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_06" title="Click to go to the Content List">
+               WeBT.6
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_07" title="Click to go to the Content List">
+               WeBT.7
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_08" title="Click to go to the Content List">
+               WeBT.8
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="socio_economic_impacts">
+               Socio-economic Impacts
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#moct_03" title="Click to go to the Content List">
+               MoCT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tubt_01" title="Click to go to the Content List">
+               TuBT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_01" title="Click to go to the Content List">
+               TuCT.1
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_08" title="Click to go to the Content List">
+               TuCT.8
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#webt_02" title="Click to go to the Content List">
+               WeBT.2
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#wect_01" title="Click to go to the Content List">
+               WeCT.1
+              </a>
+             </td>
+            </tr>
+            <tr class="lHdr">
+             <td>
+              <a name="T">
+               <b>
+                T
+               </b>
+              </a>
+             </td>
+             <td>
+              <a href="#TheTop">
+               Top
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="the_role_of_ai_in_the_implementation_of_cognitive_robots">
+               The role of AI in the implementation of cognitive robots
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_1.html#mobt_04" title="Click to go to the Content List">
+               MoBT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_03" title="Click to go to the Content List">
+               TuCT.3
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_04" title="Click to go to the Content List">
+               TuCT.4
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_2.html#tuct_05" title="Click to go to the Content List">
+               TuCT.5
+              </a>
+              ,
+              <a href="ARSO24_ContentListWeb_3.html#weat_05" title="Click to go to the Content List">
+               WeAT.5
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td width="200">
+              <a name="traceability_and_safety">
+               Traceability and Safety
+              </a>
+             </td>
+             <td>
+              <a href="ARSO24_ContentListWeb_3.html#wect_02" title="Click to go to the Content List">
+               WeCT.2
+              </a>
+             </td>
+            </tr>
+           </table>
+          </div>
+          <p>
+           <br/>
+          </p>
+          <p>
+           <br/>
+          </p>
+         </div>
+        </p>
+       </td>
+       <td height="100%" style="background-color:#006599;" width="5">
+       </td>
+      </tr>
+      <tr>
+       <td alt="" border="0" colspan="4" height="8" style="background-color:#006599;" valign="center" width="100%">
+        <p align="center">
+         <span style="font-size:8pt;line-height:10pt;color:white;">
+          Technical Content ©
+IEEE Robotics &amp; Automation Society
+         </span>
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <td colspan="4" width="100%">
+        <p align="right">
+         <span style="text-decoration:none;">
+          <img align="right" border="0" src="/images/pc_logo_small.png" style="margin-left: 10px; margin-right: 10px"/>
+          This site is protected
+by copyright and trademark laws under US and International law.
+          <br/>
+          All rights
+reserved. © 2002-2024 PaperCept, Inc.
+          <br/>
+          Page generated 2024-05-18  03:18:20 PST
+          <a href="" onclick="window.open('/conferences/scripts/about.pl','tc','width=1000,scrollbars=yes'); return false">
+           Terms
+of use
+          </a>
+         </span>
+        </p>
+       </td>
+      </tr>
+     </table>
+    </body>
+   </div>
+  </form>
+ </body>
+</html>

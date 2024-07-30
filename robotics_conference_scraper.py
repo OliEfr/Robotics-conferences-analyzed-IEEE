@@ -6,21 +6,17 @@ import matplotlib.pyplot as plt
 import pickle
 
 #### International Conference on Ubiquitous Robots (UR) 2024 ####
-# conference = "International Conference on Ubiquitous Robots (UR) 2024"
-
-# daily_programs = [
-#     "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_2.html",
-#     "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_3.html",
-# ]
-
-# keyword_indx = "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_KeywordIndexWeb.html"
+conference = "International Conference on Ubiquitous Robots (UR) 2024"
+daily_programs = [
+    "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_2.html",
+    "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_3.html",
+]
+keyword_indx = "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_KeywordIndexWeb.html"
 
 #### ARSO 2024 ####
 # ARSO website looks a bit different
 # TODO implement parsing
-
 # conference = "ARSO_2024"
-
 # daily_programs = [
 #     "https://ras.papercept.net/conferences/conferences/ARSO24/program/ARSO24_ContentListWeb_1.html",
 #     "https://ras.papercept.net/conferences/conferences/ARSO24/program/ARSO24_ContentListWeb_2.html",
@@ -38,18 +34,17 @@ import pickle
 # keyword_indx = "https://ras.papercept.net/conferences/conferences/ROSO24/program/ROSO24_KeywordIndexWeb.html"
 
 #### ICRA 2024 ####
-conference = "ICRA_2024"
-daily_programs = [
-    "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_1.html",
-    "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_2.html",
-    "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_3.html",
-]
-keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_KeywordIndexWeb.html"
+# conference = "ICRA_2024"
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_1.html",
+#     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_ContentListWeb_3.html",
+# ]
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA24/program/ICRA24_KeywordIndexWeb.html"
 
 
 # Unfortunately, institution names are not unique.
 # I perform a coarse search to eliminate ambiguity for the most popular unis.
-# Note that the results are not 100% accurate.
 def remove_university_name_ambiguity(unis):
 
     for i, item in enumerate(unis):
@@ -134,7 +129,8 @@ def remove_university_name_ambiguity(unis):
 # I am using the daily program to get the list of contributors.
 # This includes program chairs and co-chairs.
 # The information under .../ICRA24_AuthorIndexWeb.html does the same thing.
-# This counts EACH contributor of EACH paper
+# This counts EACH contributor of EACH paper.
+# This function is LEGACY
 def get_university_contributors_list():
     university_list, contributors_list = [], []
     for daily_program in daily_programs:
@@ -164,8 +160,9 @@ def get_university_contributors_list():
 
     return remove_university_name_ambiguity(university_list), contributors_list
 
-# Gets list of contributors and universities ONLY for paper
-# Counts only ONE institution per paper
+
+# Gets list of contributors and universities ONLY for papers (no chairs and co-chairs)
+# For each paper, each distinct university is only counted ONCE
 def get_university_contributors_list_papers_adjusted():
     university_list, contributors_list = [], []
     for daily_program in daily_programs:
@@ -181,35 +178,61 @@ def get_university_contributors_list_papers_adjusted():
             file.write(soup.prettify())
 
         # get all papers
-        papers = soup.find_all(
-            "span", {"class": "pTtl"}
-        )
+        papers = soup.find_all("span", {"class": "pTtl"})
 
         # get all authors for each paper
-        # this one is a bit ugly
         for paper in papers:
-            element = BeautifulSoup(paper, "html.parser")
-            for sub_element in element:
+            paper_contributors = []
+            paper_universities = []
 
+            # get high level DOM element of paper
+            paper_tr = paper.parent.parent
 
+            # iterate through next siblings
+            element = paper_tr
+            while True:
 
-        
+                element = element.next_sibling
 
-        # Find all anchor tags (<a>) with the text "Click to go to the Author Index"
-        contributions = soup.find_all(
-            "a", {"title": "Click to go to the Author Index"}
-        )
+                # empty element
+                if element == "\n":
+                    continue
 
-        university_list += [
-            contribution.parent.findNext("td").text.strip()
-            for contribution in contributions
-        ]
-        contributors_list += [
-            contribution.text.strip() for contribution in contributions
-        ]
+                # reached end of table == reached end of 'session'
+                if element == None:
+                    break
+
+                # reached next paper
+                new_paper = element.find_all("span", {"class": "pTtl"})
+                if len(new_paper) > 0:
+                    break
+
+                # author in element
+                authors = element.find_all(
+                    "a", {"title": "Click to go to the Author Index"}
+                )
+                # add contributors and universities
+                if len(authors) > 0:
+                    author = authors[0]
+                    paper_contributors.append(author.text.strip())
+                    paper_universities.append(
+                        author.parent.findNext("td").text.strip()
+                    )
+                elif len(authors) > 1:
+                    print(
+                        "Find more than one author in a single tr element. This is unexpected."
+                    )
+                else:
+                    pass
+
+            paper_universities = remove_university_name_ambiguity(
+                paper_universities
+            )
+            # extend only *unique* university names!
+            university_list.extend(list(set(paper_universities)))
+            contributors_list.extend(paper_contributors)
 
     return remove_university_name_ambiguity(university_list), contributors_list
-
 
 
 def get_keywords_list():
@@ -257,12 +280,13 @@ def plot(list, title, xlabel, filename):
     plt.clf()
 
 
-# university_list, contributors_list = get_university_contributors_list()
-university_list, contributors_list = get_university_contributors_list_papers_adjusted()
+university_list, contributors_list = (
+    get_university_contributors_list_papers_adjusted()
+)
 keywords_list = get_keywords_list()
 
 # saving .pkl is suboptimal for git, but its quick for now
-with open(f"./output_temp/{conference}_data.pkl", "wb") as f:
+with open(f"./output/{conference}_data.pkl", "wb") as f:
     pickle.dump(
         {
             "university_list": university_list,
@@ -274,21 +298,21 @@ with open(f"./output_temp/{conference}_data.pkl", "wb") as f:
 
 plot(
     university_list,
-    "Top 15 Institutions by Author- and Co-Authorships",
-    "Number of Contributions",
-    f"./output_2/university_contributions_{conference}.svg",
+    "Top 15 Institutions by Authorships",
+    "Number of Authorships",
+    f"./output/university_contributions_{conference}.svg",
 )
 
 plot(
     contributors_list,
-    "Top 15 Authors by Contributions",
-    "Number of Contributions",
-    f"./output_2/authors_contributions_{conference}.svg",
+    "Top 15 Authors by Authorships",
+    "Number of Authorships",
+    f"./output/authors_contributions_{conference}.svg",
 )
 
 plot(
     keywords_list,
     "Top 15 Keywords by Contributions",
     "Number of Contributions",
-    f"./output_temp/keywords_contributions_{conference}.svg",
+    f"./output/keywords_contributions_{conference}.svg",
 )

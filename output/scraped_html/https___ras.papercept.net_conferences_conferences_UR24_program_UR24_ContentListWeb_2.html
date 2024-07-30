@@ -311,7 +311,7 @@ $(function() {
 });
   </script>
  </head>
- <body>
+ <body onresize="setwidth(); initialize()">
   <form action="https://ras.papercept.net/conferences/scripts/myprogram.pl" name="myprogram">
    <div id="container">
     <body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
@@ -373,7 +373,7 @@ $(function() {
         </div>
         <div class="c">
          <p style="color: gray">
-          Last updated on May 13, 2024. This conference program is tentative and subject to change
+          Last updated on July 1, 2024. This conference program is tentative and subject to change
          </p>
         </div>
         <div class="c">
@@ -454,7 +454,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2a_01">
-             -, Paper TO2A.1
+             10:30-10:40, Paper TO2A.1
             </a>
            </td>
            <td class="r">
@@ -548,7 +548,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2a_02">
-             10:30-11:30, Paper TO2A.2
+             10:40-10:50, Paper TO2A.2
             </a>
            </td>
            <td class="r">
@@ -654,7 +654,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2a_03">
-             10:30-11:30, Paper TO2A.3
+             10:50-11:00, Paper TO2A.3
             </a>
            </td>
            <td class="r">
@@ -738,7 +738,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2a_04">
-             10:30-11:30, Paper TO2A.4
+             11:00-11:10, Paper TO2A.4
             </a>
            </td>
            <td class="r">
@@ -808,7 +808,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2a_05">
-             10:30-11:30, Paper TO2A.5
+             11:10-11:20, Paper TO2A.5
             </a>
            </td>
            <td class="r">
@@ -892,7 +892,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2a_06">
-             10:30-11:30, Paper TO2A.6
+             11:20-11:30, Paper TO2A.6
             </a>
            </td>
            <td class="r">
@@ -980,7 +980,7 @@ $(function() {
             </a>
            </td>
            <td class="r">
-            KC905
+            KC 905
            </td>
           </tr>
           <tr class="sHdr">
@@ -1024,7 +1024,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2b_01">
-             -, Paper TO2B.1
+             10:30-10:40, Paper TO2B.1
             </a>
            </td>
            <td class="r">
@@ -1158,7 +1158,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2b_02">
-             10:30-11:30, Paper TO2B.2
+             10:40-10:50, Paper TO2B.2
             </a>
            </td>
            <td class="r">
@@ -1228,7 +1228,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2b_03">
-             10:30-11:30, Paper TO2B.3
+             10:50-11:00, Paper TO2B.3
             </a>
            </td>
            <td class="r">
@@ -1305,7 +1305,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2b_04">
-             10:30-11:30, Paper TO2B.4
+             11:00-11:10, Paper TO2B.4
             </a>
            </td>
            <td class="r">
@@ -1375,7 +1375,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2b_05">
-             10:30-11:30, Paper TO2B.5
+             11:10-11:20, Paper TO2B.5
             </a>
            </td>
            <td class="r">
@@ -1477,7 +1477,7 @@ $(function() {
             </a>
            </td>
            <td class="r">
-            KC907
+            KC 907
            </td>
           </tr>
           <tr class="sHdr">
@@ -1521,7 +1521,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2c_01">
-             -, Paper TO2C.1
+             10:30-10:40, Paper TO2C.1
             </a>
            </td>
            <td class="r">
@@ -1558,7 +1558,7 @@ $(function() {
             </a>
            </td>
            <td class="r">
-            University of Tokyo
+            Tokyo University of Science
            </td>
           </tr>
           <tr>
@@ -1615,7 +1615,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2c_02">
-             10:30-11:30, Paper TO2C.2
+             10:40-10:50, Paper TO2C.2
             </a>
            </td>
            <td class="r">
@@ -1685,7 +1685,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2c_03">
-             10:30-11:30, Paper TO2C.3
+             10:50-11:00, Paper TO2C.3
             </a>
            </td>
            <td class="r">
@@ -1769,7 +1769,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2c_04">
-             10:30-11:30, Paper TO2C.4
+             11:00-11:10, Paper TO2C.4
             </a>
            </td>
            <td class="r">
@@ -1778,7 +1778,9 @@ $(function() {
           <tr>
            <td colspan="2">
             <span class="pTtl">
-             Action2Code: Transforming Video Demonstrations into Sequential Robotic Instructions
+             <a href="" onclick="viewAbstract('122'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Action2Code: Transforming Video Demonstrations into Sequential Robotic Instructions
+             </a>
             </span>
            </td>
           </tr>
@@ -1834,7 +1836,34 @@ $(function() {
             </a>
            </td>
            <td class="r">
-            Accenture Solutions Pvt. Ltd.
+            Accenture Solutions Pvt. Ltd
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab122" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="UR24_KeywordIndexWeb.html#learning_from_humans" title="Click to go to the Keyword Index">
+               Learning From Humans
+              </a>
+              ,
+              <a href="UR24_KeywordIndexWeb.html#ai_reasoning_methods_for_robotics" title="Click to go to the Keyword Index">
+               AI Reasoning Methods for Robotics
+              </a>
+              ,
+              <a href="UR24_KeywordIndexWeb.html#manipulation_planning_and_control" title="Click to go to the Keyword Index">
+               Manipulation Planning and Control
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             The time-consuming nature of programming robotic motion and manipulation to achieve specific tasks is a key reason that robots have generally been restricted to repetitive tasks with little variation. Developers need to manually write specific code for each task, making it challenging to adapt the code to different environments and assembly scenarios. This inefficiency leads to significant time being spent on creating redundant code for similar robotic actions in various assemblies. To address this, we develop a generative network to program robots through demonstration, bringing more agility to the process. We propose a network, Action2Code, that takes video demonstration as an input and translates it to robotic instructions. We evaluate our approach on two datasets, namely RH20T and ASMCode, using quantitative analysis across four metrics to assess code generation. We observe a CodeBLEU score of 0.69 and 0.65, along with a CodeBERTScore of 0.78 and 0.73 for RH20T and ASMCode, respectively. Our results demonstrate the effectiveness of the model in generating code from video demonstrations.
+            </div>
            </td>
           </tr>
           <tr style="line-height: 0.2em">
@@ -1844,7 +1873,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2c_05">
-             10:30-11:30, Paper TO2C.5
+             11:10-11:20, Paper TO2C.5
             </a>
            </td>
            <td class="r">
@@ -1948,7 +1977,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2c_06">
-             10:30-11:30, Paper TO2C.6
+             11:20-11:30, Paper TO2C.6
             </a>
            </td>
            <td class="r">
@@ -2080,7 +2109,7 @@ $(function() {
             </a>
            </td>
            <td class="r">
-            KC909
+            KC 909
            </td>
           </tr>
           <tr class="sHdr">
@@ -2095,81 +2124,26 @@ $(function() {
             Regular
            </td>
           </tr>
-          <tr style="line-height: 0.2em">
-           <td colspan="2">
-           </td>
-          </tr>
-          <tr class="pHdr">
-           <td valign="bottom">
-            <a name="to2d_01">
-             -, Paper TO2D.1
+          <tr>
+           <td>
+            Chair:
+            <a href="UR24_AuthorIndexWeb.html#179460" title="Click to go to the Author Index">
+             Ji, Yonghoon
             </a>
            </td>
            <td class="r">
-           </td>
-          </tr>
-          <tr>
-           <td colspan="2">
-            <span class="pTtl">
-             <a href="" onclick="viewAbstract('97'); return false" title="Click to show or hide the keywords and abstract (text summary)">
-              Hybrid Force Motion Control with Estimated Surface Normal for Manufacturing Applications
-             </a>
-            </span>
-           </td>
-          </tr>
-          <tr>
-           <td colspan="2" style="height: 2px">
-            <hr class="thin"/>
+            JAIST
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#343445" title="Click to go to the Author Index">
-             Nasiri, Ehsan
+            Co-Chair:
+            <a href="UR24_AuthorIndexWeb.html#109568" title="Click to go to the Author Index">
+             Kojima, Fumio
             </a>
            </td>
            <td class="r">
-            Stevens Institute of Technology
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#146612" title="Click to go to the Author Index">
-             Wang, Long
-            </a>
-           </td>
-           <td class="r">
-            Stevens Institute of Technology
-           </td>
-          </tr>
-          <tr>
-           <td colspan="2" style="padding: 0px">
-            <div id="Ab97" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
-             <span style="line-height: 2em">
-              <strong>
-               Keywords:
-              </strong>
-              <a href="UR24_KeywordIndexWeb.html#industrial_robots" title="Click to go to the Keyword Index">
-               Industrial Robots
-              </a>
-              ,
-              <a href="UR24_KeywordIndexWeb.html#contact__modeling__sensing_and_control_" title="Click to go to the Keyword Index">
-               Contact: Modeling, Sensing and Control
-              </a>
-              ,
-              <a href="UR24_KeywordIndexWeb.html#manipulation_planning_and_control" title="Click to go to the Keyword Index">
-               Manipulation Planning and Control
-              </a>
-             </span>
-             <br/>
-             <strong>
-              Abstract:
-             </strong>
-             This paper proposes a hybrid force-motion framework that utilizes real-time surface normal updates. The surface normal is estimated via a novel method that leverages force sensing measurements and velocity commands to compensate the friction bias. This approach is critical for robust execution of precision force-controlled tasks in manufacturing, such as thermoplastic tape replacement that traces surfaces or paths on a workpiece subject to uncertainties deviated from the model.
-             <p>
-              We formulated the proposed method and implemented the framework in ROS2 environment. The approach was validated using kinematic simulations and a hardware platform. Specifically, we demonstrated the approach on a 7-DoF manipulator equipped with a force/torque sensor at the end-effector.
-             </p>
-            </div>
+            Kobe University
            </td>
           </tr>
           <tr style="line-height: 0.2em">
@@ -2178,64 +2152,8 @@ $(function() {
           </tr>
           <tr class="pHdr">
            <td valign="bottom">
-            <a name="to2d_02">
-             10:30-11:30, Paper TO2D.2
-            </a>
-           </td>
-           <td class="r">
-           </td>
-          </tr>
-          <tr>
-           <td colspan="2">
-            <span class="pTtl">
-             <a href="" onclick="viewAbstract('1'); return false" title="Click to show or hide the keywords and abstract (text summary)">
-              Exploring the Effect of Anthropomorphic Design on Trust in Industrial Robots: Insights from a Metaverse Cobot Experiment
-             </a>
-            </span>
-           </td>
-          </tr>
-          <tr>
-           <td colspan="2" style="height: 2px">
-            <hr class="thin"/>
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#356160" title="Click to go to the Author Index">
-             Wittmann, Maximilian
-            </a>
-           </td>
-           <td class="r">
-            Friedrich-Alexander-Universität Erlangen-Nürnberg
-           </td>
-          </tr>
-          <tr>
-           <td colspan="2" style="padding: 0px">
-            <div id="Ab1" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
-             <span style="line-height: 2em">
-              <strong>
-               Keywords:
-              </strong>
-              <a href="UR24_KeywordIndexWeb.html#industrial_robots" title="Click to go to the Keyword Index">
-               Industrial Robots
-              </a>
-             </span>
-             <br/>
-             <strong>
-              Abstract:
-             </strong>
-             Collaborative robot (cobot) solutions offer several benefits, among them their cost-effectiveness, easy implementation on the shop floor, and the ability to automate repetitive processes. Increasingly, these systems are powered by Artificial Intelligence (AI). Cognitive and emotional barriers, however, often prevent a widespread introduction of AI-powered cobot solutions. One potential remedy for this lack of trust may be anthropomorphism, which has been empirically shown to improve the likeability of systems and affect the trust perception of human users. We developed a metaverse collaboration game set in a final assembly environment. At the example of an industrial robotic use case, we investigate the impact of anthropomorphic design on trust in the cobot. We ran a between-subject experiment with a sample size of 65 participants who interacted with a mechanical robot version or the anthropomorphized robot. The perception of the robot’s reliability, functionality, helpfulness, and trust increased within each group. Contrary to our assumptions, however, there were no significant differences in the median trust ratings between the anthropomorphically and the nonanthropomorphically designed robot. We discuss the ramifications for industrial human-robot interaction.
-            </div>
-           </td>
-          </tr>
-          <tr style="line-height: 0.2em">
-           <td colspan="2">
-           </td>
-          </tr>
-          <tr class="pHdr">
-           <td valign="bottom">
-            <a name="to2d_03">
-             10:30-11:30, Paper TO2D.3
+            <a name="to2d_01">
+             10:30-10:40, Paper TO2D.1
             </a>
            </td>
            <td class="r">
@@ -2324,8 +2242,141 @@ $(function() {
           </tr>
           <tr class="pHdr">
            <td valign="bottom">
+            <a name="to2d_02">
+             10:40-10:50, Paper TO2D.2
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('1'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Exploring the Effect of Anthropomorphic Design on Trust in Industrial Robots: Insights from a Metaverse Cobot Experiment
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="UR24_AuthorIndexWeb.html#356160" title="Click to go to the Author Index">
+             Wittmann, Maximilian
+            </a>
+           </td>
+           <td class="r">
+            Friedrich-Alexander-Universität Erlangen-Nürnberg
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab1" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="UR24_KeywordIndexWeb.html#industrial_robots" title="Click to go to the Keyword Index">
+               Industrial Robots
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Collaborative robot (cobot) solutions offer several benefits, among them their cost-effectiveness, easy implementation on the shop floor, and the ability to automate repetitive processes. Increasingly, these systems are powered by Artificial Intelligence (AI). Cognitive and emotional barriers, however, often prevent a widespread introduction of AI-powered cobot solutions. One potential remedy for this lack of trust may be anthropomorphism, which has been empirically shown to improve the likeability of systems and affect the trust perception of human users. We developed a metaverse collaboration game set in a final assembly environment. At the example of an industrial robotic use case, we investigate the impact of anthropomorphic design on trust in the cobot. We ran a between-subject experiment with a sample size of 65 participants who interacted with a mechanical robot version or the anthropomorphized robot. The perception of the robot’s reliability, functionality, helpfulness, and trust increased within each group. Contrary to our assumptions, however, there were no significant differences in the median trust ratings between the anthropomorphically and the nonanthropomorphically designed robot. We discuss the ramifications for industrial human-robot interaction.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="to2d_03">
+             10:50-11:00, Paper TO2D.3
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('97'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Hybrid Force Motion Control with Estimated Surface Normal for Manufacturing Applications
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="UR24_AuthorIndexWeb.html#343445" title="Click to go to the Author Index">
+             Nasiri, Ehsan
+            </a>
+           </td>
+           <td class="r">
+            Stevens Institute of Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="UR24_AuthorIndexWeb.html#146612" title="Click to go to the Author Index">
+             Wang, Long
+            </a>
+           </td>
+           <td class="r">
+            Stevens Institute of Technology
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab97" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="UR24_KeywordIndexWeb.html#industrial_robots" title="Click to go to the Keyword Index">
+               Industrial Robots
+              </a>
+              ,
+              <a href="UR24_KeywordIndexWeb.html#contact__modeling__sensing_and_control_" title="Click to go to the Keyword Index">
+               Contact: Modeling, Sensing and Control
+              </a>
+              ,
+              <a href="UR24_KeywordIndexWeb.html#manipulation_planning_and_control" title="Click to go to the Keyword Index">
+               Manipulation Planning and Control
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             This paper proposes a hybrid force-motion framework that utilizes real-time surface normal updates. The surface normal is estimated via a novel method that leverages force sensing measurements and velocity commands to compensate the friction bias. This approach is critical for robust execution of precision force-controlled tasks in manufacturing, such as thermoplastic tape replacement that traces surfaces or paths on a workpiece subject to uncertainties deviated from the model.
+             <p>
+              We formulated the proposed method and implemented the framework in ROS2 environment. The approach was validated using kinematic simulations and a hardware platform. Specifically, we demonstrated the approach on a 7-DoF manipulator equipped with a force/torque sensor at the end-effector.
+             </p>
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
             <a name="to2d_04">
-             10:30-11:30, Paper TO2D.4
+             11:00-11:10, Paper TO2D.4
             </a>
            </td>
            <td class="r">
@@ -2409,7 +2460,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2d_05">
-             10:30-11:30, Paper TO2D.5
+             11:10-11:20, Paper TO2D.5
             </a>
            </td>
            <td class="r">
@@ -2509,7 +2560,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2d_06">
-             10:30-11:30, Paper TO2D.6
+             11:20-11:30, Paper TO2D.6
             </a>
            </td>
            <td class="r">
@@ -2604,7 +2655,7 @@ $(function() {
             </a>
            </td>
            <td class="r">
-            KC912
+            KC 912
            </td>
           </tr>
           <tr class="sHdr">
@@ -2648,7 +2699,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2e_01">
-             -, Paper TO2E.1
+             10:30-10:40, Paper TO2E.1
             </a>
            </td>
            <td class="r">
@@ -2657,8 +2708,8 @@ $(function() {
           <tr>
            <td colspan="2">
             <span class="pTtl">
-             <a href="" onclick="viewAbstract('102'); return false" title="Click to show or hide the keywords and abstract (text summary)">
-              User-Centric Payload Design and Usability Testing for Agricultural Sensor Placement and Retrieval Using Off-The-Shelf Micro Aerial Vehicles
+             <a href="" onclick="viewAbstract('198'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Autotarget*: A Distributed Robot Operating System Framework for Autonomous Aerial Swarms
              </a>
             </span>
            </td>
@@ -2670,37 +2721,57 @@ $(function() {
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#219352" title="Click to go to the Author Index">
-             Geckeler, Christian
+            <a href="UR24_AuthorIndexWeb.html#385091" title="Click to go to the Author Index">
+             Wilfried Yves Hamilton, Adoni
             </a>
            </td>
            <td class="r">
-            ETH Zürich
+            Helmholtz-Zentrum Dresden-Rossendorf - (HZDR)
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#387116" title="Click to go to the Author Index">
-             Kong, Iris
+            <a href="UR24_AuthorIndexWeb.html#399968" title="Click to go to the Author Index">
+             Fareedh-Shaik, Junaidh
             </a>
            </td>
            <td class="r">
-            Technical University of Denmark
+            Helmholtz-Institut Freiberg Für Ressourcentechnologie
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#148776" title="Click to go to the Author Index">
-             Mintchev, Stefano
+            <a href="UR24_AuthorIndexWeb.html#399965" title="Click to go to the Author Index">
+             Lorenz, Sandra
             </a>
            </td>
            <td class="r">
-            ETH Zurich
+            Helmholtz-Institut Freiberg Für Ressourcentechnologie
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="UR24_AuthorIndexWeb.html#399967" title="Click to go to the Author Index">
+             Richard, Richard Gloaguen
+            </a>
+           </td>
+           <td class="r">
+            Helmholtz-Institut Freiberg Für Ressourcentechnologie
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="UR24_AuthorIndexWeb.html#399970" title="Click to go to the Author Index">
+             Thomas D., Kühne
+            </a>
+           </td>
+           <td class="r">
+            Center for Advanced Systems Understanding -(HZDR-CASUS)
            </td>
           </tr>
           <tr>
            <td colspan="2" style="padding: 0px">
-            <div id="Ab102" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+            <div id="Ab198" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
              <span style="line-height: 2em">
               <strong>
                Keywords:
@@ -2709,19 +2780,19 @@ $(function() {
                Aerial and Flying Robots
               </a>
               ,
-              <a href="UR24_KeywordIndexWeb.html#telerobotics" title="Click to go to the Keyword Index">
-               Telerobotics
+              <a href="UR24_KeywordIndexWeb.html#robotic_systems_architectures_and_programming" title="Click to go to the Keyword Index">
+               Robotic Systems Architectures and Programming
               </a>
               ,
-              <a href="UR24_KeywordIndexWeb.html#mechanism_and_design" title="Click to go to the Keyword Index">
-               Mechanism and Design
+              <a href="UR24_KeywordIndexWeb.html#multi_robot_systems" title="Click to go to the Keyword Index">
+               Multi-Robot Systems
               </a>
              </span>
              <br/>
              <strong>
               Abstract:
              </strong>
-             Increased flight time and advanced sensors are making MAVs easier to use, facilitating their widespread adoption in fields such as precision agriculture or environmental monitoring. However, current applications are limited mainly to passive visual observation from far above; to enable the next generation of aerial robot applications, MAVs must begin to directly physically interact with objects in the environment, such as placing and collecting sensors. Enabling these applications for a wide spectrum of end-users is only possible if the mechanism is safe and easy to use, without overburdening the user with complex integration, complicated control, or overwhelming and convoluted feedback. To this end we propose a self-sufficient passive payload system to enable both the deployment and retrieval of sensors for agriculture. This mechanism can be simply mechanically attached to a commercial, off-the-shelf MAV, without requiring further electrical or software integration. The user-centric design and mechanical intelligence of the system facilitates ease of use through simplified control with targeted perceptual feedback. The usability of the system is validated quantitatively and qualitatively in a user study demonstrating sensor deployment and collection. All participants were able to deploy and collect at least four sensors both within 10 minutes in visual line-of-sight and within 12 minutes in beyond visual line-of-sight, after only three minutes of practice. Enabling MAVs to physically interact with their environment will usher in the next stage of MAV utility and applications. Complex tasks, such as sensor deployment and retrieval, can be realized relatively simply, by relying on a mechanically passive system designed with the user in mind, these payloads can enable such applications to be more widely available and inclusive to end-users.
+             Robot Operating System (ROS) has proven itself as a viable framework for developing robot-related applications. It offers features such as hardware abstraction, low-level device support, inter-process communication, and useful libraries for autonomous robot systems. Concerning aerial robots, commonly called unmanned aerial vehicles (UAV) or drones, ROS provides unfortunately very basic functions. Moreover, it does not guarantee real-time operation, as it runs under Linux. Consequently, it is difficult to implement advanced ROS applications that involve a swarm of drones that need to communicate with each other to carry out a common mission. This paper proposes an extended version of the ROS framework called autotarget∗, which provides a set of efficient functions designed for distributed operation on multiple UAVs flying at the same time. autotarget∗ relies on a multi-tier architecture with a decentralized communication layer, enabling intra-UAV messaging as well as the scalability of swarm UAVs. It has a set of daemons whose feature is to regulate the swarm’s consensus control and failover policy to ensure convergence towards a common goal. Experiments with real-world swarms revealed that autotarget∗ is portable and satisfies performance requirements for collaborative mission applications. We further conducted a coverage planning mission using the parallel back-and-forth algorithm, which demonstrated the efficiency of the framework in terms of time and energy. Our work should pave the way for an open-source environment dedicated to simplifying collaborative ROS application development, particularly for multi-UAV systems.
             </div>
            </td>
           </tr>
@@ -2732,7 +2803,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2e_02">
-             10:30-11:30, Paper TO2E.2
+             10:40-10:50, Paper TO2E.2
             </a>
            </td>
            <td class="r">
@@ -2866,7 +2937,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2e_03">
-             10:30-11:30, Paper TO2E.3
+             10:50-11:00, Paper TO2E.3
             </a>
            </td>
            <td class="r">
@@ -2936,7 +3007,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2e_04">
-             10:30-11:30, Paper TO2E.4
+             11:00-11:10, Paper TO2E.4
             </a>
            </td>
            <td class="r">
@@ -3040,7 +3111,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to2e_05">
-             10:30-11:30, Paper TO2E.5
+             11:10-11:20, Paper TO2E.5
             </a>
            </td>
            <td class="r">
@@ -3049,8 +3120,8 @@ $(function() {
           <tr>
            <td colspan="2">
             <span class="pTtl">
-             <a href="" onclick="viewAbstract('198'); return false" title="Click to show or hide the keywords and abstract (text summary)">
-              Autotarget*: A Distributed Robot Operating System Framework for Autonomous Aerial Swarms
+             <a href="" onclick="viewAbstract('102'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              User-Centric Payload Design and Usability Testing for Agricultural Sensor Placement and Retrieval Using Off-The-Shelf Micro Aerial Vehicles
              </a>
             </span>
            </td>
@@ -3062,57 +3133,37 @@ $(function() {
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#385091" title="Click to go to the Author Index">
-             Wilfried Yves Hamilton, Adoni
+            <a href="UR24_AuthorIndexWeb.html#219352" title="Click to go to the Author Index">
+             Geckeler, Christian
             </a>
            </td>
            <td class="r">
-            Helmholtz-Zentrum Dresden-Rossendorf - (HZDR)
+            ETH Zürich
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#399968" title="Click to go to the Author Index">
-             Fareedh-Shaik, Junaidh
+            <a href="UR24_AuthorIndexWeb.html#387116" title="Click to go to the Author Index">
+             Kong, Iris
             </a>
            </td>
            <td class="r">
-            Helmholtz-Institut Freiberg Für Ressourcentechnologie
+            Technical University of Denmark
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#399965" title="Click to go to the Author Index">
-             Lorenz, Sandra
+            <a href="UR24_AuthorIndexWeb.html#148776" title="Click to go to the Author Index">
+             Mintchev, Stefano
             </a>
            </td>
            <td class="r">
-            Helmholtz-Institut Freiberg Für Ressourcentechnologie
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#399967" title="Click to go to the Author Index">
-             Richard, Richard Gloaguen
-            </a>
-           </td>
-           <td class="r">
-            Helmholtz-Institut Freiberg Für Ressourcentechnologie
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#399970" title="Click to go to the Author Index">
-             Thomas D., Kühne
-            </a>
-           </td>
-           <td class="r">
-            Center for Advanced Systems Understanding -(HZDR-CASUS)
+            ETH Zurich
            </td>
           </tr>
           <tr>
            <td colspan="2" style="padding: 0px">
-            <div id="Ab198" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+            <div id="Ab102" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
              <span style="line-height: 2em">
               <strong>
                Keywords:
@@ -3121,19 +3172,19 @@ $(function() {
                Aerial and Flying Robots
               </a>
               ,
-              <a href="UR24_KeywordIndexWeb.html#robotic_systems_architectures_and_programming" title="Click to go to the Keyword Index">
-               Robotic Systems Architectures and Programming
+              <a href="UR24_KeywordIndexWeb.html#telerobotics" title="Click to go to the Keyword Index">
+               Telerobotics
               </a>
               ,
-              <a href="UR24_KeywordIndexWeb.html#multi_robot_systems" title="Click to go to the Keyword Index">
-               Multi-Robot Systems
+              <a href="UR24_KeywordIndexWeb.html#mechanism_and_design" title="Click to go to the Keyword Index">
+               Mechanism and Design
               </a>
              </span>
              <br/>
              <strong>
               Abstract:
              </strong>
-             Robot Operating System (ROS) has proven itself as a viable framework for developing robot-related applications. It offers features such as hardware abstraction, low-level device support, inter-process communication, and useful libraries for autonomous robot systems. Concerning aerial robots, commonly called unmanned aerial vehicles (UAV) or drones, ROS provides unfortunately very basic functions. Moreover, it does not guarantee real-time operation, as it runs under Linux. Consequently, it is difficult to implement advanced ROS applications that involve a swarm of drones that need to communicate with each other to carry out a common mission. This paper proposes an extended version of the ROS framework called autotarget∗, which provides a set of efficient functions designed for distributed operation on multiple UAVs flying at the same time. autotarget∗ relies on a multi-tier architecture with a decentralized communication layer, enabling intra-UAV messaging as well as the scalability of swarm UAVs. It has a set of daemons whose feature is to regulate the swarm’s consensus control and failover policy to ensure convergence towards a common goal. Experiments with real-world swarms revealed that autotarget∗ is portable and satisfies performance requirements for collaborative mission applications. We further conducted a coverage planning mission using the parallel back-and-forth algorithm, which demonstrated the efficiency of the framework in terms of time and energy. Our work should pave the way for an open-source environment dedicated to simplifying collaborative ROS application development, particularly for multi-UAV systems.
+             Increased flight time and advanced sensors are making MAVs easier to use, facilitating their widespread adoption in fields such as precision agriculture or environmental monitoring. However, current applications are limited mainly to passive visual observation from far above; to enable the next generation of aerial robot applications, MAVs must begin to directly physically interact with objects in the environment, such as placing and collecting sensors. Enabling these applications for a wide spectrum of end-users is only possible if the mechanism is safe and easy to use, without overburdening the user with complex integration, complicated control, or overwhelming and convoluted feedback. To this end we propose a self-sufficient passive payload system to enable both the deployment and retrieval of sensors for agriculture. This mechanism can be simply mechanically attached to a commercial, off-the-shelf MAV, without requiring further electrical or software integration. The user-centric design and mechanical intelligence of the system facilitates ease of use through simplified control with targeted perceptual feedback. The usability of the system is validated quantitatively and qualitatively in a user study demonstrating sensor deployment and collection. All participants were able to deploy and collect at least four sensors both within 10 minutes in visual line-of-sight and within 12 minutes in beyond visual line-of-sight, after only three minutes of practice. Enabling MAVs to physically interact with their environment will usher in the next stage of MAV utility and applications. Complex tasks, such as sensor deployment and retrieval, can be realized relatively simply, by relying on a mechanically passive system designed with the user in mind, these payloads can enable such applications to be more widely available and inclusive to end-users.
             </div>
            </td>
           </tr>
@@ -3167,6 +3218,28 @@ $(function() {
             Regular
            </td>
           </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="UR24_AuthorIndexWeb.html#105706" title="Click to go to the Author Index">
+             Erol Barkana, Duygun
+            </a>
+           </td>
+           <td class="r">
+            Yeditepe University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Co-Chair:
+            <a href="UR24_AuthorIndexWeb.html#100181" title="Click to go to the Author Index">
+             Oh, Paul Y.
+            </a>
+           </td>
+           <td class="r">
+            University of Nevada, Las Vegas (UNLV)
+           </td>
+          </tr>
           <tr style="line-height: 0.2em">
            <td colspan="2">
            </td>
@@ -3174,7 +3247,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4a_01">
-             -, Paper TO4A.1
+             14:20-14:30, Paper TO4A.1
             </a>
            </td>
            <td class="r">
@@ -3207,7 +3280,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#386602" title="Click to go to the Author Index">
-             Zhou, Peiwen
+             ZHOU, PEIWEN
             </a>
            </td>
            <td class="r">
@@ -3250,7 +3323,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4a_02">
-             -, Paper TO4A.2
+             14:30-14:40, Paper TO4A.2
             </a>
            </td>
            <td class="r">
@@ -3324,7 +3397,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4a_03">
-             -, Paper TO4A.3
+             14:40-14:50, Paper TO4A.3
             </a>
            </td>
            <td class="r">
@@ -3347,7 +3420,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#386138" title="Click to go to the Author Index">
-             Kim, Boseong
+             KIM, Boseong
             </a>
            </td>
            <td class="r">
@@ -3357,7 +3430,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#387197" title="Click to go to the Author Index">
-             Kim, Yoonkeon
+             KIM, Yoonkeon
             </a>
            </td>
            <td class="r">
@@ -3367,7 +3440,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#387199" title="Click to go to the Author Index">
-             Kim, Eungsoo
+             KIM, Eungsoo
             </a>
            </td>
            <td class="r">
@@ -3377,7 +3450,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#387200" title="Click to go to the Author Index">
-             Kang, Jaeun
+             KANG, Jaeun
             </a>
            </td>
            <td class="r">
@@ -3387,7 +3460,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#387204" title="Click to go to the Author Index">
-             Kim, Kihoon
+             KIM, Kihoon
             </a>
            </td>
            <td class="r">
@@ -3438,7 +3511,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4a_04">
-             14:20-15:20, Paper TO4A.4
+             14:50-15:00, Paper TO4A.4
             </a>
            </td>
            <td class="r">
@@ -3532,7 +3605,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4a_05">
-             14:20-15:20, Paper TO4A.5
+             15:00-15:10, Paper TO4A.5
             </a>
            </td>
            <td class="r">
@@ -3555,7 +3628,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#225526" title="Click to go to the Author Index">
-             Kim, BaekSeok
+             KIM, BaekSeok
             </a>
            </td>
            <td class="r">
@@ -3616,7 +3689,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4a_06">
-             14:20-15:20, Paper TO4A.6
+             15:10-15:20, Paper TO4A.6
             </a>
            </td>
            <td class="r">
@@ -3694,7 +3767,7 @@ $(function() {
             </a>
            </td>
            <td class="r">
-            KC905
+            KC 905
            </td>
           </tr>
           <tr class="sHdr">
@@ -3707,6 +3780,17 @@ $(function() {
            </td>
            <td class="r">
             Regular
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="UR24_AuthorIndexWeb.html#155018" title="Click to go to the Author Index">
+             Recchiuto, Carmine Tommaso
+            </a>
+           </td>
+           <td class="r">
+            University of Genova
            </td>
           </tr>
           <tr>
@@ -3727,7 +3811,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4b_01">
-             -, Paper TO4B.1
+             14:20-14:30, Paper TO4B.1
             </a>
            </td>
            <td class="r">
@@ -3780,7 +3864,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#338161" title="Click to go to the Author Index">
-             Majdi, Amin
+             majdi, amin
             </a>
            </td>
            <td class="r">
@@ -3827,7 +3911,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4b_02">
-             -, Paper TO4B.2
+             14:30-14:40, Paper TO4B.2
             </a>
            </td>
            <td class="r">
@@ -3903,7 +3987,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4b_03">
-             -, Paper TO4B.3
+             14:40-14:50, Paper TO4B.3
             </a>
            </td>
            <td class="r">
@@ -3999,7 +4083,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4b_04">
-             14:20-15:20, Paper TO4B.4
+             14:50-15:00, Paper TO4B.4
             </a>
            </td>
            <td class="r">
@@ -4088,81 +4172,6 @@ $(function() {
             </div>
            </td>
           </tr>
-          <tr style="line-height: 0.2em">
-           <td colspan="2">
-           </td>
-          </tr>
-          <tr class="pHdr">
-           <td valign="bottom">
-            <a name="to4b_05">
-             14:20-15:20, Paper TO4B.5
-            </a>
-           </td>
-           <td class="r">
-           </td>
-          </tr>
-          <tr>
-           <td colspan="2">
-            <span class="pTtl">
-             Bionic Design and Kinematic Evaluation of a Stiffness-Adjustable Spinal Exoskeleton for Trunk Support
-            </span>
-           </td>
-          </tr>
-          <tr>
-           <td colspan="2" style="height: 2px">
-            <hr class="thin"/>
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#384303" title="Click to go to the Author Index">
-             Yin, Yuhan
-            </a>
-           </td>
-           <td class="r">
-            Xi'an Jiaotong University
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#222113" title="Click to go to the Author Index">
-             Zhu, Aibin
-            </a>
-           </td>
-           <td class="r">
-            Xi'an Jiaotong University
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#385735" title="Click to go to the Author Index">
-             Xu, Peng
-            </a>
-           </td>
-           <td class="r">
-            Honghui Hospital, Xi'an Jiaotong University
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#318050" title="Click to go to the Author Index">
-             Zhang, Jing
-            </a>
-           </td>
-           <td class="r">
-            Xi'an Jiaotong University
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#387094" title="Click to go to the Author Index">
-             Liu, Jie
-            </a>
-           </td>
-           <td class="r">
-            Yanshan University
-           </td>
-          </tr>
          </table>
          <table class="trk">
           <tr>
@@ -4178,7 +4187,7 @@ $(function() {
             </a>
            </td>
            <td class="r">
-            KC907
+            KC 907
            </td>
           </tr>
           <tr class="sHdr">
@@ -4193,6 +4202,28 @@ $(function() {
             Regular
            </td>
           </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="UR24_AuthorIndexWeb.html#160893" title="Click to go to the Author Index">
+             Farzan, Siavash
+            </a>
+           </td>
+           <td class="r">
+            California Polytechnic State University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Co-Chair:
+            <a href="UR24_AuthorIndexWeb.html#100825" title="Click to go to the Author Index">
+             Lee, Kyoobin
+            </a>
+           </td>
+           <td class="r">
+            Gwangju Institute of Science and Technology
+           </td>
+          </tr>
           <tr style="line-height: 0.2em">
            <td colspan="2">
            </td>
@@ -4200,7 +4231,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4c_01">
-             -, Paper TO4C.1
+             14:20-14:30, Paper TO4C.1
             </a>
            </td>
            <td class="r">
@@ -4209,8 +4240,8 @@ $(function() {
           <tr>
            <td colspan="2">
             <span class="pTtl">
-             <a href="" onclick="viewAbstract('186'); return false" title="Click to show or hide the keywords and abstract (text summary)">
-              Is It Safe to Cross? Interpretable Risk Assessment with GPT-4V for Safety-Aware Street Crossing
+             <a href="" onclick="viewAbstract('111'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Relational Q-Functionals: Multi-Agent Learning to Recover from Unforeseen Robot Malfunctions in Continuous Action Domains
              </a>
             </span>
            </td>
@@ -4222,68 +4253,68 @@ $(function() {
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#226416" title="Click to go to the Author Index">
-             Hwang, Hochul
+            <a href="UR24_AuthorIndexWeb.html#351039" title="Click to go to the Author Index">
+             Findik, Yasin
             </a>
            </td>
            <td class="r">
-            University of Massachusetts Amherst
+            University of Massachusetts Lowell
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#388605" title="Click to go to the Author Index">
-             Kwon, Sunjae
+            <a href="UR24_AuthorIndexWeb.html#128212" title="Click to go to the Author Index">
+             Robinette, Paul
             </a>
            </td>
            <td class="r">
-            UMass Amherst
+            University of Massachusetts Lowell
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#388609" title="Click to go to the Author Index">
-             Kim, Yekyung
+            <a href="UR24_AuthorIndexWeb.html#199416" title="Click to go to the Author Index">
+             Jerath, Kshitij
             </a>
            </td>
            <td class="r">
-            University of Masachusetts, Amherst
+            University of Massachusetts Lowell
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#168080" title="Click to go to the Author Index">
-             Kim, Donghyun
+            <a href="UR24_AuthorIndexWeb.html#160355" title="Click to go to the Author Index">
+             Azadeh, Reza
             </a>
            </td>
            <td class="r">
-            University of Massachusetts Amherst
+            University of Massachusetts Lowell
            </td>
           </tr>
           <tr>
            <td colspan="2" style="padding: 0px">
-            <div id="Ab186" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+            <div id="Ab111" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
              <span style="line-height: 2em">
               <strong>
                Keywords:
               </strong>
+              <a href="UR24_KeywordIndexWeb.html#performance_evaluation_and_optimization" title="Click to go to the Keyword Index">
+               Performance Evaluation and Optimization
+              </a>
+              ,
               <a href="UR24_KeywordIndexWeb.html#ai_reasoning_methods_for_robotics" title="Click to go to the Keyword Index">
                AI Reasoning Methods for Robotics
               </a>
               ,
-              <a href="UR24_KeywordIndexWeb.html#computer_vision_and_visual_servoing" title="Click to go to the Keyword Index">
-               Computer Vision and Visual Servoing
-              </a>
-              ,
-              <a href="UR24_KeywordIndexWeb.html#object_recognition" title="Click to go to the Keyword Index">
-               Object Recognition
+              <a href="UR24_KeywordIndexWeb.html#behavior_based_systems" title="Click to go to the Keyword Index">
+               Behavior-Based Systems
               </a>
              </span>
              <br/>
              <strong>
               Abstract:
              </strong>
-             Safely navigating street intersections is a complex challenge for blind and low-vision individuals, as it requires a nuanced understanding of the surrounding context -- a task heavily reliant on visual cues. Traditional methods for assisting in this decision-making process often fall short, lacking the ability to provide a comprehensive scene analysis and safety level. This paper introduces an innovative approach that leverages vision-language models (VLMs) to interpret complex street crossing scenes, offering a potential advancement over conventional traffic signal recognition techniques. By generating a safety score and scene description in natural language, our method supports safe decision-making for blind and low-vision individuals. We collected crosswalk intersection data that contains multiview egocentric images captured by a quadruped robot and annotated the images with corresponding safety scores based on our predefined safety score categorization. Grounded on the visual knowledge, extracted from images and text prompts, we evaluate a VLM for safety score prediction and scene description. Our findings highlight the reasoning and safety score prediction capabilities of the VLM, activated by various prompts, as a pathway to developing a trustworthy system, crucial for applications requiring reliable decision-making support.
+             Cooperative multi-agent learning methods are essential in developing effective cooperation strategies in multi-agent domains. In robotics, these methods extend beyond multi-robot scenarios to single-robot systems, where they enable coordination among different robot modules (e.g., robot legs or joints). However, current methods often struggle to quickly adapt to unforeseen failures, such as a malfunctioning robot leg, especially after the algorithm has converged to a strategy. To overcome this, we introduce the Relational Q-Functionals (RQF) framework. RQF leverages a relational network, representing agents' relationships, to enhance adaptability, providing resilience against malfunction(s). Our algorithm also efficiently handles continuous state-action domains, making it adept for robotic learning tasks. Our empirical results show that RQF enables agents to use these relationships effectively to facilitate cooperation and recover from an unexpected malfunction in single-robot systems with multiple interacting modules. Thus, our approach offers promising applications in multi-agent systems, particularly in scenarios with unforeseen malfunctions.
             </div>
            </td>
           </tr>
@@ -4294,7 +4325,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4c_02">
-             -, Paper TO4C.2
+             14:30-14:40, Paper TO4C.2
             </a>
            </td>
            <td class="r">
@@ -4388,7 +4419,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4c_03">
-             -, Paper TO4C.3
+             14:40-14:50, Paper TO4C.3
             </a>
            </td>
            <td class="r">
@@ -4482,7 +4513,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4c_04">
-             14:20-15:20, Paper TO4C.4
+             14:50-15:00, Paper TO4C.4
             </a>
            </td>
            <td class="r">
@@ -4586,7 +4617,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4c_05">
-             14:20-15:20, Paper TO4C.5
+             15:00-15:10, Paper TO4C.5
             </a>
            </td>
            <td class="r">
@@ -4595,8 +4626,8 @@ $(function() {
           <tr>
            <td colspan="2">
             <span class="pTtl">
-             <a href="" onclick="viewAbstract('111'); return false" title="Click to show or hide the keywords and abstract (text summary)">
-              Relational Q-Functionals: Multi-Agent Learning to Recover from Unforeseen Robot Malfunctions in Continuous Action Domains
+             <a href="" onclick="viewAbstract('186'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Is It Safe to Cross? Interpretable Risk Assessment with GPT-4V for Safety-Aware Street Crossing
              </a>
             </span>
            </td>
@@ -4608,68 +4639,68 @@ $(function() {
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#351039" title="Click to go to the Author Index">
-             Findik, Yasin
+            <a href="UR24_AuthorIndexWeb.html#226416" title="Click to go to the Author Index">
+             Hwang, Hochul
             </a>
            </td>
            <td class="r">
-            University of Massachusetts Lowell
+            University of Massachusetts Amherst
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#128212" title="Click to go to the Author Index">
-             Robinette, Paul
+            <a href="UR24_AuthorIndexWeb.html#388605" title="Click to go to the Author Index">
+             Kwon, Sunjae
             </a>
            </td>
            <td class="r">
-            University of Massachusetts Lowell
+            UMass Amherst
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#199416" title="Click to go to the Author Index">
-             Jerath, Kshitij
+            <a href="UR24_AuthorIndexWeb.html#388609" title="Click to go to the Author Index">
+             Kim, Yekyung
             </a>
            </td>
            <td class="r">
-            University of Massachusetts Lowell
+            University of Masachusetts, Amherst
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#160355" title="Click to go to the Author Index">
-             Azadeh, Reza
+            <a href="UR24_AuthorIndexWeb.html#168080" title="Click to go to the Author Index">
+             Kim, Donghyun
             </a>
            </td>
            <td class="r">
-            University of Massachusetts Lowell
+            University of Massachusetts Amherst
            </td>
           </tr>
           <tr>
            <td colspan="2" style="padding: 0px">
-            <div id="Ab111" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+            <div id="Ab186" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
              <span style="line-height: 2em">
               <strong>
                Keywords:
               </strong>
-              <a href="UR24_KeywordIndexWeb.html#performance_evaluation_and_optimization" title="Click to go to the Keyword Index">
-               Performance Evaluation and Optimization
-              </a>
-              ,
               <a href="UR24_KeywordIndexWeb.html#ai_reasoning_methods_for_robotics" title="Click to go to the Keyword Index">
                AI Reasoning Methods for Robotics
               </a>
               ,
-              <a href="UR24_KeywordIndexWeb.html#behavior_based_systems" title="Click to go to the Keyword Index">
-               Behavior-Based Systems
+              <a href="UR24_KeywordIndexWeb.html#computer_vision_and_visual_servoing" title="Click to go to the Keyword Index">
+               Computer Vision and Visual Servoing
+              </a>
+              ,
+              <a href="UR24_KeywordIndexWeb.html#object_recognition" title="Click to go to the Keyword Index">
+               Object Recognition
               </a>
              </span>
              <br/>
              <strong>
               Abstract:
              </strong>
-             Cooperative multi-agent learning methods are essential in developing effective cooperation strategies in multi-agent domains. In robotics, these methods extend beyond multi-robot scenarios to single-robot systems, where they enable coordination among different robot modules (e.g., robot legs or joints). However, current methods often struggle to quickly adapt to unforeseen failures, such as a malfunctioning robot leg, especially after the algorithm has converged to a strategy. To overcome this, we introduce the Relational Q-Functionals (RQF) framework. RQF leverages a relational network, representing agents' relationships, to enhance adaptability, providing resilience against malfunction(s). Our algorithm also efficiently handles continuous state-action domains, making it adept for robotic learning tasks. Our empirical results show that RQF enables agents to use these relationships effectively to facilitate cooperation and recover from an unexpected malfunction in single-robot systems with multiple interacting modules. Thus, our approach offers promising applications in multi-agent systems, particularly in scenarios with unforeseen malfunctions.
+             Safely navigating street intersections is a complex challenge for blind and low-vision individuals, as it requires a nuanced understanding of the surrounding context -- a task heavily reliant on visual cues. Traditional methods for assisting in this decision-making process often fall short, lacking the ability to provide a comprehensive scene analysis and safety level. This paper introduces an innovative approach that leverages vision-language models (VLMs) to interpret complex street crossing scenes, offering a potential advancement over conventional traffic signal recognition techniques. By generating a safety score and scene description in natural language, our method supports safe decision-making for blind and low-vision individuals. We collected crosswalk intersection data that contains multiview egocentric images captured by a quadruped robot and annotated the images with corresponding safety scores based on our predefined safety score categorization. Grounded on the visual knowledge, extracted from images and text prompts, we evaluate a VLM for safety score prediction and scene description. Our findings highlight the reasoning and safety score prediction capabilities of the VLM, activated by various prompts, as a pathway to developing a trustworthy system, crucial for applications requiring reliable decision-making support.
             </div>
            </td>
           </tr>
@@ -4680,7 +4711,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4c_06">
-             14:20-15:20, Paper TO4C.6
+             15:10-15:20, Paper TO4C.6
             </a>
            </td>
            <td class="r">
@@ -4772,7 +4803,7 @@ $(function() {
             </a>
            </td>
            <td class="r">
-            KC909
+            KC 909
            </td>
           </tr>
           <tr class="sHdr">
@@ -4787,6 +4818,28 @@ $(function() {
             Regular
            </td>
           </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="UR24_AuthorIndexWeb.html#109904" title="Click to go to the Author Index">
+             Park, Chung Hyuk
+            </a>
+           </td>
+           <td class="r">
+            George Washington University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Co-Chair:
+            <a href="UR24_AuthorIndexWeb.html#123501" title="Click to go to the Author Index">
+             Englot, Brendan
+            </a>
+           </td>
+           <td class="r">
+            Stevens Institute of Technology
+           </td>
+          </tr>
           <tr style="line-height: 0.2em">
            <td colspan="2">
            </td>
@@ -4794,7 +4847,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4d_01">
-             -, Paper TO4D.1
+             14:20-14:30, Paper TO4D.1
             </a>
            </td>
            <td class="r">
@@ -4870,7 +4923,81 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4d_02">
-             -, Paper TO4D.2
+             14:30-14:40, Paper TO4D.2
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('46'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Improving Multi-Robot Visual Navigation Using Cooperative Consensus
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="UR24_AuthorIndexWeb.html#108565" title="Click to go to the Author Index">
+             Lyons, Damian
+            </a>
+           </td>
+           <td class="r">
+            Fordham University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="UR24_AuthorIndexWeb.html#338873" title="Click to go to the Author Index">
+             Rahouti, Mohamed
+            </a>
+           </td>
+           <td class="r">
+            Fordham University
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab46" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="UR24_KeywordIndexWeb.html#multi_robot_systems" title="Click to go to the Keyword Index">
+               Multi-Robot Systems
+              </a>
+              ,
+              <a href="UR24_KeywordIndexWeb.html#computer_vision_and_visual_servoing" title="Click to go to the Keyword Index">
+               Computer Vision and Visual Servoing
+              </a>
+              ,
+              <a href="UR24_KeywordIndexWeb.html#intelligent_robotic_vehicles" title="Click to go to the Keyword Index">
+               Intelligent Robotic Vehicles
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             WAVN (Wide Area Visual Navigation) is an approach to robot team navigation that uses the current visual information from all team members to allow any team member to cooperatively navigate to a distant (out of view) destination. Neither map nor robot position information is needed. Current applications include agriculture and forestry, particularly in remote locations. However, increasingly ubiquitous camera sensors indicate that WAVN could be used as a lightweight navigation paradigm for robot teams in households, offices, public areas, and manufacturing applications. In this paper, we propose and evaluate a novel synergy of navigation and blockchain methodologies: A novel robot-centric blockchain consensus mechanism based on common visual landmarks between pairs of robots. We show how this mechanism guarantees specific navigability properties for the ledger, resulting in an improved WAVN navigation algorithm, Randomly Shortened Chain (RSC), and we present navigation performance results to demonstrate the improved efficiency due to cooperation.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="to4d_03">
+             14:40-14:50, Paper TO4D.3
             </a>
            </td>
            <td class="r">
@@ -4973,82 +5100,8 @@ $(function() {
           </tr>
           <tr class="pHdr">
            <td valign="bottom">
-            <a name="to4d_03">
-             -, Paper TO4D.3
-            </a>
-           </td>
-           <td class="r">
-           </td>
-          </tr>
-          <tr>
-           <td colspan="2">
-            <span class="pTtl">
-             <a href="" onclick="viewAbstract('46'); return false" title="Click to show or hide the keywords and abstract (text summary)">
-              Improving Multi-Robot Visual Navigation Using Cooperative Consensus
-             </a>
-            </span>
-           </td>
-          </tr>
-          <tr>
-           <td colspan="2" style="height: 2px">
-            <hr class="thin"/>
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#108565" title="Click to go to the Author Index">
-             Lyons, Damian
-            </a>
-           </td>
-           <td class="r">
-            Fordham University
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#338873" title="Click to go to the Author Index">
-             Rahouti, Mohamed
-            </a>
-           </td>
-           <td class="r">
-            Fordham University
-           </td>
-          </tr>
-          <tr>
-           <td colspan="2" style="padding: 0px">
-            <div id="Ab46" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
-             <span style="line-height: 2em">
-              <strong>
-               Keywords:
-              </strong>
-              <a href="UR24_KeywordIndexWeb.html#multi_robot_systems" title="Click to go to the Keyword Index">
-               Multi-Robot Systems
-              </a>
-              ,
-              <a href="UR24_KeywordIndexWeb.html#computer_vision_and_visual_servoing" title="Click to go to the Keyword Index">
-               Computer Vision and Visual Servoing
-              </a>
-              ,
-              <a href="UR24_KeywordIndexWeb.html#intelligent_robotic_vehicles" title="Click to go to the Keyword Index">
-               Intelligent Robotic Vehicles
-              </a>
-             </span>
-             <br/>
-             <strong>
-              Abstract:
-             </strong>
-             WAVN (Wide Area Visual Navigation) is an approach to robot team navigation that uses the current visual information from all team members to allow any team member to cooperatively navigate to a distant (out of view) destination. Neither map nor robot position information is needed. Current applications include agriculture and forestry, particularly in remote locations. However, increasingly ubiquitous camera sensors indicate that WAVN could be used as a lightweight navigation paradigm for robot teams in households, offices, public areas, and manufacturing applications. In this paper, we propose and evaluate a novel synergy of navigation and blockchain methodologies: A novel robot-centric blockchain consensus mechanism based on common visual landmarks between pairs of robots. We show how this mechanism guarantees specific navigability properties for the ledger, resulting in an improved WAVN navigation algorithm, Randomly Shortened Chain (RSC), and we present navigation performance results to demonstrate the improved efficiency due to cooperation.
-            </div>
-           </td>
-          </tr>
-          <tr style="line-height: 0.2em">
-           <td colspan="2">
-           </td>
-          </tr>
-          <tr class="pHdr">
-           <td valign="bottom">
             <a name="to4d_04">
-             14:20-15:20, Paper TO4D.4
+             14:50-15:00, Paper TO4D.4
             </a>
            </td>
            <td class="r">
@@ -5122,7 +5175,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4d_05">
-             14:20-15:20, Paper TO4D.5
+             15:00-15:10, Paper TO4D.5
             </a>
            </td>
            <td class="r">
@@ -5212,7 +5265,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4d_06">
-             14:20-15:20, Paper TO4D.6
+             15:10-15:20, Paper TO4D.6
             </a>
            </td>
            <td class="r">
@@ -5304,7 +5357,7 @@ $(function() {
             </a>
            </td>
            <td class="r">
-            KC912
+            KC 912
            </td>
           </tr>
           <tr class="sHdr">
@@ -5348,7 +5401,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4e_01">
-             -, Paper TO4E.1
+             14:20-14:30, Paper TO4E.1
             </a>
            </td>
            <td class="r">
@@ -5442,7 +5495,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4e_02">
-             -, Paper TO4E.2
+             14:30-14:40, Paper TO4E.2
             </a>
            </td>
            <td class="r">
@@ -5556,7 +5609,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4e_03">
-             -, Paper TO4E.3
+             14:40-14:50, Paper TO4E.3
             </a>
            </td>
            <td class="r">
@@ -5630,7 +5683,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="to4e_04">
-             14:20-15:20, Paper TO4E.4
+             14:50-15:00, Paper TO4E.4
             </a>
            </td>
            <td class="r">
@@ -5693,71 +5746,6 @@ $(function() {
             </div>
            </td>
           </tr>
-          <tr style="line-height: 0.2em">
-           <td colspan="2">
-           </td>
-          </tr>
-          <tr class="pHdr">
-           <td valign="bottom">
-            <a name="to4e_05">
-             14:20-15:20, Paper TO4E.5
-            </a>
-           </td>
-           <td class="r">
-           </td>
-          </tr>
-          <tr>
-           <td colspan="2">
-            <span class="pTtl">
-             Design, Modeling and Experiment of a Eccentric Mass-Driven Spherical Robot
-            </span>
-           </td>
-          </tr>
-          <tr>
-           <td colspan="2" style="height: 2px">
-            <hr class="thin"/>
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#250748" title="Click to go to the Author Index">
-             Mao, Han
-            </a>
-           </td>
-           <td class="r">
-            Xi'an Jiaotong University
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#387225" title="Click to go to the Author Index">
-             Xie, Tongtong
-            </a>
-           </td>
-           <td class="r">
-            Xi'an Jiaotong University
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#222113" title="Click to go to the Author Index">
-             Zhu, Aibin
-            </a>
-           </td>
-           <td class="r">
-            Xi'an Jiaotong University
-           </td>
-          </tr>
-          <tr>
-           <td>
-            <a href="UR24_AuthorIndexWeb.html#319497" title="Click to go to the Author Index">
-             Li, Cheng
-            </a>
-           </td>
-           <td class="r">
-            Xi'an Jiaotong University
-           </td>
-          </tr>
          </table>
          <table class="trk">
           <tr>
@@ -5773,7 +5761,7 @@ $(function() {
             </a>
            </td>
            <td class="r">
-            Rosenthal
+            Room T1
            </td>
           </tr>
           <tr class="sHdr">
@@ -5795,7 +5783,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="ti5a_01">
-             -, Paper TI5A.1
+             15:20-17:00, Paper TI5A.1
             </a>
            </td>
            <td class="r">
@@ -5869,7 +5857,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="ti5a_02">
-             -, Paper TI5A.2
+             15:20-17:00, Paper TI5A.2
             </a>
            </td>
            <td class="r">
@@ -5922,7 +5910,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#319539" title="Click to go to the Author Index">
-             Kim, Jong Chan
+             KIM, JONG CHAN
             </a>
            </td>
            <td class="r">
@@ -5932,7 +5920,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#319536" title="Click to go to the Author Index">
-             Hyojun, Lee
+             HYOJUN, LEE
             </a>
            </td>
            <td class="r">
@@ -5983,7 +5971,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="ti5a_03">
-             -, Paper TI5A.3
+             15:20-17:00, Paper TI5A.3
             </a>
            </td>
            <td class="r">
@@ -6057,7 +6045,7 @@ $(function() {
           <tr class="pHdr">
            <td valign="bottom">
             <a name="ti5a_04">
-             -, Paper TI5A.4
+             15:20-17:00, Paper TI5A.4
             </a>
            </td>
            <td class="r">
@@ -6194,7 +6182,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#386921" title="Click to go to the Author Index">
-             Pyo, Seunghyun
+             PYO, Seunghyun
             </a>
            </td>
            <td class="r">
@@ -7070,8 +7058,8 @@ $(function() {
           <tr>
            <td colspan="2">
             <span class="pTtl">
-             <a href="" onclick="viewAbstract('30'); return false" title="Click to show or hide the keywords and abstract (text summary)">
-              Analysis and Classification of Car Door Torque Profile for Hybrid Haptic Device Development
+             <a href="" onclick="viewAbstract('72'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              The Effect of Robotic Ankle and MTP Joints Stretching on Plantar Fasciitis
              </a>
             </span>
            </td>
@@ -7083,18 +7071,18 @@ $(function() {
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#363812" title="Click to go to the Author Index">
-             Kim, Ji-Sung
+            <a href="UR24_AuthorIndexWeb.html#410179" title="Click to go to the Author Index">
+             Kang, Hyun Soo
             </a>
            </td>
            <td class="r">
-            KAIST
+            University of California Berkeley
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#244519" title="Click to go to the Author Index">
-             Ma, Jihyeong
+            <a href="UR24_AuthorIndexWeb.html#410182" title="Click to go to the Author Index">
+             Chae, Seongok
             </a>
            </td>
            <td class="r">
@@ -7103,38 +7091,50 @@ $(function() {
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#118310" title="Click to go to the Author Index">
-             Kyung, Ki-Uk
+            <a href="UR24_AuthorIndexWeb.html#410184" title="Click to go to the Author Index">
+             Jun, Yoojin
             </a>
            </td>
            <td class="r">
-            Korea Advanced Institute of Science &amp; Technology (KAIST)
+            Korea Advanced Institute of Science and Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="UR24_AuthorIndexWeb.html#410183" title="Click to go to the Author Index">
+             Lee, Hojik
+            </a>
+           </td>
+           <td class="r">
+            Korea Advanced Institute of Science and Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="UR24_AuthorIndexWeb.html#114830" title="Click to go to the Author Index">
+             Park, Hyung-Soon
+            </a>
+           </td>
+           <td class="r">
+            Korea Advanced Institute of Science and Technology
            </td>
           </tr>
           <tr>
            <td colspan="2" style="padding: 0px">
-            <div id="Ab30" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+            <div id="Ab72" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
              <span style="line-height: 2em">
               <strong>
                Keywords:
               </strong>
-              <a href="UR24_KeywordIndexWeb.html#haptics" title="Click to go to the Keyword Index">
-               Haptics
-              </a>
-              ,
-              <a href="UR24_KeywordIndexWeb.html#physical_and_cognitive_human_robot_interaction" title="Click to go to the Keyword Index">
-               Physical and Cognitive Human-Robot Interaction
-              </a>
-              ,
-              <a href="UR24_KeywordIndexWeb.html#mechanism_and_design" title="Click to go to the Keyword Index">
-               Mechanism and Design
+              <a href="UR24_KeywordIndexWeb.html#rehabilitation_and_healthcare_robotics" title="Click to go to the Keyword Index">
+               Rehabilitation and Healthcare Robotics
               </a>
              </span>
              <br/>
              <strong>
               Abstract:
              </strong>
-             Designing car doors to provide optimal haptic sensations is essential for enhancing user experience. Consequently, research has focused on simulating these haptic sensations using haptic devices during the design phase. However, the virtual implementation of car door mechanisms presents unique challenges, including significant resistive torque, self-opening and closing behavior, and variable torque profiles during the opening and closing phases. Therefore, analyzing the characteristics of the torque components that constitute the car door torque profile and developing suitable devices for their rendering is necessary. This paper presents the measurement of the car door torque profile and introduces a method that classifies the torque into active and passive components, based on whether they aid or impede rotation. By employing each torque component as an active actuator (motor) and a passive actuator (brake), we will design a suitable hybrid haptic device and can realistically implement the haptic feeling of a car door.
+             Plantar fasciitis, causing severe foot pain, is commonly treated with stretching; however, its efficacy varies based on factors like foot arch posture. This study, utilizing the PASS robot, explores how short-duration stretching affects plantar fasciitis based on foot arch types. Six plantar fasciitis patients, classified into normal arch, pes cavus, and pes planus groups, underwent simultaneous MTP and ankle joint stretching with the PASS robot. To confirm the stretching effects, Stiffness values, stance period, and plantar fascia thickness were measured and analyzed before and after stretching. No significant differences were found in stretching effects based on foot arch groups. However, numerically, MTP joint stiffness showed more improvement in the normal arch group compared to the pes cavus group. Characteristics of pes cavus may contribute to diminished stretching effects.
             </div>
            </td>
           </tr>
@@ -7272,7 +7272,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#349623" title="Click to go to the Author Index">
-             Jung, Sungbae
+             JUNG, Sungbae
             </a>
            </td>
            <td class="r">
@@ -7282,7 +7282,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#349423" title="Click to go to the Author Index">
-             Yuk, Sunwoo
+             YUK, SUNWOO
             </a>
            </td>
            <td class="r">
@@ -8096,7 +8096,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#387045" title="Click to go to the Author Index">
-             Kim, Namki
+             kim, namki
             </a>
            </td>
            <td class="r">
@@ -8354,7 +8354,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#387045" title="Click to go to the Author Index">
-             Kim, Namki
+             kim, namki
             </a>
            </td>
            <td class="r">
@@ -8634,7 +8634,9 @@ $(function() {
           <tr>
            <td colspan="2">
             <span class="pTtl">
-             Efficient In-Pipe Cleaning Using Planetary Gear Mechanism-Based Brush Module
+             <a href="" onclick="viewAbstract('195'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Efficient In-Pipe Cleaning Using Planetary Gear Mechanism-Based Brush Module
+             </a>
             </span>
            </td>
           </tr>
@@ -8681,6 +8683,29 @@ $(function() {
            </td>
            <td class="r">
             Sungkyunkwan University
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab195" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="UR24_KeywordIndexWeb.html#mechanism_and_design" title="Click to go to the Keyword Index">
+               Mechanism and Design
+              </a>
+              ,
+              <a href="UR24_KeywordIndexWeb.html#industrial_robots" title="Click to go to the Keyword Index">
+               Industrial Robots
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Industrial pipe systems can become clogged with powdered waste products, causing the equipment to slow or stop functioning entirely. Because the pipes are located in difficult-to-reach places and contain hazardous substances, manual cleaning is difficult. The problem of powdery wastes building up in pipes and impeding suction-based removal is addressed in this work. A planetary gear system was added to the brush module of a pipe cleaning robot, enabling the brush to change its angle for effective cleaning. Large debris is broken up into smaller pieces by this mechanism, making it easier to remove. Furthermore, changing the brush angle helps loosen tough particles. The goal is to create an autonomous pipe cleaning robot that can inspect and clean pipes, saving labor and guaranteeing industrial site upkeep.
+            </div>
            </td>
           </tr>
           <tr style="line-height: 0.2em">
@@ -8967,8 +8992,8 @@ $(function() {
           <tr>
            <td colspan="2">
             <span class="pTtl">
-             <a href="" onclick="viewAbstract('201'); return false" title="Click to show or hide the keywords and abstract (text summary)">
-              Semantic Segmentation-Based Vision-Enabled Safe Landing Position Estimation Framework
+             <a href="" onclick="viewAbstract('223'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              An Industrial Robotic System for the Efficient Recycling of Printed Circuit Boards
              </a>
             </span>
            </td>
@@ -8980,58 +9005,78 @@ $(function() {
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#387088" title="Click to go to the Author Index">
-             Jung, Yeondeuk
+            <a href="UR24_AuthorIndexWeb.html#403914" title="Click to go to the Author Index">
+             Pagano, Francesco
             </a>
            </td>
            <td class="r">
-            Korea Aerospace Research Institute
+            Hiro Robotics
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#169562" title="Click to go to the Author Index">
-             Cho, Sungwook
+            <a href="UR24_AuthorIndexWeb.html#403916" title="Click to go to the Author Index">
+             Lottero, Jacopo
             </a>
            </td>
            <td class="r">
-            Cheongju University
+            Hiro Robotics
            </td>
           </tr>
           <tr>
            <td>
-            <a href="UR24_AuthorIndexWeb.html#298358" title="Click to go to the Author Index">
-             Choi, Hyoung Sik
+            <a href="UR24_AuthorIndexWeb.html#203338" title="Click to go to the Author Index">
+             Labolani, Davide
             </a>
            </td>
            <td class="r">
-            KARI
+            Ecole Centrale De Nantes
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="UR24_AuthorIndexWeb.html#108312" title="Click to go to the Author Index">
+             Sgorbissa, Antonio
+            </a>
+           </td>
+           <td class="r">
+            University of Genova
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="UR24_AuthorIndexWeb.html#155018" title="Click to go to the Author Index">
+             Recchiuto, Carmine Tommaso
+            </a>
+           </td>
+           <td class="r">
+            University of Genova
            </td>
           </tr>
           <tr>
            <td colspan="2" style="padding: 0px">
-            <div id="Ab201" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+            <div id="Ab223" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
              <span style="line-height: 2em">
               <strong>
                Keywords:
               </strong>
-              <a href="UR24_KeywordIndexWeb.html#computer_vision_and_visual_servoing" title="Click to go to the Keyword Index">
-               Computer Vision and Visual Servoing
+              <a href="UR24_KeywordIndexWeb.html#manipulation_planning_and_control" title="Click to go to the Keyword Index">
+               Manipulation Planning and Control
               </a>
               ,
-              <a href="UR24_KeywordIndexWeb.html#aerial_and_flying_robots" title="Click to go to the Keyword Index">
-               Aerial and Flying Robots
+              <a href="UR24_KeywordIndexWeb.html#industrial_robots" title="Click to go to the Keyword Index">
+               Industrial Robots
               </a>
               ,
-              <a href="UR24_KeywordIndexWeb.html#robot_surveillance_and_security" title="Click to go to the Keyword Index">
-               Robot Surveillance and Security
+              <a href="UR24_KeywordIndexWeb.html#robotic_systems_architectures_and_programming" title="Click to go to the Keyword Index">
+               Robotic Systems Architectures and Programming
               </a>
              </span>
              <br/>
              <strong>
               Abstract:
              </strong>
-             This paper discusses the importance of safety in the emerging urban air mobility (UAM) industry, particularly for autonomous flying in urban areas. In detail, this paper presents a framework designed to improve emergency landing processes for drones and UAM vehicles while flying in the urban area. Our contribution uses advanced image processing techniques assisted by the deep neural network (DNN) and coarse-to-refine-based contour detection, to identify and refine potential emergency landing area. Through simulation results, the effectiveness of the proposed framework was verified, showing promise in addressing real-world challenges of image analysis and enhancing emergency response capabilities during flight.
+             Printed circuit boards play a crucial role in various industries, including Electronics Manufacturing, Telecommunications, and Automotive. However, electronic waste growth poses significant environmental and health risks, necessitating urgent actions to safeguard our planet and conserve resources. As a result, there’s a need for highly efficient waste management techniques. This work aims to address this challenge by designing and developing an automated system that integrates an anthropomorphic manipulator and stereo vision for the efficient recycling of Printed Circuit Boards. The approach involves creating a ROS 2-based software architecture for an anthropomorphic manipulator, integrating computer vision algorithms, planning, and control modules.
             </div>
            </td>
           </tr>
@@ -9151,7 +9196,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#401109" title="Click to go to the Author Index">
-             Kim, Mi Young
+             KIM, MI YOUNG
             </a>
            </td>
            <td class="r">
@@ -9171,7 +9216,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#401058" title="Click to go to the Author Index">
-             Young A, Lee
+             YOUNG A, LEE
             </a>
            </td>
            <td class="r">
@@ -9237,7 +9282,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#401109" title="Click to go to the Author Index">
-             Kim, Mi Young
+             KIM, MI YOUNG
             </a>
            </td>
            <td class="r">
@@ -9267,7 +9312,7 @@ $(function() {
           <tr>
            <td>
             <a href="UR24_AuthorIndexWeb.html#401058" title="Click to go to the Author Index">
-             Young A, Lee
+             YOUNG A, LEE
             </a>
            </td>
            <td class="r">
@@ -9527,7 +9572,7 @@ by copyright and trademark laws under US and International law.
           All rights
 reserved. © 2002-2024 PaperCept, Inc.
           <br/>
-          Page generated 2024-05-13  22:00:00 PST
+          Page generated 2024-07-01  01:22:01 PST
           <a href="" onclick="window.open('/conferences/scripts/about.pl','tc','width=1000,scrollbars=yes'); return false">
            Terms of use
           </a>

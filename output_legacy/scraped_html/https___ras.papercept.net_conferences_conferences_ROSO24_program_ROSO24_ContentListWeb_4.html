@@ -1,0 +1,3498 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta content="en-us" http-equiv="Content-Language"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width" name="viewport"/>
+  <script src="https://ras.papercept.net/conferences/scripts/dom-drag.js" type="text/javascript">
+  </script>
+  <script src="jquery-1.11.1.min.js">
+  </script>
+  <title>
+   RoboSoft 2024 Program | Wednesday April 17, 2024
+  </title>
+  <style type="text/css">
+   body, table, td, th{
+	Font-Family : sans-serif;
+	Font-Size : 10pt;
+}
+.r {text-align: right}
+.blue {color: #0000FF;}
+td {vertical-align: top; text-align: left}
+.c {text-align: center}
+table.s {
+	border-collapse:collapse;
+	border-width: 1px;
+}
+table.s td{
+	border-width: 1px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+table.t {
+	border-collapse: collapse;
+	border-width: 0px;
+}
+table.t td{
+	border-width: 0px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+.dots {
+    background:url('./images/dot.gif') repeat-x center;
+}
+.field {
+    background-color: #FFFFFF;
+}
+#pTitle { /* Page title */
+   font-size: 14pt;
+   line-height: 1.5em;
+}
+#pSubTitle { /* Page subtitle */
+   color: #909090;
+   font-size: 10pt; 
+   line-height: 1.5em;
+}
+#container {
+	position: absolute;
+	width: 100%;
+	margin-top: 2px;
+/*	overflow: hidden; */
+}
+
+.sHdr {   /* Session header Content list */
+   background-color: #F0E68C
+}
+      
+.sSHdr {   /* Subsession header Content list */
+   background-color: #f8f3c6 
+}
+      
+table.trk { /* Track table Content list */
+   border-collapse: collapse;
+   border-width: 0px;
+   margin: auto;
+/**   width: 640px; **/
+   width: 720px;
+}
+table.trk td{
+   border-width: 0px;
+   padding: 4px;
+   border-style: solid;
+   border-color: gray;
+ }
+      
+.pHdr {  /* Paper header Content list */
+   background-color: #E6E6FA;
+   color: black;
+}
+hr.thin { /* Horizontal rule content list */
+   border: 0px; 
+   height: .8px; 
+   background-color: #8888FF;
+}
+      
+.pTtl {  /* Paper title Content list */
+   font-size: 11pt;
+   font-style: italic;
+}
+      
+.ssHdr {  /* Subsession header container session Content list */
+   background-color: #DDDDDD;
+   color: black;
+}
+      
+.ssTtl {  /* Subsession title container session Content list */
+   font-size: 10pt;
+   font-style: normal;
+   font-weight: bold;
+}
+  </style>
+  <script language="JavaScript">
+   function initXMLHttp(){
+   var oRequest = false;
+   try {
+      oRequest = new XMLHttpRequest();
+   }  catch (trymicrosoft) {
+      try {
+         oRequest = new ActiveXObject("Msxml2.XMLHTTP");
+      }  catch (othermicrosoft) {
+         try {
+            oRequest = new ActiveXObject("Microsoft.XMLHTTP");
+         }  catch (failed) {
+            oRequest = false;
+         }
+      }
+   }
+   if (!oRequest){
+      alert("Error initializing XMLHttpRequest! Your browser does not support AJAX");
+   }
+   return oRequest;
+}
+function modify(number,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'Add';
+   }
+   else{
+      action = 'Delete';
+   }
+   
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=429&' + action + number;
+//   window.open(url,'myprogrampage');
+
+   modifyItem("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","429",action,number)
+
+}
+
+
+function modifyItem(url,ConfID,action,number){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&Number=' + number;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+var iIntervalId;  // Global variable
+function modsession(id,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'AddSession';
+   }
+   else{
+      action = 'DelSession';
+   }
+
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=429&' + action + id;
+//   window.open(url,'myprogrampage');
+
+   modifySession("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","429",action,id)
+
+}
+
+function modifySession(url,ConfID,action,id){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&ID=' + id;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+function getCookie(sName){
+   var sRE = "(?:; )?" + sName + "=([^;]*);?";   
+   var oRE = new RegExp(sRE);
+   if (oRE.test(document.cookie)){
+      return decodeURIComponent(RegExp["$1"]);}
+   else{
+      return null;
+   }
+}
+function loadprogram(){
+   var list = getCookie("ROSO24");
+   if (list){
+      var List = list.split(",");
+      for (var i=0; i<List.length; i++){
+         var names = document.getElementsByName('modify' + List[i]);
+         if (names.length){
+            for (var j=0; j<names.length; j++){
+               names[j].checked = true;
+            }
+         }
+      }
+   }
+}
+function reset(){
+
+   // Uncheck all modify and addsession checkboxes
+
+   var ins = document.getElementsByTagName('input');
+   for (var i=0; i<ins.length; i++){
+      if (ins[i].type == 'checkbox' && ins[i].id && ins[i].id.substring(0,3) == 'mod'){
+         ins[i].checked = false;
+      }
+   }
+   
+   // Reload the program
+   
+   loadprogram();
+}
+function startreset(){
+   iIntervalId = setInterval(reset,2000);
+}
+function viewAbstract(number){
+   var box = document.getElementById('Ab' + number);
+   if (box.style.display == 'block'){
+      box.style.display = 'none';
+   }
+   else if (box && box.style.display == 'none'){
+      box.style.display = 'block';
+   }
+}
+function openAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   var count = d.length;
+   if (count == 0){return;}
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab' && d[i].style.display == 'none'){
+         d[i].style.display = 'block';
+      }
+   }
+}
+function closeAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab'){
+         d[i].style.display = 'none';
+      }
+   }
+}
+var uhash;
+var pColor;
+$(function() { 
+
+   // Check for URL hash
+
+   uhash = location.hash.substring(1);
+   if (uhash.slice(-1) == '_'){
+      uhash = null;
+   }
+   if (uhash){
+   
+      // Mark the session
+   
+      pColor = $('#' + uhash).parent().css('backgroundColor');
+      $('#' + uhash).parent().css('backgroundColor','#FF8888');
+   }
+});
+  </script>
+ </head>
+ <body onload="loadprogram(); startreset()">
+  <form action="https://ras.papercept.net/conferences/scripts/myprogram.pl" name="myprogram">
+   <div id="container">
+    <body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+     <link href="https://fonts.googleapis.com" rel="preconnect"/>
+     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght;300;500&amp;display=swap" rel="stylesheet"/>
+     <table border="0" cellpadding="0" cellspacing="0" nowrap="" width="100%">
+      <tr>
+       <td height="140" style="background-image: linear-gradient(to bottom, #A0DBF5, #ffffff);" width="100%">
+        <img alt="" border="0" height="130" src="/images/roso/roso24_logo.webp" style="position: absolute;top:5px;left:25px;z-index:1;"/>
+        <img alt="" border="0" height="120" src="/images/roso/ieee-ras.webp" style="position: absolute;top:10px;right:25px;z-index:1;"/>
+        <span style="font-size: 18px; font-family: Montserrat, Lucida, Lucida Sans Unicode, Lucida Grande, sans-serif;
+position:absolute;top:10px;left:50%;margin-right: -50%; transform: translate(-50%, 0%);z-index:2; color: #000;">
+         7th IEEE-RAS International Conference on Soft Robotics
+        </span>
+        <span style="font-size: 36px; font-family: Montserrat, Lucida, Lucida Sans Unicode, Lucida Grande, sans-serif;
+position:absolute;top:35px;left:50%;margin-right: -50%; transform: translate(-50%, 0%);z-index:2; color: #000;">
+         ROBOSOFT 2024
+        </span>
+        <span style="font-size: 18px; font-family: Montserrat, Lucida, Lucida Sans Unicode, Lucida Grande, sans-serif;
+position:absolute;top:80px;left:50%;margin-right: -50%; transform: translate(-50%, 0%);z-index:2; color: #000;">
+         <i>
+          Soft Robotics for Exploration
+         </i>
+        </span>
+        <span style="font-size: 18px; font-family: Montserrat, Lucida, Lucida Sans Unicode, Lucida Grande, sans-serif;
+position:absolute;top:110px;left:50%;margin-right: -50%; transform: translate(-50%, 0%);z-index:2; color: #000;">
+         San Diego, CA, USA | April 14-17, 2024
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <td height="1" style="background-color:#A0DBF5;" width="100%">
+       </td>
+      </tr>
+     </table>
+     <table border="0" cellpadding="0" cellspacing="0" height="80%" width="100%">
+      <tr>
+       <td height="100%" style="background-color:#A0DBF5;" width="5">
+       </td>
+       <td width="5">
+       </td>
+       <td height="100%" valign="top" width="100%">
+        <br/>
+        <div class="c" id="TheTop">
+         <span id="pTitle">
+          <a href="http://softroboticsconference.org" target="_blank">
+           <b>
+            2024 IEEE 7th International Conference on Soft Robotics (RoboSoft)
+           </b>
+          </a>
+          <br/>
+         </span>
+         <span id="pSubTitle">
+          <b>
+           April 14-17, 2024, San Diego, CA, USA
+          </b>
+         </span>
+         <br/>
+         <br/>
+        </div>
+        <div class="c" style="position: relative">
+         <a href="ROSO24_ProgramAtAGlanceWeb.html">
+          Program at a Glance
+         </a>
+         <a href="ROSO24_ContentListWeb_1.html">
+          Sunday
+         </a>
+         <a href="ROSO24_ContentListWeb_2.html">
+          Monday
+         </a>
+         <a href="ROSO24_ContentListWeb_3.html">
+          Tuesday
+         </a>
+         <a href="ROSO24_ContentListWeb_4.html">
+          Wednesday
+         </a>
+         <a href="ROSO24_AuthorIndexWeb.html">
+          Author Index
+         </a>
+         <a href="ROSO24_KeywordIndexWeb.html">
+          Keyword Index
+         </a>
+         <a href="#TheTop" onclick="window.open('https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=429','myprogrampage')">
+          My Program
+         </a>
+        </div>
+        <div class="c">
+         <p style="color: gray">
+          Last updated on April 15, 2024. This conference program is tentative and subject to change
+         </p>
+        </div>
+        <div class="c">
+         <h3>
+          Technical Program for Wednesday April 17, 2024
+         </h3>
+        </div>
+        <p class="c">
+        </p>
+        <div class="c">
+         <span style="color:gray ">
+          To show or hide the keywords and abstract (text summary) of a paper (if available), click on the paper title
+         </span>
+         <br/>
+         <a href="javascript:openAllAbstracts()" title="Click to open all abstracts">
+          Open all abstracts
+         </a>
+         <a href="javascript:closeAllAbstracts()" title="Click to close all abstracts">
+          Close all abstracts
+         </a>
+        </div>
+        <div class="c">
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="wep4l">
+             <b>
+              WeP4L
+             </b>
+             Plenary, Legends
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod194" name="modifyWeP4L" onclick="modsession(59,194)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ROSO24_ProgramAtAGlanceWeb.html#wep4l" title="Click to go to the Program at a Glance">
+             <b>
+              Plenary Talk: Yong-Lae Park
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="wet1t">
+             <b>
+              WeT1T
+             </b>
+             Legends
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod195" name="modifyWeT1T" onclick="modsession(75,195)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ROSO24_ProgramAtAGlanceWeb.html#wet1t" title="Click to go to the Program at a Glance">
+             <b>
+              Lightning Talks for Poster Session 5 (LBR and Demos)
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="wepo1s">
+             <b>
+              WePo1S
+             </b>
+             Interactive, The Edge
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod196" name="modifyWePo1S" onclick="modsession(53,196)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ROSO24_ProgramAtAGlanceWeb.html#wepo1s" title="Click to go to the Program at a Glance">
+             <b>
+              Late Breaking Results and Demonstrations
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_01">
+             10:00-11:00, Paper WePo1S.1
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod197" name="modify289" onclick="modify(289,197)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Translating Biology to Robotics through Multiphysics Computational Mechanics
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391646" title="Click to go to the Author Index">
+             Dhaker, Adamya
+            </a>
+           </td>
+           <td class="r">
+            National University of Singapore
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#310926" title="Click to go to the Author Index">
+             Sun, Yuchen
+            </a>
+           </td>
+           <td class="r">
+            National University of Singapore
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391708" title="Click to go to the Author Index">
+             Regazzoni, Francesco
+            </a>
+           </td>
+           <td class="r">
+            MOX, Politecnico di Milano
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391709" title="Click to go to the Author Index">
+             Dede', Luca
+            </a>
+           </td>
+           <td class="r">
+            Politecnico di Milano
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#101847" title="Click to go to the Author Index">
+             Laschi, Cecilia
+            </a>
+           </td>
+           <td class="r">
+            National University of Singapore
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#316547" title="Click to go to the Author Index">
+             Mengaldo, Gianmarco
+            </a>
+           </td>
+           <td class="r">
+            National University of Singapore
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_03">
+             10:00-11:00, Paper WePo1S.3
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod198" name="modify267" onclick="modify(267,198)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Crumple-Recoverable Electronics Based on Plastic to Elastic Deformation Transitions
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391525" title="Click to go to the Author Index">
+             Roh, Yeonwook
+            </a>
+           </td>
+           <td class="r">
+            Ajou University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391527" title="Click to go to the Author Index">
+             Lee, Seunggon
+            </a>
+           </td>
+           <td class="r">
+            Ajou University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#132579" title="Click to go to the Author Index">
+             Koh, Je-Sung
+            </a>
+           </td>
+           <td class="r">
+            Ajou University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#234401" title="Click to go to the Author Index">
+             Kang, Daeshik
+            </a>
+           </td>
+           <td class="r">
+            Ajou University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#234402" title="Click to go to the Author Index">
+             Han, Seungyong
+            </a>
+           </td>
+           <td class="r">
+            Ajou University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_04">
+             10:00-11:00, Paper WePo1S.4
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod199" name="modify288" onclick="modify(288,199)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Proprioceptive Contact Detection for Shape Memory Alloy Actuated Soft Robots
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#337586" title="Click to go to the Author Index">
+             Jing, Ran
+            </a>
+           </td>
+           <td class="r">
+            Boston University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#337654" title="Click to go to the Author Index">
+             Anderson, Meredith
+            </a>
+           </td>
+           <td class="r">
+            Boston University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#366526" title="Click to go to the Author Index">
+             Pacheco Garcia, Juan
+            </a>
+           </td>
+           <td class="r">
+            Boston University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#366501" title="Click to go to the Author Index">
+             Yang, Ilyoung
+            </a>
+           </td>
+           <td class="r">
+            Boston University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#366370" title="Click to go to the Author Index">
+             Alizadeh-Shabdiz, Sarah
+            </a>
+           </td>
+           <td class="r">
+            University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#151384" title="Click to go to the Author Index">
+             Sabelhaus, Andrew
+            </a>
+           </td>
+           <td class="r">
+            Boston University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_05">
+             10:00-11:00, Paper WePo1S.5
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod200" name="modify279" onclick="modify(279,200)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Integrated Surrogate Modeling for Soft Pneumatic Actuators Informed by Physics-Guided Deep Learning (PDGL)
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391595" title="Click to go to the Author Index">
+             Beaber, Sameh I.
+            </a>
+           </td>
+           <td class="r">
+            University of Virginia
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#187232" title="Click to go to the Author Index">
+             Sun, Ye
+            </a>
+           </td>
+           <td class="r">
+            University of Virginia
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_06">
+             10:00-11:00, Paper WePo1S.6
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod201" name="modify292" onclick="modify(292,201)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Wireless Tactile Sensor with Audible Frequency Transmission
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#313877" title="Click to go to the Author Index">
+             Aderibigbe, Jadesola
+            </a>
+           </td>
+           <td class="r">
+            University of California, Berkeley
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#274991" title="Click to go to the Author Index">
+             Li, Monica
+            </a>
+           </td>
+           <td class="r">
+            UC Berkeley
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#168436" title="Click to go to the Author Index">
+             Stuart, Hannah
+            </a>
+           </td>
+           <td class="r">
+            UC Berkeley
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_07">
+             10:00-11:00, Paper WePo1S.7
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod202" name="modify264" onclick="modify(264,202)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             A Multimodal Soft Gripper with Variable Stiffness and Variable Gripping Range Based on MASH Actuator
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#361815" title="Click to go to the Author Index">
+             Li, Dannuo
+            </a>
+           </td>
+           <td class="r">
+            National University of Singapore
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#344555" title="Click to go to the Author Index">
+             Zhou, Xuanyi
+            </a>
+           </td>
+           <td class="r">
+            National University of Singapore
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#297053" title="Click to go to the Author Index">
+             Xiong, Quan
+            </a>
+           </td>
+           <td class="r">
+            National University of Singapore
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#150817" title="Click to go to the Author Index">
+             Yeow, Chen-Hua
+            </a>
+           </td>
+           <td class="r">
+            National University of Singapore
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_08">
+             10:00-11:00, Paper WePo1S.8
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod203" name="modify268" onclick="modify(268,203)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Investigating the Impact of Chamber Variations on Smart Suction Cup Deformation and Grasping Efficiency
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#285589" title="Click to go to the Author Index">
+             Lee, Jungpyo
+            </a>
+           </td>
+           <td class="r">
+            University of California, Berkeley
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#322067" title="Click to go to the Author Index">
+             Lee, Sebastian
+            </a>
+           </td>
+           <td class="r">
+            University of California, Berkeley
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#168436" title="Click to go to the Author Index">
+             Stuart, Hannah
+            </a>
+           </td>
+           <td class="r">
+            UC Berkeley
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_09">
+             10:00-11:00, Paper WePo1S.9
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod204" name="modify293" onclick="modify(293,204)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Demonstration: Particle Jamming-Based Hardness-Changing Robots with Non-Pneumatic Actuators
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#268924" title="Click to go to the Author Index">
+             Brown, Joshua
+            </a>
+           </td>
+           <td class="r">
+            Imperial College London
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#120346" title="Click to go to the Author Index">
+             Bello, Fernando
+            </a>
+           </td>
+           <td class="r">
+            Imperial College London
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_10">
+             10:00-11:00, Paper WePo1S.10
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod205" name="modify273" onclick="modify(273,205)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Demonstration: Cutaneous Electrohydraulic (CUTE) Wearable Devices for Expressive and Salient Haptic Feedback
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#246353" title="Click to go to the Author Index">
+             Sanchez-Tamayo, Natalia
+            </a>
+           </td>
+           <td class="r">
+            Max Planck Institute for Intelligent Systems
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391562" title="Click to go to the Author Index">
+             Yoder, Zachary
+            </a>
+           </td>
+           <td class="r">
+            Max Planck Institute for Intelligent Systems
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#241715" title="Click to go to the Author Index">
+             Ballardini, Giulia
+            </a>
+           </td>
+           <td class="r">
+            Max Planck Institute for Intelligent Systems
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#256465" title="Click to go to the Author Index">
+             Rothemund, Philipp
+            </a>
+           </td>
+           <td class="r">
+            University of Stuttgart
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#202253" title="Click to go to the Author Index">
+             Keplinger, Christoph
+            </a>
+           </td>
+           <td class="r">
+            University of Colorado
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#107509" title="Click to go to the Author Index">
+             Kuchenbecker, Katherine J.
+            </a>
+           </td>
+           <td class="r">
+            Max Planck Institute for Intelligent Systems
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_11">
+             10:00-11:00, Paper WePo1S.11
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod206" name="modify266" onclick="modify(266,206)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Demonstration: Human Robot Co-Manipulation with Pneumatic Robotic Manipulators
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383221" title="Click to go to the Author Index">
+             Cordon, Dallin L
+            </a>
+           </td>
+           <td class="r">
+            Brigham Young University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391518" title="Click to go to the Author Index">
+             Moss, Shaden
+            </a>
+           </td>
+           <td class="r">
+            Brigham Young University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#134229" title="Click to go to the Author Index">
+             Killpack, Marc
+            </a>
+           </td>
+           <td class="r">
+            Brigham Young University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#335202" title="Click to go to the Author Index">
+             Salmon, John
+            </a>
+           </td>
+           <td class="r">
+            Brigham Young University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_12">
+             10:00-11:00, Paper WePo1S.12
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod207" name="modify263" onclick="modify(263,207)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Controlling the Fold: Proprioceptive Feedback in a Soft Origami Robot
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#311471" title="Click to go to the Author Index">
+             Hanson, Nathaniel
+            </a>
+           </td>
+           <td class="r">
+            Massachusetts Institute of Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#170540" title="Click to go to the Author Index">
+             Roberts, Sonia
+            </a>
+           </td>
+           <td class="r">
+            Northeastern University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#376500" title="Click to go to the Author Index">
+             Ampomah Mensah, Immanuel
+            </a>
+           </td>
+           <td class="r">
+            Northeastern University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#351015" title="Click to go to the Author Index">
+             Wu, Celina
+            </a>
+           </td>
+           <td class="r">
+            Northeastern University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#375992" title="Click to go to the Author Index">
+             Healey, Jessica
+            </a>
+           </td>
+           <td class="r">
+            Northeastern University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#335731" title="Click to go to the Author Index">
+             Furline Jr, Donelle
+            </a>
+           </td>
+           <td class="r">
+            Northeastern University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#240024" title="Click to go to the Author Index">
+             Dorsey, Kristen
+            </a>
+           </td>
+           <td class="r">
+            Northeastern University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_13">
+             10:00-11:00, Paper WePo1S.13
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod208" name="modify275" onclick="modify(275,208)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Computationally Efficient Lookahead Search for Contact-Aided Navigation for Tendon-Driven Continuum Robots
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#285996" title="Click to go to the Author Index">
+             Rao, Priyanka
+            </a>
+           </td>
+           <td class="r">
+            University of Toronto
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391588" title="Click to go to the Author Index">
+             Spigelman, Itai
+            </a>
+           </td>
+           <td class="r">
+            Technion
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#159588" title="Click to go to the Author Index">
+             Salzman, Oren
+            </a>
+           </td>
+           <td class="r">
+            Technion
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#113447" title="Click to go to the Author Index">
+             Burgner-Kahrs, Jessica
+            </a>
+           </td>
+           <td class="r">
+            University of Toronto
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_14">
+             10:00-11:00, Paper WePo1S.14
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod209" name="modify286" onclick="modify(286,209)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Realizing Desired Shapes for a Shape Morphing Manipulator
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#318238" title="Click to go to the Author Index">
+             Chen, Zhe
+            </a>
+           </td>
+           <td class="r">
+            Colorado State University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#401673" title="Click to go to the Author Index">
+             Chen, Li
+            </a>
+           </td>
+           <td class="r">
+            University of Massachusetts Amherst
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#138554" title="Click to go to the Author Index">
+             Zhang, Hao
+            </a>
+           </td>
+           <td class="r">
+            University of Massachusetts Amherst
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#126604" title="Click to go to the Author Index">
+             Zhao, Jianguo
+            </a>
+           </td>
+           <td class="r">
+            Colorado State University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_15">
+             10:00-11:00, Paper WePo1S.15
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod210" name="modify272" onclick="modify(272,210)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Demonstration: Design and Control Co-Optimization for Automated Design Iteration of Dexterous Anthropomorphic Soft Robotic Hands
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#223609" title="Click to go to the Author Index">
+             Mannam, Pragna
+            </a>
+           </td>
+           <td class="r">
+            Carnegie Mellon University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#295050" title="Click to go to the Author Index">
+             Liu, Xingyu
+            </a>
+           </td>
+           <td class="r">
+            Carnegie Mellon University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#203949" title="Click to go to the Author Index">
+             Zhao, Ding
+            </a>
+           </td>
+           <td class="r">
+            Carnegie Mellon University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#179403" title="Click to go to the Author Index">
+             Oh, Jean
+            </a>
+           </td>
+           <td class="r">
+            Carnegie Mellon University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#106013" title="Click to go to the Author Index">
+             Pollard, Nancy S
+            </a>
+           </td>
+           <td class="r">
+            Carnegie Mellon University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_16">
+             10:00-11:00, Paper WePo1S.16
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod211" name="modify277" onclick="modify(277,211)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Robot-Assisted Button Fastening Using Soft Tactile Sensors
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#219657" title="Click to go to the Author Index">
+             Zhao, Huajing
+            </a>
+           </td>
+           <td class="r">
+            University of Californica, Los Angeles
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#118887" title="Click to go to the Author Index">
+             Santos, Veronica J.
+            </a>
+           </td>
+           <td class="r">
+            University of California, Los Angeles
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_17">
+             10:00-11:00, Paper WePo1S.17
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod212" name="modify291" onclick="modify(291,212)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Demonstration: Origami-Inspired Autonomous Crawling Robot with 3D Multi-Terrain Exploration
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383567" title="Click to go to the Author Index">
+             Wang, Jiaqi
+            </a>
+           </td>
+           <td class="r">
+            University of Michigan
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391758" title="Click to go to the Author Index">
+             Wang, Jiyang
+            </a>
+           </td>
+           <td class="r">
+            Univeristy of Michigan
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391756" title="Click to go to the Author Index">
+             Xi, Yufei
+            </a>
+           </td>
+           <td class="r">
+            University of Michigan
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#234124" title="Click to go to the Author Index">
+             Huang, Xiaonan
+            </a>
+           </td>
+           <td class="r">
+            University of Michigan
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_18">
+             10:00-11:00, Paper WePo1S.18
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod213" name="modify270" onclick="modify(270,213)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             A New Thin Tuneable Lens for Soft Opto-Mechatronics
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#381634" title="Click to go to the Author Index">
+             Sasso, Giacomo
+            </a>
+           </td>
+           <td class="r">
+            Queen Mary University of London
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#221676" title="Click to go to the Author Index">
+             Pugno, Nicola
+            </a>
+           </td>
+           <td class="r">
+            University of Trento
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#221543" title="Click to go to the Author Index">
+             Busfield, James
+            </a>
+           </td>
+           <td class="r">
+            Queen Mary University of London
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#117848" title="Click to go to the Author Index">
+             Carpi, Federico
+            </a>
+           </td>
+           <td class="r">
+            University of Florence
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_19">
+             10:00-11:00, Paper WePo1S.19
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod214" name="modify274" onclick="modify(274,214)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Video-Based Analysis of Soft Robot Dynamics Via DeepLabCut
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383363" title="Click to go to the Author Index">
+             Ochieze, Chukwuemeka George
+            </a>
+           </td>
+           <td class="r">
+            University of Virginia
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383364" title="Click to go to the Author Index">
+             Liu, Zhen
+            </a>
+           </td>
+           <td class="r">
+            University of Virginia
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#187232" title="Click to go to the Author Index">
+             Sun, Ye
+            </a>
+           </td>
+           <td class="r">
+            University of Virginia
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_20">
+             10:00-11:00, Paper WePo1S.20
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod215" name="modify284" onclick="modify(284,215)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Demonstration: Highly Modular, Variable-Stiffness Tensegrity Robot
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#313392" title="Click to go to the Author Index">
+             Mi, Jonathan
+            </a>
+           </td>
+           <td class="r">
+            University of Michigan, Ann Arbor
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#292280" title="Click to go to the Author Index">
+             Tong, Wenzhe
+            </a>
+           </td>
+           <td class="r">
+            University of Michigan, Ann Arbor
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#234124" title="Click to go to the Author Index">
+             Huang, Xiaonan
+            </a>
+           </td>
+           <td class="r">
+            University of Michigan
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_21">
+             10:00-11:00, Paper WePo1S.21
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod216" name="modify280" onclick="modify(280,216)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Demonstration: Soft Growing Pin for High-Extension Shape-Changing Displays
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#316293" title="Click to go to the Author Index">
+             Alvarez Valdivia, Antonio
+            </a>
+           </td>
+           <td class="r">
+            Purdue University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383119" title="Click to go to the Author Index">
+             Rezqalla, Mohammad
+            </a>
+           </td>
+           <td class="r">
+            Purdue University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383117" title="Click to go to the Author Index">
+             Swann, Sarah
+            </a>
+           </td>
+           <td class="r">
+            Purdue University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#195720" title="Click to go to the Author Index">
+             Blumenschein, Laura
+            </a>
+           </td>
+           <td class="r">
+            Purdue University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_22">
+             10:00-11:00, Paper WePo1S.22
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod217" name="modify271" onclick="modify(271,217)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Demonstration: Helix Soft Maniplulator
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#294734" title="Click to go to the Author Index">
+             Stella, Francesco
+            </a>
+           </td>
+           <td class="r">
+            EPFL
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#179240" title="Click to go to the Author Index">
+             Della Santina, Cosimo
+            </a>
+           </td>
+           <td class="r">
+            TU Delft
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#194194" title="Click to go to the Author Index">
+             Hughes, Josie
+            </a>
+           </td>
+           <td class="r">
+            EPFL
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_23">
+             10:00-11:00, Paper WePo1S.23
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod218" name="modify278" onclick="modify(278,218)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             A System Architecture for Modular High-Speed Electrohydraulic Soft Continuum Robots
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#316455" title="Click to go to the Author Index">
+             Schmidt, Ingemar
+            </a>
+           </td>
+           <td class="r">
+            Max Planck Institute for Intelligent Systems
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391580" title="Click to go to the Author Index">
+             Li, Xiying
+            </a>
+           </td>
+           <td class="r">
+            Max Planck Institute for Intelligent Systems
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391579" title="Click to go to the Author Index">
+             Park, Ye-Jin
+            </a>
+           </td>
+           <td class="r">
+            Max Planck Institute for Intelligent Systems
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391562" title="Click to go to the Author Index">
+             Yoder, Zachary
+            </a>
+           </td>
+           <td class="r">
+            Max Planck Institute for Intelligent Systems
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#246353" title="Click to go to the Author Index">
+             Sanchez-Tamayo, Natalia
+            </a>
+           </td>
+           <td class="r">
+            Max Planck Institute for Intelligent Systems
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#202253" title="Click to go to the Author Index">
+             Keplinger, Christoph
+            </a>
+           </td>
+           <td class="r">
+            University of Colorado
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_24">
+             10:00-11:00, Paper WePo1S.24
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod219" name="modify290" onclick="modify(290,219)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Particle Jamming-Based Hardness-Changing Robots with Non-Pneumatic Actuators
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#268924" title="Click to go to the Author Index">
+             Brown, Joshua
+            </a>
+           </td>
+           <td class="r">
+            Imperial College London
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#120346" title="Click to go to the Author Index">
+             Bello, Fernando
+            </a>
+           </td>
+           <td class="r">
+            Imperial College London
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_25">
+             10:00-11:00, Paper WePo1S.25
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod220" name="modify269" onclick="modify(269,220)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Jamming of Magnetorheological Elastomers
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#294752" title="Click to go to the Author Index">
+             Atakuru, Taylan
+            </a>
+           </td>
+           <td class="r">
+            Boğaziçi University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#108889" title="Click to go to the Author Index">
+             Samur, Evren
+            </a>
+           </td>
+           <td class="r">
+            Bogazici University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_26">
+             10:00-11:00, Paper WePo1S.26
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod221" name="modify276" onclick="modify(276,221)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Deployment of Microrobots with Soft Growing Robots
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#315407" title="Click to go to the Author Index">
+             Ugur, Mustafa
+            </a>
+           </td>
+           <td class="r">
+            Purdue University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391444" title="Click to go to the Author Index">
+             DeVries, Ethan
+            </a>
+           </td>
+           <td class="r">
+            Purdue University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#195720" title="Click to go to the Author Index">
+             Blumenschein, Laura
+            </a>
+           </td>
+           <td class="r">
+            Purdue University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_27">
+             10:00-11:00, Paper WePo1S.27
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod222" name="modify287" onclick="modify(287,222)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Soft Pneumatic Actuator with Re-Configurable Actuation Using Multiple Self-Healing Polymers
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#229662" title="Click to go to the Author Index">
+             Ishizuka, Hiroki
+            </a>
+           </td>
+           <td class="r">
+            Osaka university
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391716" title="Click to go to the Author Index">
+             Kosaka, Shota
+            </a>
+           </td>
+           <td class="r">
+            Osaka university
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#197304" title="Click to go to the Author Index">
+             Masuda, Yoichi
+            </a>
+           </td>
+           <td class="r">
+            Osaka University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391717" title="Click to go to the Author Index">
+             Punpongsanon, Parinya
+            </a>
+           </td>
+           <td class="r">
+            Saitama University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#129645" title="Click to go to the Author Index">
+             Ikeda, Sei
+            </a>
+           </td>
+           <td class="r">
+            Osaka University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#124416" title="Click to go to the Author Index">
+             Oshiro, Osamu
+            </a>
+           </td>
+           <td class="r">
+            Osaka University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_28">
+             10:00-11:00, Paper WePo1S.28
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod223" name="modify283" onclick="modify(283,223)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Biocompatible Pressure Mapping Surface
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#232899" title="Click to go to the Author Index">
+             Koivikko, Anastasia
+            </a>
+           </td>
+           <td class="r">
+            Tampere University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391600" title="Click to go to the Author Index">
+             Tovar Torres, Mariana
+            </a>
+           </td>
+           <td class="r">
+            Cornell University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#172563" title="Click to go to the Author Index">
+             Shepherd, Robert
+            </a>
+           </td>
+           <td class="r">
+            Cornell University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_29">
+             10:00-11:00, Paper WePo1S.29
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod224" name="modify285" onclick="modify(285,224)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Deformation Control of Fabric-Based Pneumatic Patch Actuators
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#391695" title="Click to go to the Author Index">
+             Kimura, Kentaro
+            </a>
+           </td>
+           <td class="r">
+            Osaka university
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#229662" title="Click to go to the Author Index">
+             Ishizuka, Hiroki
+            </a>
+           </td>
+           <td class="r">
+            Osaka university
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#129645" title="Click to go to the Author Index">
+             Ikeda, Sei
+            </a>
+           </td>
+           <td class="r">
+            Osaka University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#124416" title="Click to go to the Author Index">
+             Oshiro, Osamu
+            </a>
+           </td>
+           <td class="r">
+            Osaka University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_30">
+             10:00-11:00, Paper WePo1S.30
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod225" name="modify281" onclick="modify(281,225)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Demonstration: The Application of Pneumatic Sleeves for Adaptable and Low-Displacement Anchoring in Exosuits
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#291329" title="Click to go to the Author Index">
+             Schäffer, Katalin
+            </a>
+           </td>
+           <td class="r">
+            University of Notre Dame
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383362" title="Click to go to the Author Index">
+             Fallon, Ultan
+            </a>
+           </td>
+           <td class="r">
+            University of Galway
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#204412" title="Click to go to the Author Index">
+             Coad, Margaret M.
+            </a>
+           </td>
+           <td class="r">
+            University of Notre Dame
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_31">
+             10:00-11:00, Paper WePo1S.31
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod226" name="modify294" onclick="modify(294,226)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Demonstration: The UCR Modular Exosuit System
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#363247" title="Click to go to the Author Index">
+             Liu, Tuo
+            </a>
+           </td>
+           <td class="r">
+            University of California Riverside
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#221630" title="Click to go to the Author Index">
+             Abrar, Taqi
+            </a>
+           </td>
+           <td class="r">
+            University of California, Riverside
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#239683" title="Click to go to the Author Index">
+             Realmuto, Jonathan
+            </a>
+           </td>
+           <td class="r">
+            Univeristy of California Riverside
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="wepo1s_32">
+             10:00-11:00, Paper WePo1S.32
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod227" name="modify295" onclick="modify(295,227)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Demonstration: Haptic Knits for Distributed Softness Wearable Haptics
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#364085" title="Click to go to the Author Index">
+             du Pasquier, Cosima
+            </a>
+           </td>
+           <td class="r">
+            Stanford University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#104404" title="Click to go to the Author Index">
+             Okamura, Allison M.
+            </a>
+           </td>
+           <td class="r">
+            Stanford University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="wekn">
+             <b>
+              WeKN
+             </b>
+             Oral, Legends
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod228" name="modifyWeKN" onclick="modsession(61,228)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ROSO24_ProgramAtAGlanceWeb.html#wekn" title="Click to go to the Program at a Glance">
+             <b>
+              Keynote Talk: Cynthia Sung
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="weat1">
+             <b>
+              WeAT1
+             </b>
+             Oral, Legends
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod229" name="modifyWeAT1" onclick="modsession(35,229)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ROSO24_ProgramAtAGlanceWeb.html#weat1" title="Click to go to the Program at a Glance">
+             <b>
+              Paper Talks: Sensing
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="weat1_01">
+             11:20-11:30, Paper WeAT1.1
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod230" name="modify207" onclick="modify(207,230)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('207'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Scalable, Simulation-Guided Compliant Tactile Finger Design
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#344802" title="Click to go to the Author Index">
+             Ma, Yuxiang
+            </a>
+           </td>
+           <td class="r">
+            Massachusetts Institute of Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#220829" title="Click to go to the Author Index">
+             Agarwal, Arpit
+            </a>
+           </td>
+           <td class="r">
+            Carnegie Mellon University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#269167" title="Click to go to the Author Index">
+             Liu, Sandra Q.
+            </a>
+           </td>
+           <td class="r">
+            Massachusetts Institute of Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#172670" title="Click to go to the Author Index">
+             Yuan, Wenzhen
+            </a>
+           </td>
+           <td class="r">
+            University of Illinois
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#162234" title="Click to go to the Author Index">
+             Adelson, Edward
+            </a>
+           </td>
+           <td class="r">
+            MIT
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab207" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ROSO24_KeywordIndexWeb.html#soft_sensors_and_actuators" title="Click to go to the Keyword Index">
+               Soft Sensors and Actuators
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#simulation_and_animation" title="Click to go to the Keyword Index">
+               Simulation and Animation
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#grippers_and_other_end_effectors" title="Click to go to the Keyword Index">
+               Grippers and Other End-Effectors
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Compliant grippers enable robots to work with humans in unstructured environments. These grippers need tactile sensing to estimate the state of objects around them to precisely manipulate objects. However, co-designing compliant structures with high-resolution tactile sensing is a challenging task. We propose a simulation framework for the end-to-end forward design of Fin Ray GelSight sensors. Our simulation framework consists of mechanical simulation using the finite element method and optical simulation including physically based rendering (PBR). To simulate fluorescent paint, used in Fin Ray grippers, we propose an efficient method that can be directly integrated in PBR. Using the simulation framework, we investigated design choices available in the compliant grippers, namely -- gel pad shapes, illumination conditions, Fin Ray gripper sizes, and Fin Ray stiffness. This enables the design of new Fin Ray sensors within weeks that have a sensing area of 70 mm * 35 mm. We manufacture the best design and show its utility in grasping day-to-day objects.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="weat1_02">
+             11:30-11:40, Paper WeAT1.2
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod231" name="modify216" onclick="modify(216,231)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('216'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Origami-Inspired Bistable Gripper with Self-Sensing Capabilities
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#256476" title="Click to go to the Author Index">
+             Kim, Christopher Yoon Jae
+            </a>
+           </td>
+           <td class="r">
+            University of Pennsylvania
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383292" title="Click to go to the Author Index">
+             Yang, Lele
+            </a>
+           </td>
+           <td class="r">
+            University of Pennsylvania
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383324" title="Click to go to the Author Index">
+             Anbuchelvan, Ashwath
+            </a>
+           </td>
+           <td class="r">
+            University of Pennsylvania
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383361" title="Click to go to the Author Index">
+             Garg, Raghav
+            </a>
+           </td>
+           <td class="r">
+            University of Pennsylvania
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383356" title="Click to go to the Author Index">
+             Milbar, Niv
+            </a>
+           </td>
+           <td class="r">
+            University of Pennsylvania
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#132203" title="Click to go to the Author Index">
+             Vitale, Flavia
+            </a>
+           </td>
+           <td class="r">
+            Università "La Sapienza"
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#154404" title="Click to go to the Author Index">
+             Sung, Cynthia
+            </a>
+           </td>
+           <td class="r">
+            University of Pennsylvania
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab216" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ROSO24_KeywordIndexWeb.html#grippers_and_other_end_effectors" title="Click to go to the Keyword Index">
+               Grippers and Other End-Effectors
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#compliant_joint_mechanism" title="Click to go to the Keyword Index">
+               Compliant Joint/Mechanism
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#soft_sensors_and_actuators" title="Click to go to the Keyword Index">
+               Soft Sensors and Actuators
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             An origami-inspired bistable gripper, featuring a dual-function custom PET linear solenoid actuator that acts both as an actuator and a sensor, is presented. Movements in the permanent magnet plunger, which is directly mounted to the gripper, create induced electromotive force (emf) in the solenoid, and these induced emf measurements are used to detect snap-through actions and light contacts on the gripper. The fabrication methods for the gripper, actuator, and a gel-free soft wearable EMG electrode are outlined, and the actuator's self-sensing method utilizing the time-integral of the induced emf measurements are explored. Because a self-sensing actuator eliminates the need for extra sensors, it allows for further miniaturization of the robot while maintaining its compactness and lightweight design. The paper also introduces a full human-in-the-loop system, allowing users to open or close the gripper with their biceps via a wearable EMG electrode. This system bridges human intent with robotic action, offering a more intuitive interaction model for robotic control.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="weat1_03">
+             11:40-11:50, Paper WeAT1.3
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod232" name="modify85" onclick="modify(85,232)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('85'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Enriching Contact Information through Fiber Bragg Gratings-Based Exteroception in Soft Bending Actuators
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#339803" title="Click to go to the Author Index">
+             Pagliarani, Niccolò
+            </a>
+           </td>
+           <td class="r">
+            Scuola Superiore Sant'Anna
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#274675" title="Click to go to the Author Index">
+             Filosa, Mariangela
+            </a>
+           </td>
+           <td class="r">
+            Scuola Superiore Sant'Anna, Pisa
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383139" title="Click to go to the Author Index">
+             Ayaz, Rana Muhammad Armaghan
+            </a>
+           </td>
+           <td class="r">
+            Scuola Superiore Sant'Anna
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383140" title="Click to go to the Author Index">
+             Oton, Claudio J.
+            </a>
+           </td>
+           <td class="r">
+            Scuola Superiore Sant'Anna
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#142882" title="Click to go to the Author Index">
+             Oddo, Calogero Maria
+            </a>
+           </td>
+           <td class="r">
+            Scuola Superiore Sant'Anna
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#111496" title="Click to go to the Author Index">
+             Cianchetti, Matteo
+            </a>
+           </td>
+           <td class="r">
+            Scuola Superiore Sant'Anna
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab85" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ROSO24_KeywordIndexWeb.html#soft_sensors_and_actuators" title="Click to go to the Keyword Index">
+               Soft Sensors and Actuators
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#grasping" title="Click to go to the Keyword Index">
+               Grasping
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#grippers_and_other_end_effectors" title="Click to go to the Keyword Index">
+               Grippers and Other End-Effectors
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Tactile sensing is of utmost importance for accomplishing fine manipulation tasks and extracting crucial physical features in soft grippers. A contact force estimation and localization approach based on sensing modalities using Fiber Bragg Grating (FBG) transducers and artificial intelligence models are proposed for pneumatically actuated soft fingers. The small packaged sensor unit enables modular design, ease of assembly, and high repeatability with negligible effects on the mechanical performance of the soft finger. The proposed neural networks process the output of the sensing modality and mitigate errors from material nonlinearity, fabrication, and assembly of soft fingers. This, in turn, enhances the accuracy and transferability of force and position estimations, leading to proper metrological indicators. These results provide a step forward in the development of smart soft grippers enabling them to attain "transparent" exteroception. As a result, this work contributes to empowering soft grippers with skillful capabilities to acquire precise tactile information for safe manipulation ranging from agricultural to biomedical fields.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="weat1_04">
+             11:50-12:00, Paper WeAT1.4
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod233" name="modify180" onclick="modify(180,233)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('180'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Scalable Arrays of Pneumatic Sensors for Multitouch Soft Skins
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383340" title="Click to go to the Author Index">
+             Zha, Xiaoran
+            </a>
+           </td>
+           <td class="r">
+            University of California San Diego
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#203986" title="Click to go to the Author Index">
+             Jadhav, Saurabh
+            </a>
+           </td>
+           <td class="r">
+            University of California, San Diego
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#270634" title="Click to go to the Author Index">
+             Adibnazari, Iman
+            </a>
+           </td>
+           <td class="r">
+            University of California, San Deigo
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#315766" title="Click to go to the Author Index">
+             Zhai, Yichen
+            </a>
+           </td>
+           <td class="r">
+            UC San Diego
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#130599" title="Click to go to the Author Index">
+             Tolley, Michael T.
+            </a>
+           </td>
+           <td class="r">
+            University of California, San Diego
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab180" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ROSO24_KeywordIndexWeb.html#soft_sensors_and_actuators" title="Click to go to the Keyword Index">
+               Soft Sensors and Actuators
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#force_and_tactile_sensing" title="Click to go to the Keyword Index">
+               Force and Tactile Sensing
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#modeling__control__and_learning_for_soft_robots" title="Click to go to the Keyword Index">
+               Modeling, Control, and Learning for Soft Robots
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Soft robotic systems necessitate accurate and reliable sensor readings to detect environmental interactions and provide precise feedback for control. To be effective, soft sensors must exhibit sensitivity, reliability, repeatability, and flexibility. A versatile approach to sensing for soft robots uses soft air-filled deformable structures with pressure transducers to detect pressure changes due to applied forces. However, the common approach of employing one pressure transducer per sensing chamber limits the scalability of this sensing approach (e.g., for large arrays able to detect touch at many locations). Here we present an approach to the design of pneumatic sensor arrays that reduces the number of required transducers. We develop mathematical models to analyze the pressure variations within the sensor arrays in response to applied forces at various locations. We also introduce a method of rapidly fabricating sensor arrays by laminating elastomeric sheets patterned with laser-cut sacrificial layers. We then use our model to optimize the geometry of the sensors and evaluate the results experimentally. Finally, we devise an algorithm capable of determining the location of multiple touches anywhere within the sensor array. This work represents a step towards the practical application of soft pneumatic sensors, particularly for robotic sensing and haptic devices, enhancing the safety of human-robot interactions.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="weat1_05">
+             12:00-12:10, Paper WeAT1.5
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod234" name="modify200" onclick="modify(200,234)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('200'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              AI-Infused Soft Fluidic Tactile Sensing
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#344946" title="Click to go to the Author Index">
+             Goshtasbi, Arman
+            </a>
+           </td>
+           <td class="r">
+            University of Southern Denmark
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#212279" title="Click to go to the Author Index">
+             Murali Babu, Saravana Prashanth
+            </a>
+           </td>
+           <td class="r">
+            University of Southern Denmark
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383081" title="Click to go to the Author Index">
+             Moura da Silva Moreira, Rita
+            </a>
+           </td>
+           <td class="r">
+            University of Copenhagen
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383350" title="Click to go to the Author Index">
+             Jamshidiyan Tehrani, Masoud
+            </a>
+           </td>
+           <td class="r">
+            Southern Denmark University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383136" title="Click to go to the Author Index">
+             Hyldgaard, Rebecca
+            </a>
+           </td>
+           <td class="r">
+            University of Southern Denmark
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#383137" title="Click to go to the Author Index">
+             Rasmussen, Maria Nikoline Elisabeth
+            </a>
+           </td>
+           <td class="r">
+            University of Southern Denmark
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#227399" title="Click to go to the Author Index">
+             Rafsanjani, Ahmad
+            </a>
+           </td>
+           <td class="r">
+            University of Southern Denmark
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab200" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ROSO24_KeywordIndexWeb.html#soft_sensors_and_actuators" title="Click to go to the Keyword Index">
+               Soft Sensors and Actuators
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#force_and_tactile_sensing" title="Click to go to the Keyword Index">
+               Force and Tactile Sensing
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#modeling__control__and_learning_for_soft_robots" title="Click to go to the Keyword Index">
+               Modeling, Control, and Learning for Soft Robots
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Soft tactile sensors can transform how robots interact with humans and their intricate environments, making such encounters more efficient and safely intimate. However, existing technologies are complex and costly, which has constrained their widespread application. Therefore, there is an urgent need to embrace more straightforward solutions utilizing traditional off-the-shelf sensors. In this context, we integrate fluid-solid interaction with artificial intelligence to develop a soft tactile interface crafted from elastomer-encapsulated fluid. Instead of relying on electronic circuitry, we utilize fluid pressure to transmit tactile information to available pressure sensors. We have devised efficient machine learning algorithms to infer touch position and intensity accurately. In its simplest form, we fabricated a 1D sensor with a linear channel, demonstrating its ability to accurately estimate touch position and force along a straight line using pressure readings solely from its two ends. Additionally, this system served as a test platform to study how geometrical parameters and different fluid mediums (such as air, water, and oil) impact the sensing capabilities of the developed sensor. We envision expanding this simple approach to create a cost-effective, electronics-free sensing front, providing skins for robots designed to be aware of their environment.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="weat1_06">
+             12:10-12:20, Paper WeAT1.6
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod235" name="modify88" onclick="modify(88,235)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('88'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Multi-Layer Electrical Impedance Tomography Based Soft Tactile Skins
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#382951" title="Click to go to the Author Index">
+             Wang, Yuexuan
+            </a>
+           </td>
+           <td class="r">
+            University College London
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#344515" title="Click to go to the Author Index">
+             Naritomi, Daichi
+            </a>
+           </td>
+           <td class="r">
+            Shibaura Institute of Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#171243" title="Click to go to the Author Index">
+             Shigemune, Hiroki
+            </a>
+           </td>
+           <td class="r">
+            Shibaura Institute of Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#206342" title="Click to go to the Author Index">
+             George Thuruthel, Thomas
+            </a>
+           </td>
+           <td class="r">
+            University College London
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab88" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ROSO24_KeywordIndexWeb.html#soft_sensors_and_actuators" title="Click to go to the Keyword Index">
+               Soft Sensors and Actuators
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#force_and_tactile_sensing" title="Click to go to the Keyword Index">
+               Force and Tactile Sensing
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#soft_robot_materials_and_design" title="Click to go to the Keyword Index">
+               Soft Robot Materials and Design
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Distributed high-density tactile sensing is a challenging problem with numerous commercial applications. Soft sensing technologies appear to be a promising approach to address this challenge. In particular, Electrical Impedance Tomography (EIT)-based soft sensors are desirable because they can offer a large sensing surface without rigid electrodes and provide high sensing resolution. However, their applicability is limited to simple sensor shapes, and they require materials with high conductivity for sensing accuracy. This project introduces a novel multi-layered architecture for EIT-based soft skins. This innovation allows us to develop sensory skins with multiple materials and provides greater flexibility in electrode placement, resulting in higher accuracy. We experimentally tested the method's applicability using soft skins of varying morphology, employing a hydrogel-based tactile skin. The results demonstrate that our multi-layer soft skin improves average accuracy compared to a single-layer EIT-based skin, reducing it from 15.8 mm to 4.4 mm.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="weat1_07">
+             12:20-12:30, Paper WeAT1.7
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod236" name="modify4" onclick="modify(4,236)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('4'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Integrated Pneumatic Sensing and Actuation for Soft Haptic Devices
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#256696" title="Click to go to the Author Index">
+             Choi, Hojung
+            </a>
+           </td>
+           <td class="r">
+            Stanford University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#101950" title="Click to go to the Author Index">
+             Cutkosky, Mark
+            </a>
+           </td>
+           <td class="r">
+            Stanford University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="ROSO24_AuthorIndexWeb.html#143878" title="Click to go to the Author Index">
+             Stanley, Andrew A.
+            </a>
+           </td>
+           <td class="r">
+            Meta
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab4" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="ROSO24_KeywordIndexWeb.html#soft_sensors_and_actuators" title="Click to go to the Keyword Index">
+               Soft Sensors and Actuators
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#force_and_tactile_sensing" title="Click to go to the Keyword Index">
+               Force and Tactile Sensing
+              </a>
+              ,
+              <a href="ROSO24_KeywordIndexWeb.html#haptics_and_haptic_interfaces" title="Click to go to the Keyword Index">
+               Haptics and Haptic Interfaces
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             We present an integrated pneumatic sensor and actuator for soft haptic devices that can estimate contact force, location, and shape using a multi-headed neural network. The sensor uses channels cast into a multi-layer silicone bubble that change flow resistance as the bubble deforms, allowing measurements of strain and external contact at the surface. Changes in flow resistance are measured using pressure transducers in a pneumatic circuit. Arranging the channels in a two-layer array allows localization of the strain with an accuracy of over 80% for contact locations in a 3 x 3 grid and force measurements from 0.9 ~ 4.5N with an RMS error of ~0.39N. This technology can enable closed-loop control for future soft pneumatic devices.
+            </div>
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="welu_br">
+             <b>
+              WeLU_BR
+             </b>
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod237" name="modifyWeLU_BR" onclick="modsession(81,237)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ROSO24_ProgramAtAGlanceWeb.html#welu_br" title="Click to go to the Program at a Glance">
+             <b>
+              Lunch (Day 3)
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="wewu">
+             <b>
+              WeWU
+             </b>
+             Legends
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod238" name="modifyWeWU" onclick="modsession(85,238)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ROSO24_ProgramAtAGlanceWeb.html#wewu" title="Click to go to the Program at a Glance">
+             <b>
+              Closing Session
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+         </table>
+        </div>
+        <p>
+         <br/>
+        </p>
+        <p>
+         <br/>
+        </p>
+        <p>
+         <p>
+         </p>
+        </p>
+       </td>
+       <td height="100%" style="background-color:#A0DBF5;" width="5">
+       </td>
+      </tr>
+      <tr>
+       <td alt="" border="0" colspan="4" height="16" style="background-color:#A0DBF5;" valign="center" width="100%">
+        <p align="center">
+         <span style="font-size:8pt;line-height:10pt;color:#000;">
+          Technical Content © IEEE Robotics &amp; Automation Society
+         </span>
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <td colspan="4" width="100%">
+        <p align="right">
+         <span style="text-decoration:none;">
+          <img align="right" border="0" src="/images/pc_logo_small.jpg" style="margin-left: 10px; margin-right: 10px"/>
+          This site is protected
+by copyright and trademark laws under US and International law.
+          <br/>
+          All rights
+reserved. © 2002-2024 PaperCept, Inc.
+          <br/>
+          Page generated 2024-04-15  17:22:20 PST
+          <a href="" onclick="window.open('/conferences/scripts/about.pl','tc','width=1000,scrollbars=yes'); return false">
+           Terms of use
+          </a>
+         </span>
+        </p>
+       </td>
+      </tr>
+     </table>
+    </body>
+   </div>
+  </form>
+ </body>
+</html>
