@@ -5,13 +5,54 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import pickle
 
-#### International Conference on Ubiquitous Robots (UR) 2024 ####
-conference = "International Conference on Ubiquitous Robots (UR) 2024"
+#### 2024 33rd IEEE International Conference on Robot and Human Interactive Communication (ROMAN)
+conference = " International Conference on Robot and Human Interactive Communication (ROMAN)"
 daily_programs = [
-    "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_2.html",
-    "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_3.html",
+    "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_1.html",
+    "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_2.html",
+    "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_3.html",
+    "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_4.html",
+    "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_5.html",
 ]
-keyword_indx = "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_KeywordIndexWeb.html"
+keyword_indx = "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_KeywordIndexWeb.html"
+
+#### 2024 IEEE International Conference on Cybernetics and Intelligent Systems (CIS) and IEEE International Conference on Robotics, Automation and Mechatronics (RAM)
+# conference = "CIS and RAM"
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/CISRAM24/program/CISRAM24_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/CISRAM24/program/CISRAM24_ContentListWeb_3.html",
+#     "https://ras.papercept.net/conferences/conferences/CISRAM24/program/CISRAM24_ContentListWeb_4.html",
+# ]
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/CISRAM24/program/CISRAM24_KeywordIndexWeb.html"
+
+#### 2024 IEEE International Conference on Advanced Intelligent Mechatronics (AIM)
+# conference = "International Conference on Advanced Intelligent Mechatronics (AIM)"
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/AIM24/program/AIM24_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/AIM24/program/AIM24_ContentListWeb_3.html",
+#     "https://ras.papercept.net/conferences/conferences/AIM24/program/AIM24_ContentListWeb_4.html",
+# ]
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/AIM24/program/AIM24_KeywordIndexWeb.html"
+
+#### 2024 IEEE 20th International Conference on Automation Science and Engineering (CASE)
+# conference = (
+#     "International Conference on Automation Science and Engineering (CASE)"
+# )
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/CASE24/program/CASE24_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/CASE24/program/CASE24_ContentListWeb_3.html",
+#     "https://ras.papercept.net/conferences/conferences/CASE24/program/CASE24_ContentListWeb_4.html",
+# ]
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/CASE24/program/CASE24_KeywordIndexWeb.html"
+
+
+#### International Conference on Ubiquitous Robots (UR) 2024 ####
+# conference = "International Conference on Ubiquitous Robots (UR) 2024"
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_ContentListWeb_3.html",
+# ]
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/UR24/program/UR24_KeywordIndexWeb.html"
 
 #### ARSO 2024 ####
 # ARSO website looks a bit different

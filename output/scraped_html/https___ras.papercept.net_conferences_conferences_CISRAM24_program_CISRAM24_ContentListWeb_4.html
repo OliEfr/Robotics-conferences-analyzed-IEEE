@@ -1,0 +1,2717 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta content="en-us" http-equiv="Content-Language"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width" name="viewport"/>
+  <script src="https://ras.papercept.net/conferences/scripts/dom-drag.js" type="text/javascript">
+  </script>
+  <script src="jquery-1.11.1.min.js">
+  </script>
+  <title>
+   CIS-RAM 2024 Program | Sunday August 11, 2024
+  </title>
+  <style type="text/css">
+   body, table, td, th{
+	Font-Family : sans-serif;
+	Font-Size : 10pt;
+}
+.r {text-align: right}
+.blue {color: #0000FF;}
+td {vertical-align: top; text-align: left}
+.c {text-align: center}
+table.s {
+	border-collapse:collapse;
+	border-width: 1px;
+}
+table.s td{
+	border-width: 1px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+table.t {
+	border-collapse: collapse;
+	border-width: 0px;
+}
+table.t td{
+	border-width: 0px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+.dots {
+    background:url('./images/dot.gif') repeat-x center;
+}
+.field {
+    background-color: #FFFFFF;
+}
+#pTitle { /* Page title */
+   font-size: 14pt;
+   line-height: 1.5em;
+}
+#pSubTitle { /* Page subtitle */
+   color: #909090;
+   font-size: 10pt; 
+   line-height: 1.5em;
+}
+#container {
+	position: absolute;
+	width: 100%;
+	margin-top: 2px;
+/*	overflow: hidden; */
+}
+
+.sHdr {   /* Session header Content list */
+   background-color: #F0E68C
+}
+      
+.sSHdr {   /* Subsession header Content list */
+   background-color: #f8f3c6 
+}
+      
+table.trk { /* Track table Content list */
+   border-collapse: collapse;
+   border-width: 0px;
+   margin: auto;
+/**   width: 640px; **/
+   width: 720px;
+}
+table.trk td{
+   border-width: 0px;
+   padding: 4px;
+   border-style: solid;
+   border-color: gray;
+ }
+      
+.pHdr {  /* Paper header Content list */
+   background-color: #E6E6FA;
+   color: black;
+}
+hr.thin { /* Horizontal rule content list */
+   border: 0px; 
+   height: .8px; 
+   background-color: #8888FF;
+}
+      
+.pTtl {  /* Paper title Content list */
+   font-size: 11pt;
+   font-style: italic;
+}
+      
+.ssHdr {  /* Subsession header container session Content list */
+   background-color: #DDDDDD;
+   color: black;
+}
+      
+.ssTtl {  /* Subsession title container session Content list */
+   font-size: 10pt;
+   font-style: normal;
+   font-weight: bold;
+}
+  </style>
+  <script language="JavaScript">
+   function initXMLHttp(){
+   var oRequest = false;
+   try {
+      oRequest = new XMLHttpRequest();
+   }  catch (trymicrosoft) {
+      try {
+         oRequest = new ActiveXObject("Msxml2.XMLHTTP");
+      }  catch (othermicrosoft) {
+         try {
+            oRequest = new ActiveXObject("Microsoft.XMLHTTP");
+         }  catch (failed) {
+            oRequest = false;
+         }
+      }
+   }
+   if (!oRequest){
+      alert("Error initializing XMLHttpRequest! Your browser does not support AJAX");
+   }
+   return oRequest;
+}
+function modify(number,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'Add';
+   }
+   else{
+      action = 'Delete';
+   }
+   
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=461&' + action + number;
+//   window.open(url,'myprogrampage');
+
+   modifyItem("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","461",action,number)
+
+}
+
+
+function modifyItem(url,ConfID,action,number){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&Number=' + number;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+var iIntervalId;  // Global variable
+function modsession(id,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'AddSession';
+   }
+   else{
+      action = 'DelSession';
+   }
+
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=461&' + action + id;
+//   window.open(url,'myprogrampage');
+
+   modifySession("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","461",action,id)
+
+}
+
+function modifySession(url,ConfID,action,id){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&ID=' + id;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+function getCookie(sName){
+   var sRE = "(?:; )?" + sName + "=([^;]*);?";   
+   var oRE = new RegExp(sRE);
+   if (oRE.test(document.cookie)){
+      return decodeURIComponent(RegExp["$1"]);}
+   else{
+      return null;
+   }
+}
+function loadprogram(){
+   var list = getCookie("CISRAM24");
+   if (list){
+      var List = list.split(",");
+      for (var i=0; i<List.length; i++){
+         var names = document.getElementsByName('modify' + List[i]);
+         if (names.length){
+            for (var j=0; j<names.length; j++){
+               names[j].checked = true;
+            }
+         }
+      }
+   }
+}
+function reset(){
+
+   // Uncheck all modify and addsession checkboxes
+
+   var ins = document.getElementsByTagName('input');
+   for (var i=0; i<ins.length; i++){
+      if (ins[i].type == 'checkbox' && ins[i].id && ins[i].id.substring(0,3) == 'mod'){
+         ins[i].checked = false;
+      }
+   }
+   
+   // Reload the program
+   
+   loadprogram();
+}
+function startreset(){
+   iIntervalId = setInterval(reset,2000);
+}
+function viewAbstract(number){
+   var box = document.getElementById('Ab' + number);
+   if (box.style.display == 'block'){
+      box.style.display = 'none';
+   }
+   else if (box && box.style.display == 'none'){
+      box.style.display = 'block';
+   }
+}
+function openAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   var count = d.length;
+   if (count == 0){return;}
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab' && d[i].style.display == 'none'){
+         d[i].style.display = 'block';
+      }
+   }
+}
+function closeAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab'){
+         d[i].style.display = 'none';
+      }
+   }
+}
+var uhash;
+var pColor;
+$(function() { 
+
+   // Check for URL hash
+
+   uhash = location.hash.substring(1);
+   if (uhash.slice(-1) == '_'){
+      uhash = null;
+   }
+   if (uhash){
+   
+      // Mark the session
+   
+      pColor = $('#' + uhash).parent().css('backgroundColor');
+      $('#' + uhash).parent().css('backgroundColor','#FF8888');
+   }
+});
+
+
+$(function() { 
+
+   // Check for URL hash
+
+   uhash = location.hash.substring(1);
+   if (uhash.slice(-1) == '_'){
+      uhash = null;
+   }
+   if (uhash){
+
+      // Set the widths
+      
+      setwidth();
+      
+      // If claasical view is required then return
+
+      if (!ghit){return;} 
+      
+      // Reset left margin for FF
+
+      document.getElementById('container').scrollLeft = 0;;
+
+      // Discover the table and the block and determine the block Id
+   
+      var rt = $('#' + uhash);
+      var done = false;
+      while (!done){
+         rt = rt.parent();    
+         var etype = rt.get(0).tagName;  
+         if (rt.is("table")){      
+            done = true;
+         }
+      }
+      rt = rt.parent().parent().parent();
+      var iid = rt.attr('id')
+
+      // Show the block
+
+      initialize();
+      $('#' + iid).show();
+      $( '#A' + iid ).focus();
+      var ypos = $('#' + iid).offset().top;      
+      window.scrollTo(0,ypos);
+
+      // Cancel the scroll to uhash
+
+      var url = location.href;
+      url += '_';
+      location.href = url;
+      
+      // Scroll into view
+
+      var leftPosition = $('#' + uhash).parent().position().left;
+      var topOffset = $('#' + uhash).parent().offset().top;
+      var divOffset = $('#' + iid).find('div').offset().top;
+      var topPosition = topOffset-divOffset;
+      $('#' + iid).find('div').scrollLeft(leftPosition);
+      $('#' + iid).find('div').scrollTop(topPosition);
+   }
+   else{
+      setwidth();
+      initialize();
+   }
+});
+
+var ghit = false;
+function setwidth(){
+   var viewportwidth = $( window ).width();
+   var viewportheight = $( window ).height();
+   var sdiv = $( ".sdiv" );
+   for (var i=0; i<sdiv.length; i++){
+      $(sdiv[i]).css({width: .98*viewportwidth + 'px'});
+      $(sdiv[i]).css("height", .9*viewportheight-50 + 'px');      
+   }
+
+   // Detect horizontal overflow on any of the divs
+   
+   var divs = document.getElementsByTagName('div');
+   for (var i=0; i<divs.length; i++){
+      if (divs[i].id && divs[i].id.substring(0,3) == 'div'){
+         if (divs[i].scrollWidth > divs[i].clientWidth){
+            ghit = true;
+            break;
+         }
+      }
+   }
+   if (!ghit){
+      for (var i=0; i<divs.length; i++){
+         divs[i].style.height = 'auto';
+      }
+   }
+}
+
+function selfollowing(hsh){
+   $('#' + uhash).parent().css('backgroundColor',pColor);
+   setwidth();
+   initialize();
+   if (hsh == 'TheTop'){
+      var ypos = $('#container').offset().top;
+      window.scrollTo(0,ypos)
+   }
+   else{
+      $('#' + hsh).show();
+      $( '#A' + hsh ).focus();
+      var ypos = $('#' + hsh).offset().top;
+      window.scrollTo(0,ypos)
+   }
+}
+
+function initialize(){
+
+   // Show all day blocks
+   
+   var blcks = $('.blck');
+   for (var i=0; i<blcks.length; i++){
+      blcks[i].style.display = 'block';
+   }
+
+   // Detect horizontal overflow on any of the divs
+   
+   var hit = false;
+   var divs = document.getElementsByTagName('div');
+   for (var i=0; i<divs.length; i++){
+      if (divs[i].id && divs[i].id.substring(0,3) == 'div'){
+         if (divs[i].scrollWidth > divs[i].clientWidth || divs[i].scrollHeight > divs[i].clientHeight){
+            hit = true;
+            break;
+         }
+      }
+   }
+   if (hit){
+   
+      // Set overflow hidden on body. This will prevent it from scrolling
+      
+      $("body").css("overflow", "hidden");
+      document.getElementById('start').style.display = 'inline';
+      
+      // Hide all day blocks
+   
+      var blcks = $('.blck');
+      for (var i=0; i<blcks.length; i++){
+         blcks[i].style.display = 'none';
+      }
+      var scrlis = $('.scrlis');
+      for (var i=0; i<scrlis.length; i++){
+         scrlis.show();
+      }
+   }
+   else{
+      $("body").css("overflow", "auto");
+      document.getElementById('start').style.display = 'none';
+      var blcks = $('.sdiv');
+      for (var i=0; i<blcks.length; i++){
+        blcks[i].style.height = 'auto';
+      }
+      var scrlis = $('.scrlis');
+      for (var i=0; i<scrlis.length; i++){
+         scrlis.hide();
+      }
+   }
+   return;
+}
+  </script>
+ </head>
+ <body onload="loadprogram(); startreset()" onresize="setwidth(); initialize()">
+  <form action="https://ras.papercept.net/conferences/scripts/myprogram.pl" name="myprogram">
+   <div id="container">
+    <body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+     <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+       <td alt="" border="0" height="140" nowrap="" style="background-color:#15142D;" width="100%">
+        <img alt="" border="0" height="140" src="/images/cisram/cisram24.webp" style="position:absolute; top:0px;left:0px;"/>
+        <img alt="" border="0" height="40" src="/images/ieee_w.webp" style="position:absolute; top:10px;left:250px;"/>
+        <span style="font-size: 35px; font-family: arial; color: #ffffff; text-shadow: 0px 0px 1px #000; position: absolute; left: 380px; top:11px;">
+         <strong>
+          CIS-RAM 2024
+         </strong>
+        </span>
+        <span style="font-size: 18px; font-family: arial; color: #ffffff; text-shadow: 0px 0px 1px #000; position: absolute; left: 290px; top:55px;">
+         August 8-11, 2024 | Hangzhou, China
+        </span>
+        <span style="font-size: 20px; font-family: verdana, times, serif; text-align:right; color: #ffffff; text-shadow: 0px 0px 2px #000; position: absolute; right: 50px; top:6px;">
+         11th IEEE International Conference on
+         <br/>
+         Cybernetics and Intelligent Systems (CIS)
+         <br/>
+         Robotics, Automation and Mechatronics (RAM)
+        </span>
+        <span style="font-size: 16px; font-family: verdana, times, serif; text-align:right; color: #ffffff; text-shadow: 0px 0px 2px #000; position: absolute; right: 50px; top:110px;">
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <td height="0" style="background:#15142D;" width="100%">
+       </td>
+      </tr>
+     </table>
+     <table border="0" cellpadding="0" cellspacing="0" height="80%" width="100%">
+      <tr>
+       <td height="100%" style="background:#15142D;" width="5">
+       </td>
+       <td width="5">
+       </td>
+       <td height="100%" valign="top" width="100%">
+        <br/>
+        <div class="c" id="TheTop">
+         <span id="pTitle">
+          <a href="http://www.cis-ram.org/2024/" target="_blank">
+           <b>
+            2024 IEEE International Conference on Cybernetics and Intelligent Systems (CIS) and IEEE International Conference on Robotics, Automation and Mechatronics (RAM)
+           </b>
+          </a>
+          <br/>
+         </span>
+         <span id="pSubTitle">
+          <b>
+           August 8-11, 2024, Hangzhou, China
+          </b>
+         </span>
+         <br/>
+         <br/>
+        </div>
+        <div class="c" style="position: relative">
+         <a href="CISRAM24_ProgramAtAGlanceWeb.html">
+          Program at a Glance
+         </a>
+         <a href="CISRAM24_ContentListWeb_1.html">
+          Thursday
+         </a>
+         <a href="CISRAM24_ContentListWeb_2.html">
+          Friday
+         </a>
+         <a href="CISRAM24_ContentListWeb_3.html">
+          Saturday
+         </a>
+         <a href="CISRAM24_ContentListWeb_4.html">
+          Sunday
+         </a>
+         <a href="CISRAM24_AuthorIndexWeb.html">
+          Author Index
+         </a>
+         <a href="CISRAM24_KeywordIndexWeb.html">
+          Keyword Index
+         </a>
+         <a href="#TheTop" onclick="window.open('https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=461','myprogrampage')">
+          My Program
+         </a>
+        </div>
+        <div class="c">
+         <p style="color: gray">
+          Last updated on July 31, 2024. This conference program is tentative and subject to change
+         </p>
+        </div>
+        <div class="c">
+         <h3>
+          Technical Program for Sunday August 11, 2024
+         </h3>
+        </div>
+        <p class="c">
+        </p>
+        <div class="c">
+         <span style="color:gray ">
+          To show or hide the keywords and abstract (text summary) of a paper (if available), click on the paper title
+         </span>
+         <br/>
+         <a href="javascript:openAllAbstracts()" title="Click to open all abstracts">
+          Open all abstracts
+         </a>
+         <a href="javascript:closeAllAbstracts()" title="Click to close all abstracts">
+          Close all abstracts
+         </a>
+        </div>
+        <div class="c">
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="su-0900t1">
+             <b>
+              SU-0900T1
+             </b>
+             Regular Sessions, Renyue Ballroom
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod110" name="modifySU-0900T1" onclick="modsession(99,110)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="CISRAM24_ProgramAtAGlanceWeb.html#su-0900t1" title="Click to go to the Program at a Glance">
+             <b>
+              Neural Networks
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="CISRAM24_AuthorIndexWeb.html#277424" title="Click to go to the Author Index">
+             Li, Dongyu
+            </a>
+           </td>
+           <td class="r">
+            Beihang University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Co-Chair:
+            <a href="CISRAM24_AuthorIndexWeb.html#402779" title="Click to go to the Author Index">
+             Wang, Yan
+            </a>
+           </td>
+           <td class="r">
+            Sichuan University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-0900t1_01">
+             09:00-10:00, Paper SU-0900T1.1
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod111" name="modify4" onclick="modify(4,111)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('4'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              From Seedling to Harvest: The GrowingSoy Dataset for Weed Detection in Soy Crops Via Instance Segmentation
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#392301" title="Click to go to the Author Index">
+             Steinmetz, Raul
+            </a>
+           </td>
+           <td class="r">
+            Universidade Federal De Santa Maria
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#289578" title="Click to go to the Author Index">
+             Kich, Victor Augusto
+            </a>
+           </td>
+           <td class="r">
+            University of Tsukuba
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#392307" title="Click to go to the Author Index">
+             Krever, Henrique
+            </a>
+           </td>
+           <td class="r">
+            Universidade Federal De Santa Maria
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#392332" title="Click to go to the Author Index">
+             Mazzarolo, Joao Davi Rigo
+            </a>
+           </td>
+           <td class="r">
+            Universidade Federal De Santa Maria
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#270442" title="Click to go to the Author Index">
+             Grando, Ricardo
+            </a>
+           </td>
+           <td class="r">
+            Federal University of Rio Grande
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#392306" title="Click to go to the Author Index">
+             Marini, Vinicius
+            </a>
+           </td>
+           <td class="r">
+            Universidade Federal De Santa Maria
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#392308" title="Click to go to the Author Index">
+             Trois, Celio
+            </a>
+           </td>
+           <td class="r">
+            Universidade Federal De Santa Maria
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#392305" title="Click to go to the Author Index">
+             Nieuwenhuizen, Ard
+            </a>
+           </td>
+           <td class="r">
+            Wageningen University &amp; Research
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab4" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#environmental_systems" title="Click to go to the Keyword Index">
+               Environmental Systems
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#image_processing" title="Click to go to the Keyword Index">
+               Image Processing
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#neural_networks" title="Click to go to the Keyword Index">
+               Neural Networks
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Deep learning, particularly Convolutional Neural Networks (CNNs), has gained significant attention for its effectiveness in computer vision, especially in agricultural tasks. Recent advancements in instance segmentation have improved image classification accuracy. In this work, we introduce a comprehensive dataset for training neural networks to detect weeds and soy plants through instance segmentation. Our dataset covers various stages of soy growth, offering a chronological perspective on weed invasion's impact, with 1,000 annotated images. To validate our data, we also provide 6 state of the art models, trained in this dataset, that can understand and detect soy and weed in every stage of the plantation process, the best results achieved were a segmentation average precision of 79.1% and an average recall of 73.3% across all plant classes. Moreover, the YOLOv8M model attained 78.7% mean average precision (mAp-50) in caruru weed segmentation, 69.6% in grassy weed segmentation, and 90.1% in soy plant segmentation.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-0900t1_02">
+             09:00-10:00, Paper SU-0900T1.2
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod112" name="modify48" onclick="modify(48,112)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('48'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              3D Spacecraft Position and Orientation Estimation Model Based on Monocular Image
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#404034" title="Click to go to the Author Index">
+             Tong, Shang
+            </a>
+           </td>
+           <td class="r">
+            Beihang University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#289068" title="Click to go to the Author Index">
+             Ouyang, Zhenchao
+            </a>
+           </td>
+           <td class="r">
+            Beihang University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#298906" title="Click to go to the Author Index">
+             Hu, Qinglei
+            </a>
+           </td>
+           <td class="r">
+            Beihang University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#277424" title="Click to go to the Author Index">
+             Li, Dongyu
+            </a>
+           </td>
+           <td class="r">
+            Beihang University
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab48" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#visual_perception_and_learning_" title="Click to go to the Keyword Index">
+               Visual Perception and Learning.
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#neural_networks" title="Click to go to the Keyword Index">
+               Neural Networks
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#image_processing" title="Click to go to the Keyword Index">
+               Image Processing
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             For spacecraft position and orientation estimation missions in mid-to-long range space environments, there is a lack of ideal 3D sensors. Under this circumstances, although monocular cameras can hardly provide accurate depth information, it is widely applied. Some studies have explored monocular target pose estimation in general conditions, however, the degree of freedom of an on-orbit target that is not constrained by ground and gravity is more complicated. To extend this task to orbit target, this paper first estimated a huge spacecraft dataset with automatic labeled 3D poses, and then a deep neural network was designed following 'end-to-end' supervised learning. A modified Intersection over Union method for position-orientation combined evaluation is developed as well.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-0900t1_03">
+             09:00-10:00, Paper SU-0900T1.3
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod113" name="modify99" onclick="modify(99,113)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('99'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Precision and Adaptability of YOLOv5 and YOLOv8 in Dynamic Robotic Environments
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#289578" title="Click to go to the Author Index">
+             Kich, Victor Augusto
+            </a>
+           </td>
+           <td class="r">
+            University of Tsukuba
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#398333" title="Click to go to the Author Index">
+             Muttaqien, Muhammad Angga
+            </a>
+           </td>
+           <td class="r">
+            University of Tsukuba
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405827" title="Click to go to the Author Index">
+             Toyama, Junya
+            </a>
+           </td>
+           <td class="r">
+            University of Tsukuba
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405828" title="Click to go to the Author Index">
+             Miyoshi, Ryutaro
+            </a>
+           </td>
+           <td class="r">
+            University of Tsukuba
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405829" title="Click to go to the Author Index">
+             Ida, Yosuke
+            </a>
+           </td>
+           <td class="r">
+            University of Tsukuba
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#101293" title="Click to go to the Author Index">
+             Ohya, Akihisa
+            </a>
+           </td>
+           <td class="r">
+            University of Tsukuba
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#110100" title="Click to go to the Author Index">
+             Date, Hisashi
+            </a>
+           </td>
+           <td class="r">
+            University of Tsukuba
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab99" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#neural_networks" title="Click to go to the Keyword Index">
+               Neural Networks
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#visual_perception_and_learning_" title="Click to go to the Keyword Index">
+               Visual Perception and Learning.
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#vision_and_sensor_based_control" title="Click to go to the Keyword Index">
+               Vision and Sensor-Based Control
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Recent advancements in real-time object detection frameworks have spurred extensive research into their application in robotic systems. This study provides a comparative analysis of YOLOv5 and YOLOv8 models, challenging the prevailing assumption of the latter's superiority in performance metrics. Contrary to initial expectations, YOLOv5 models demonstrated comparable, and in some cases superior, precision in object detection tasks. Our analysis delves into the underlying factors contributing to these findings, examining aspects such as model architecture complexity, training dataset variances, and real-world applicability. Through rigorous testing and an ablation study, we present a nuanced understanding of each model's capabilities, offering insights into the selection and optimization of object detection frameworks for robotic applications. Implications of this research extend to the design of more efficient and contextually adaptive systems, emphasizing the necessity for a holistic approach to evaluating model performance.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-0900t1_04">
+             09:00-10:00, Paper SU-0900T1.4
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod114" name="modify30" onclick="modify(30,114)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('30'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              ARANet: Attention-Based Residual Adversarial Network with Deep Supervision for Radiotherapy Dose Prediction of Cervical Cancer
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#402952" title="Click to go to the Author Index">
+             Wen, Lu
+            </a>
+           </td>
+           <td class="r">
+            Sichuan University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#402914" title="Click to go to the Author Index">
+             Yin, Wenxia
+            </a>
+           </td>
+           <td class="r">
+            Sichuan University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#402954" title="Click to go to the Author Index">
+             Feng, Zhenghao
+            </a>
+           </td>
+           <td class="r">
+            Sichuan University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#402776" title="Click to go to the Author Index">
+             Wu, Xi
+            </a>
+           </td>
+           <td class="r">
+            Chengdu University of Information Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#402778" title="Click to go to the Author Index">
+             Zhou, Jiliu
+            </a>
+           </td>
+           <td class="r">
+            Sichuan University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#402779" title="Click to go to the Author Index">
+             Wang, Yan
+            </a>
+           </td>
+           <td class="r">
+            Sichuan University
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab30" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#neural_networks" title="Click to go to the Keyword Index">
+               Neural Networks
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Radiation therapy is the mainstay treatment for cervical cancer, and its ultimate goal is to ensure the planning target volume (PTV) reaches the prescribed dose while reducing dose deposition of organs-at-risk (OARs) as much as possible. To achieve this goal, the medical physicist needs to tweak the radiotherapy plan repeatedly through manual trial-and-error until finding the optimal one in clinical. However, such trial-and-error processes are quite time-consuming, and the quality of plans highly depends on the experience of the medical physicist. In this paper, we propose an end-to-end Attention-based Residual Adversarial Network with deep supervision, namely ARANet, to automatically predict the 3D dose distribution of cervical cancer. Specifically, given the computer tomography (CT) images and corresponding segmentation masks of PTV and OARs, ARANet employs a prediction network to generate the dose maps, multi-scale residual attention module, and deep supervision mechanism are carefully designed to make the ARANet extract more valuable dose features while suppressing irrelevant information. Our proposed method is validated on an in-house dataset including 54 cervical cancer patients, and experimental results demonstrate its obvious superiority compared to other state-of-the-art methods.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-0900t1_05">
+             09:00-10:00, Paper SU-0900T1.5
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod115" name="modify32" onclick="modify(32,115)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('32'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              CMIB: A Cross Modal Interaction with Information Bottleneck Framework for Multimodal Survival Analysis
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#401035" title="Click to go to the Author Index">
+             Lai, Zhouyou
+            </a>
+           </td>
+           <td class="r">
+            Sichuan University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#402858" title="Click to go to the Author Index">
+             Long, Lifan
+            </a>
+           </td>
+           <td class="r">
+            Sichuan University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#399674" title="Click to go to the Author Index">
+             Cui, Jiaqi
+            </a>
+           </td>
+           <td class="r">
+            Sichuan University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#403013" title="Click to go to the Author Index">
+             Liu, Yuanjun
+            </a>
+           </td>
+           <td class="r">
+            Suining Central Hospital
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#403012" title="Click to go to the Author Index">
+             Yin, Hao
+            </a>
+           </td>
+           <td class="r">
+            Si Chuan University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#402779" title="Click to go to the Author Index">
+             Wang, Yan
+            </a>
+           </td>
+           <td class="r">
+            Sichuan University
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab32" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#computational_intelligence" title="Click to go to the Keyword Index">
+               Computational Intelligence
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#medical_and_rehabilitation" title="Click to go to the Keyword Index">
+               Medical and Rehabilitation
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#neural_networks" title="Click to go to the Keyword Index">
+               Neural Networks
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Recently, multimodal survival analysis that integrates histology images and genomic data has become a hot topic. Existing multimodal survival analysis methods have evolved from direct fusion strategies to cross-modal attention mechanisms to incorporate multimodal features. However, these methods ignore the redundancy and noise in the fusion features. To solve this problem, we introduced a Cross Modal Interaction with Information Bottleneck (CMIB) framework for multimodal survival analysis, which filters out redundancy and noise while exploring the latent complementary information across modalities. Specifically, CMIB uses the Private Feature Extraction Block (PFEB) and Common Feature Extraction Block (CFEB) to extract the private and the common features of different modalities, respectively. Subsequently, it captures the deep interactions between these features through Co-Attention (CA). Additionally, a Multimodal Information Bottleneck (MIB) is employed to yield a robust representation of the fused features. To verify the effectiveness of CMIB, we conducted extensive experiments on three public TCGA datasets. The results show that CMIB outperforms the current state-of-the-art methods.
+            </div>
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="su-0900t2">
+             <b>
+              SU-0900T2
+             </b>
+             Poster Sessions, Tianle Ballroom
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod116" name="modifySU-0900T2" onclick="modsession(43,116)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="CISRAM24_ProgramAtAGlanceWeb.html#su-0900t2" title="Click to go to the Program at a Glance">
+             <b>
+              Young Professional Workshop Session 1
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="CISRAM24_AuthorIndexWeb.html#402323" title="Click to go to the Author Index">
+             Qian, Zheng
+            </a>
+           </td>
+           <td class="r">
+            Zhejiang University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="su-1030t1">
+             <b>
+              SU-1030T1
+             </b>
+             Invited Sessions, Renyue Ballroom
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod117" name="modifySU-1030T1" onclick="modsession(15,117)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="CISRAM24_ProgramAtAGlanceWeb.html#su-1030t1" title="Click to go to the Program at a Glance">
+             <b>
+              Frontiers in AI and Robotics in Extreme Environment
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="CISRAM24_AuthorIndexWeb.html#315096" title="Click to go to the Author Index">
+             Li, Jichun
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Co-Chair:
+            <a href="CISRAM24_AuthorIndexWeb.html#403710" title="Click to go to the Author Index">
+             Li, Jiguang
+            </a>
+           </td>
+           <td class="r">
+            University of Salford
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Organizer:
+            <a href="CISRAM24_AuthorIndexWeb.html#315096" title="Click to go to the Author Index">
+             Li, Jichun
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-1030t1_01">
+             10:30-11:30, Paper SU-1030T1.1
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod118" name="modify123" onclick="modify(123,118)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('123'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Approaches for Enhancement of Perception through Sensor Design for Extreme Environment (I)
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#403710" title="Click to go to the Author Index">
+             Li, Jiguang
+            </a>
+           </td>
+           <td class="r">
+            University of Salford
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#408686" title="Click to go to the Author Index">
+             Li, Nandu
+            </a>
+           </td>
+           <td class="r">
+            China University of Geoscience (Wuhan)
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#131740" title="Click to go to the Author Index">
+             Holderbaum, William
+            </a>
+           </td>
+           <td class="r">
+            University of Reading
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab123" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#mechanisms__design__and_control" title="Click to go to the Keyword Index">
+               Mechanisms, Design, and Control
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#vision_and_sensor_based_control" title="Click to go to the Keyword Index">
+               Vision and Sensor-Based Control
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#visual_perception_and_learning_" title="Click to go to the Keyword Index">
+               Visual Perception and Learning.
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             The application of artificial intelligence (AI) and robotics in extreme environments, is crucial for addressing complex challenges and performing high risk tasks. We highlight the importance of multi-modal sensor redundancy to ensure system reliability and accuracy despite sensor failures caused by harsh environmental conditions. We propose design considerations for sensors in extreme environments, emphasizing both the hardware and software design. One method is the non-contact heart rate and temperature monitoring using RGB visible and infrared cameras. This method addresses the limitations of traditional visible light sensors under complex illumination conditions, enhancing data reliability through advanced data fusion techniques. Furthermore, we propose a panoramic sensor lens design with a 270-degree view for comprehensive environmental perception, reducing mechanical vulnerabilities. These designs demonstrate the effectiveness of combining infrared and visible light sensors for improved environmental perception and physiological monitoring.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-1030t1_02">
+             10:30-11:30, Paper SU-1030T1.2
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod119" name="modify127" onclick="modify(127,119)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('127'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              A Serious Game Prototype of Combined Cognitive Training for Alzheimer’s Patients (I)
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#408712" title="Click to go to the Author Index">
+             Yang, Xiao
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#408937" title="Click to go to the Author Index">
+             Tang, Muran
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#409682" title="Click to go to the Author Index">
+             Ushaw, Gary
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab127" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#applications" title="Click to go to the Keyword Index">
+               Applications
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#medical_and_rehabilitation" title="Click to go to the Keyword Index">
+               Medical and Rehabilitation
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Population ageing has become a global trend and challenge around the world in the 21st century. With the growth of elderly population, the number of Alzheimer’s disease (AD) patients also increases annually, because age increasing is identified as the critical factor of AD’s prevalence. So, caring, intervention, and treatment of AD patients have become an important topic for public health. The current trials have proven the positive effect of combined cognitive training in intervening cognitive decline. However, the cost of the combined training leads to the fact that it is unaffordable for patients and their families. Therefore, we developed a 2D Android serious game prototype for AD patients’ daily home-based cognitive training to ensure both the effectiveness of combined training and affordable training costs. The game prototype contains 3 daily-scenario-based scenes and features based on user-centered-design (UCD). The evaluation results indicate that this project qualifies as an appropriate serious game for AD.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-1030t1_03">
+             10:30-11:30, Paper SU-1030T1.3
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod120" name="modify52" onclick="modify(52,120)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('52'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              A Novel Approach for Solving the Time-Varying Complex-Valued Linear Matrix Inequality Based on Fuzzy-Parameter Zeroing Neural Network
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#404435" title="Click to go to the Author Index">
+             Luo, Jiajie
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#315096" title="Click to go to the Author Index">
+             Li, Jichun
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#131740" title="Click to go to the Author Index">
+             Holderbaum, William
+            </a>
+           </td>
+           <td class="r">
+            University of Reading
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#403710" title="Click to go to the Author Index">
+             Li, Jiguang
+            </a>
+           </td>
+           <td class="r">
+            University of Salford
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab52" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#computational_intelligence" title="Click to go to the Keyword Index">
+               Computational Intelligence
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#neural_networks" title="Click to go to the Keyword Index">
+               Neural Networks
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#fuzzy_systems" title="Click to go to the Keyword Index">
+               Fuzzy Systems
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Solving linear matrix inequality (LMI) is crucial across diverse fields, and the emergence of zeroing neural networks (ZNN) presents a novel solution for the time-varying LMI (TV-LMI) challenge. However, the application of ZNN to solve the time-varying complex-valued LMI (TVCV-LMI) problem remains unexplored. Therefore, we introduce a novel fuzzy-parameter ZNN (FP-ZNN) model in this study to tackle the TVCV-LMI problem. With the introduction of fuzzy logic system (FLS), the FP-ZNN model is able to adjust the fuzzy convergence parameter (FCP) in a real-time manner, responding to any change in the system error and achieving the best performance. We also use an exponential activation function (EAF) in our study, which makes the FP-ZNN model fixed-time stable. To verify and illustrate the superior features of the elegant FPZNN model, detailed theoretical analysis, together with numerical experiments, are provided, and the results emphasize the fixedtime stability and adaptiveness of the FP-ZNN model further. As a novel approach, we provide an elegant solution to the TVCV-LMI problem in this paper.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-1030t1_04">
+             10:30-11:30, Paper SU-1030T1.4
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod121" name="modify126" onclick="modify(126,121)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('126'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Decision Tree Based Automated Detection of Breast Cancer (I)
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#408699" title="Click to go to the Author Index">
+             Long, Jianqiao
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#408701" title="Click to go to the Author Index">
+             Zheng, Ziwei
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#408850" title="Click to go to the Author Index">
+             Wang, Jiyu
+            </a>
+           </td>
+           <td class="r">
+            Hangzhou Hikvision Digital Technology Co., Ltd
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#408876" title="Click to go to the Author Index">
+             Ng, Chi Kit
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#408862" title="Click to go to the Author Index">
+             Liu, Chang
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#408883" title="Click to go to the Author Index">
+             Ji, Wenxing
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab126" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#decision_support_systems" title="Click to go to the Keyword Index">
+               Decision Support Systems
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Breast cancer is a highly fatal disease prevalent among women. Early and accurate detection is crucial but challenging, often requiring significant human effort. However, current diagnostic methods have limitations in efficiency and accuracy. This study addresses these challenges by exploring the application of decision tree algorithms for automatic breast cancer classification, aiming to support and enhance the diagnostic process. Using the standard Wisconsin Diagnostic Breast Cancer dataset, our experiments demonstrate that decision trees excel in classification accuracy, outperforming other common machine learning algorithms. This paper provides a comprehensive evaluation and analysis of the classification model's performance from multiple perspectives, highlighting the potential of decision trees to improve diagnostic reliability and efficiency, thereby underscoring their value in clinical settings. The aim is to provide patients with more timely diagnosis and treatment.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-1030t1_05">
+             10:30-11:30, Paper SU-1030T1.5
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod122" name="modify124" onclick="modify(124,122)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('124'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Exploring AI-Driven Drug Repurposing Strategies Targeting ErbB Signalling Pathway for Brain Cancer Therapy (I)
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#408876" title="Click to go to the Author Index">
+             Ng, Chi Kit
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#408699" title="Click to go to the Author Index">
+             Long, Jianqiao
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#408937" title="Click to go to the Author Index">
+             Tang, Muran
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#315096" title="Click to go to the Author Index">
+             Li, Jichun
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#410118" title="Click to go to the Author Index">
+             Quan, Mingming
+            </a>
+           </td>
+           <td class="r">
+            Newcastle University
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab124" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#computational_intelligence" title="Click to go to the Keyword Index">
+               Computational Intelligence
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Abstract—This study explores the application of machine learning methodologies in drug repurposing for brain cancer therapy, focusing on targeting the epidermal growth factor receptor (EGFR). Our approach involved the development of a predictive model to estimate the half-maximal inhibitory con- centration (IC50) values of compounds against EGFR, leveraging existing biological activity data of known EGFR inhibitors and molecular structure descriptors. The constructed model exhibited efficacy in predicting the inhibitory activity of compounds against EGFR. Subsequent screening of a library of known drugs using the predictive model led to the identification of several compounds with low predicted IC50 values, indicating their potential as drug candidates for further investigation. This study underscores the utility of integrating machine learning techniques into drug repurposing endeavours, offering a pragmatic approach to identifying potential therapeutic options for brain cancer treatment.
+            </div>
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="su-1030t2">
+             <b>
+              SU-1030T2
+             </b>
+             Poster Sessions, Tianle Ballroom
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod123" name="modifySU-1030T2" onclick="modsession(45,123)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="CISRAM24_ProgramAtAGlanceWeb.html#su-1030t2" title="Click to go to the Program at a Glance">
+             <b>
+              Young Professional Workshop Session 2
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="CISRAM24_AuthorIndexWeb.html#402323" title="Click to go to the Author Index">
+             Qian, Zheng
+            </a>
+           </td>
+           <td class="r">
+            Zhejiang University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="su-1130t1">
+             <b>
+              SU-1130T1
+             </b>
+             Invited Sessions, Renyue Ballroom
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod124" name="modifySU-1130T1" onclick="modsession(19,124)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="CISRAM24_ProgramAtAGlanceWeb.html#su-1130t1" title="Click to go to the Program at a Glance">
+             <b>
+              Machine Learning, Optimization Design, and Remote Control
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="CISRAM24_AuthorIndexWeb.html#404829" title="Click to go to the Author Index">
+             Zhang, Shaoru
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Organizer:
+            <a href="CISRAM24_AuthorIndexWeb.html#404829" title="Click to go to the Author Index">
+             Zhang, Shaoru
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-1130t1_01">
+             11:30-12:30, Paper SU-1130T1.1
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod125" name="modify47" onclick="modify(47,125)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('47'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Design and Verification of Manned Space Station Teleoperation Rendezvous and Docking System (I)
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#403680" title="Click to go to the Author Index">
+             Guo, Zhongwei
+            </a>
+           </td>
+           <td class="r">
+            Beijing Institute of Spacecraft System Engineering
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#403681" title="Click to go to the Author Index">
+             Ying, Le
+            </a>
+           </td>
+           <td class="r">
+            Beijing Institute of Spacecraft System Engineering
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#403694" title="Click to go to the Author Index">
+             An, Jing
+            </a>
+           </td>
+           <td class="r">
+            Beijing Institute of Spacecraft System Engineering
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#403683" title="Click to go to the Author Index">
+             Zhang, Xu
+            </a>
+           </td>
+           <td class="r">
+            Beijing Institute of Spacecraft System Engineering
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#403687" title="Click to go to the Author Index">
+             Fan, Gaojie
+            </a>
+           </td>
+           <td class="r">
+            Beijing Institute of Spacecraft System Engineering
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#403689" title="Click to go to the Author Index">
+             Li, Tao
+            </a>
+           </td>
+           <td class="r">
+            Beijing Institute of Spacecraft System Engineering
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab47" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#cooperative_systems_and_control" title="Click to go to the Keyword Index">
+               Cooperative Systems and Control
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#human_machine_systems" title="Click to go to the Keyword Index">
+               Human/Machine Systems
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#supervisory_control" title="Click to go to the Keyword Index">
+               Supervisory Control
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Based on the analysis of the differences in requirements between human controlled teleoperation rendezvous and docking and automatic rendezvous and docking for space station tasks, an integrated solution for human controlled teleoperation rendezvous and docking is proposed for unmanned spacecraft such as space station lab modules and cargo spacecraft. The detailed system design is completed, and the design is finally verified through in orbit flight. This design is integrated and fully compatible with the automatic rendezvous and docking system, serving as a backup for the automatic rendezvous and docking of unmanned spacecraft in the translational approach phase. It can improve the rendezvous and docking capabilities of unmanned spacecraft and provide support for transportation tasks between orbit and earth.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-1130t1_02">
+             11:30-12:30, Paper SU-1130T1.2
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod126" name="modify90" onclick="modify(90,126)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('90'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Deep Learning-Based Visual Recognition System for Fruit-Picking Robots (I)
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405620" title="Click to go to the Author Index">
+             Ma, Rui
+            </a>
+           </td>
+           <td class="r">
+            College of Engineering
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405625" title="Click to go to the Author Index">
+             Liu, Yihan
+            </a>
+           </td>
+           <td class="r">
+            College of Engineering
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405622" title="Click to go to the Author Index">
+             Wu, Qike
+            </a>
+           </td>
+           <td class="r">
+            College of Engineering
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#404829" title="Click to go to the Author Index">
+             Zhang, Shaoru
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405603" title="Click to go to the Author Index">
+             Wang, Nan
+            </a>
+           </td>
+           <td class="r">
+            Hebei Nomal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405624" title="Click to go to the Author Index">
+             Zhang, Jielu
+            </a>
+           </td>
+           <td class="r">
+            Jiangsu Tailong Reducer Co. LTD
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#409809" title="Click to go to the Author Index">
+             Luo, Fang Lin
+            </a>
+           </td>
+           <td class="r">
+            Nanyang Technological University
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab90" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#deep_reinforcement_learning" title="Click to go to the Keyword Index">
+               Deep Reinforcement Learning
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#neural_networks" title="Click to go to the Keyword Index">
+               Neural Networks
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#image_processing" title="Click to go to the Keyword Index">
+               Image Processing
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Fruit recognition plays an important role in automated picking, in order to improve the accuracy and real-time picking, this study uses deep learning methods to design a fruit-picking robot visual recognition system. First, multiple preprocessing methods are used to expand the sample data, and the images are proportionally cropped and scaled to make the image dataset more complete; subsequently, to improve the accuracy of image recognition, a multilayer convolutional neural network (CNN) is established; and the Adam algorithm is utilized to train the model parameters several times to determine the optimal hyperparameters, thus overcoming the defects of the multilayer neural network that has a local optimal search. The experimental results show that compared with the random forest method, this system has the characteristics of high-speed recognition and high accuracy in fruit picking, and can quickly and accurately recognize fruit images, with the recognition speed of a single image taking only 0.081 seconds, and the recognition accuracy reaching more than 97.35%. The method has important theoretical and application value and provides an effective means for automatic fruit recognition.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-1130t1_03">
+             11:30-12:30, Paper SU-1130T1.3
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod127" name="modify91" onclick="modify(91,127)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('91'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Crop-Picking Robot Grasping System Based on Deep Learning (I)
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405622" title="Click to go to the Author Index">
+             Wu, Qike
+            </a>
+           </td>
+           <td class="r">
+            College of Engineering
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405625" title="Click to go to the Author Index">
+             Liu, Yihan
+            </a>
+           </td>
+           <td class="r">
+            College of Engineering
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405620" title="Click to go to the Author Index">
+             Ma, Rui
+            </a>
+           </td>
+           <td class="r">
+            College of Engineering
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#404829" title="Click to go to the Author Index">
+             Zhang, Shaoru
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405613" title="Click to go to the Author Index">
+             Gao, Sai
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405624" title="Click to go to the Author Index">
+             Zhang, Jielu
+            </a>
+           </td>
+           <td class="r">
+            Jiangsu Tailong Reducer Co. LTD
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#409809" title="Click to go to the Author Index">
+             Luo, Fang Lin
+            </a>
+           </td>
+           <td class="r">
+            Nanyang Technological University
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab91" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#image_processing" title="Click to go to the Keyword Index">
+               Image Processing
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#neural_networks" title="Click to go to the Keyword Index">
+               Neural Networks
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#soft_computing" title="Click to go to the Keyword Index">
+               Soft Computing
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             The crop-picking system plays a key role in automatic picking. In this study, a set of crop-picking robot grasping system based on convolutional neural network (CNN) was designed by using deep learning technology. Firstly, a variety of preprocessing methods are used to expand and process the image data to ensure the diversity and integrity of the sample data. Then, CNN and gradient descent (GD) algorithm were combined to optimize the training model to identify the types of crops accurately. Then, the lidar used ToF (Time of Flight) technology and AGglomerative NESting(AGNES) algorithm to obtain the key positioning points. After excluding invalid cluster centers, the identification results were accurately located. The experimental results show that compared with the 3D pose estimation method of the manipulator based on multi-view, the calculation error of the 3D coordinates of crops is smaller, and the reasoning speed for a single image is only 0.000316 seconds. Finally, the comprehensive accuracy of the system reaches 97.58%, which provides practical technical support for automatic crop picking.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-1130t1_04">
+             11:30-12:30, Paper SU-1130T1.4
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod128" name="modify92" onclick="modify(92,128)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('92'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              Optimization Design of a New Type of Halbach Array Motor with Magnetic Axis Offset (I)
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#404829" title="Click to go to the Author Index">
+             Zhang, Shaoru
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405618" title="Click to go to the Author Index">
+             Jiang, Muyan
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405625" title="Click to go to the Author Index">
+             Liu, Yihan
+            </a>
+           </td>
+           <td class="r">
+            College of Engineering
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405716" title="Click to go to the Author Index">
+             Huang, Zhanping
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405715" title="Click to go to the Author Index">
+             Du, Xiuju
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405624" title="Click to go to the Author Index">
+             Zhang, Jielu
+            </a>
+           </td>
+           <td class="r">
+            Jiangsu Tailong Reducer Co. LTD
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#409809" title="Click to go to the Author Index">
+             Luo, Fang Lin
+            </a>
+           </td>
+           <td class="r">
+            Nanyang Technological University
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab92" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#optimisation" title="Click to go to the Keyword Index">
+               Optimisation
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#soft_computing" title="Click to go to the Keyword Index">
+               Soft Computing
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#energy_efficiency_" title="Click to go to the Keyword Index">
+               Energy Efficiency.
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             This paper proposes a novel Halbach array structure based on the traditional radial and tangential magnetized Halbach array permanent magnet motor. This structure enables the magnetic field lines to be concentrated, thereby enhancing the motor torque. Concurrently, the magnetic axis offset is designed on this basis by combining ferrite with low magnetic conductivity and NdFeB with high magnetic conductivity. This design effectively reduces the gap between the electromagnetic torque and the peak current angle of the reluctance torque, and fully utilizes both the electromagnetic and reluctance torques to further improve the total output torque of the motor. The newly proposed motor, known as the Magnetic Axis Offset Halbach Motor (MAOHM), is a result of this design. Furthermore, this paper also employs a finite element method to study and compare the proposed motor with the traditional motor, serving to verify the rationality and effectiveness of the design.
+            </div>
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="su-1130t1_05">
+             11:30-12:30, Paper SU-1130T1.5
+            </a>
+           </td>
+           <td class="r">
+            Add to My Program
+            <input id="mod129" name="modify93" onclick="modify(93,129)" type="checkbox" value="on"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             <a href="" onclick="viewAbstract('93'); return false" title="Click to show or hide the keywords and abstract (text summary)">
+              The Short-Term Photovoltaic Power Generation Forecasting Based on Fruit Fly Optimization Algorithm Optimized BP Neural Network (I)
+             </a>
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#404829" title="Click to go to the Author Index">
+             Zhang, Shaoru
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405628" title="Click to go to the Author Index">
+             Zhu, Haoxuan
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405719" title="Click to go to the Author Index">
+             Yang, Likun
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405716" title="Click to go to the Author Index">
+             Huang, Zhanping
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405715" title="Click to go to the Author Index">
+             Du, Xiuju
+            </a>
+           </td>
+           <td class="r">
+            Hebei Normal University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#405624" title="Click to go to the Author Index">
+             Zhang, Jielu
+            </a>
+           </td>
+           <td class="r">
+            Jiangsu Tailong Reducer Co. LTD
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="CISRAM24_AuthorIndexWeb.html#409809" title="Click to go to the Author Index">
+             Luo, Fang Lin
+            </a>
+           </td>
+           <td class="r">
+            Nanyang Technological University
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="padding: 0px">
+            <div id="Ab93" style="padding-top: 10px; padding-left: 4px; padding-right: 4px; display: none">
+             <span style="line-height: 2em">
+              <strong>
+               Keywords:
+              </strong>
+              <a href="CISRAM24_KeywordIndexWeb.html#swarm_intelligence" title="Click to go to the Keyword Index">
+               Swarm Intelligence
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#neural_networks" title="Click to go to the Keyword Index">
+               Neural Networks
+              </a>
+              ,
+              <a href="CISRAM24_KeywordIndexWeb.html#computational_intelligence" title="Click to go to the Keyword Index">
+               Computational Intelligence
+              </a>
+             </span>
+             <br/>
+             <strong>
+              Abstract:
+             </strong>
+             Accurately predicting photovoltaic power generation is crucial for ensuring the safe operation of power grids and advancing solar energy development and utilization. For the issue of large errors in current prediction methods, this paper introduces a forecasting method for photovoltaic power generation. The method utilizes Fruit Fly Optimization Algorithm (FOA) to optimize Back Propagation (BP) neural network. This involves analyzing the correlations among factors impacting photovoltaic power generation and selecting relevant meteorological data via the Pearson correlation coefficient method. Fruit Fly Algorithm demonstrates rapid convergence, a minimal parameter set and ease of adjustment, rendering it applicable across various domains. Employing Fruit Fly Algorithm to optimize weights and thresholds within BP neural network leads to the final prediction outcomes. Simulation results confirm the superior prediction accuracy of the FOA-BP model for photovoltaic power generation, particularly during spring, autumn and winter, showcasing its practical utility.
+            </div>
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="su-1130t2">
+             <b>
+              SU-1130T2
+             </b>
+             Poster Sessions, Tianle Ballroom
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod130" name="modifySU-1130T2" onclick="modsession(47,130)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="CISRAM24_ProgramAtAGlanceWeb.html#su-1130t2" title="Click to go to the Program at a Glance">
+             <b>
+              Young Professional Workshop Session 3
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="CISRAM24_AuthorIndexWeb.html#402323" title="Click to go to the Author Index">
+             Qian, Zheng
+            </a>
+           </td>
+           <td class="r">
+            Zhejiang University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="su-1400t2">
+             <b>
+              SU-1400T2
+             </b>
+             Poster Sessions, Tianle Ballroom
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod131" name="modifySU-1400T2" onclick="modsession(49,131)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="CISRAM24_ProgramAtAGlanceWeb.html#su-1400t2" title="Click to go to the Program at a Glance">
+             <b>
+              Young Professional Workshop Session 4
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="CISRAM24_AuthorIndexWeb.html#402323" title="Click to go to the Author Index">
+             Qian, Zheng
+            </a>
+           </td>
+           <td class="r">
+            Zhejiang University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a name="su-1630t2">
+             <b>
+              SU-1630T2
+             </b>
+             Poster Sessions, Tianle Ballroom
+            </a>
+           </td>
+           <td class="r" nowrap="">
+            Add to My Program
+            <input id="mod132" name="modifySU-1630T2" onclick="modsession(87,132)" type="checkbox" value="ON"/>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="CISRAM24_ProgramAtAGlanceWeb.html#su-1630t2" title="Click to go to the Program at a Glance">
+             <b>
+              Young Professional Workshop Session 5
+             </b>
+            </a>
+           </td>
+           <td>
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td colspan="2" style="line-height: 0pt">
+           </td>
+          </tr>
+          <tr>
+           <td>
+            Chair:
+            <a href="CISRAM24_AuthorIndexWeb.html#402323" title="Click to go to the Author Index">
+             Qian, Zheng
+            </a>
+           </td>
+           <td class="r">
+            Zhejiang University
+           </td>
+          </tr>
+         </table>
+        </div>
+        <p>
+         <br/>
+        </p>
+        <p>
+         <br/>
+        </p>
+       </td>
+       <td height="100%" style="background:#15142D;" width="5">
+       </td>
+      </tr>
+      <tr>
+       <td alt="" border="0" colspan="4" height="8" style="background:#15142D;" valign="center" width="100%">
+        <p align="center">
+         <span style="font-size:8pt;line-height:10pt;color:white;">
+          Technical Content ©
+IEEE Robotics and Automation Society
+         </span>
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <td colspan="4" width="100%">
+        <p align="right">
+         <span style="text-decoration:none;">
+          <img align="right" border="0" src="/images/pc_logo_small.png" style="margin-left: 10px; margin-right: 10px"/>
+          This site is protected
+by copyright and trademark laws under US and International law.
+          <br/>
+          All rights
+reserved. © 2002-2024 PaperCept, Inc.
+          <br/>
+          Page generated 2024-07-31  01:22:01 PST
+          <a href="" onclick="window.open('/conferences/scripts/about.pl','tc','width=1000,scrollbars=yes'); return false">
+           Terms
+of use
+          </a>
+         </span>
+        </p>
+       </td>
+      </tr>
+     </table>
+    </body>
+   </div>
+  </form>
+ </body>
+</html>

@@ -1,0 +1,945 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta content="en-us" http-equiv="Content-Language"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width" name="viewport"/>
+  <script src="https://ras.papercept.net/conferences/scripts/dom-drag.js" type="text/javascript">
+  </script>
+  <script src="jquery-1.11.1.min.js">
+  </script>
+  <title>
+   RO-MAN 2024 Program | Friday August 30, 2024
+  </title>
+  <style type="text/css">
+   body, table, td, th{
+	Font-Family : sans-serif;
+	Font-Size : 10pt;
+}
+.r {text-align: right}
+.blue {color: #0000FF;}
+td {vertical-align: top; text-align: left}
+.c {text-align: center}
+table.s {
+	border-collapse:collapse;
+	border-width: 1px;
+}
+table.s td{
+	border-width: 1px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+table.t {
+	border-collapse: collapse;
+	border-width: 0px;
+}
+table.t td{
+	border-width: 0px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+.dots {
+    background:url('./images/dot.gif') repeat-x center;
+}
+.field {
+    background-color: #FFFFFF;
+}
+#pTitle { /* Page title */
+   font-size: 14pt;
+   line-height: 1.5em;
+}
+#pSubTitle { /* Page subtitle */
+   color: #909090;
+   font-size: 10pt; 
+   line-height: 1.5em;
+}
+#container {
+	position: absolute;
+	width: 100%;
+	margin-top: 2px;
+/*	overflow: hidden; */
+}
+
+.sHdr {   /* Session header Content list */
+   background-color: #F0E68C
+}
+      
+.sSHdr {   /* Subsession header Content list */
+   background-color: #f8f3c6 
+}
+      
+table.trk { /* Track table Content list */
+   border-collapse: collapse;
+   border-width: 0px;
+   margin: auto;
+/**   width: 640px; **/
+   width: 720px;
+}
+table.trk td{
+   border-width: 0px;
+   padding: 4px;
+   border-style: solid;
+   border-color: gray;
+ }
+      
+.pHdr {  /* Paper header Content list */
+   background-color: #E6E6FA;
+   color: black;
+}
+hr.thin { /* Horizontal rule content list */
+   border: 0px; 
+   height: .8px; 
+   background-color: #8888FF;
+}
+      
+.pTtl {  /* Paper title Content list */
+   font-size: 11pt;
+   font-style: italic;
+}
+      
+.ssHdr {  /* Subsession header container session Content list */
+   background-color: #DDDDDD;
+   color: black;
+}
+      
+.ssTtl {  /* Subsession title container session Content list */
+   font-size: 10pt;
+   font-style: normal;
+   font-weight: bold;
+}
+  </style>
+  <script language="JavaScript">
+   function initXMLHttp(){
+   var oRequest = false;
+   try {
+      oRequest = new XMLHttpRequest();
+   }  catch (trymicrosoft) {
+      try {
+         oRequest = new ActiveXObject("Msxml2.XMLHTTP");
+      }  catch (othermicrosoft) {
+         try {
+            oRequest = new ActiveXObject("Microsoft.XMLHTTP");
+         }  catch (failed) {
+            oRequest = false;
+         }
+      }
+   }
+   if (!oRequest){
+      alert("Error initializing XMLHttpRequest! Your browser does not support AJAX");
+   }
+   return oRequest;
+}
+function modify(number,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'Add';
+   }
+   else{
+      action = 'Delete';
+   }
+   
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=431&' + action + number;
+//   window.open(url,'myprogrampage');
+
+   modifyItem("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","431",action,number)
+
+}
+
+
+function modifyItem(url,ConfID,action,number){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&Number=' + number;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+var iIntervalId;  // Global variable
+function modsession(id,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'AddSession';
+   }
+   else{
+      action = 'DelSession';
+   }
+
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=431&' + action + id;
+//   window.open(url,'myprogrampage');
+
+   modifySession("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","431",action,id)
+
+}
+
+function modifySession(url,ConfID,action,id){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&ID=' + id;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+function getCookie(sName){
+   var sRE = "(?:; )?" + sName + "=([^;]*);?";   
+   var oRE = new RegExp(sRE);
+   if (oRE.test(document.cookie)){
+      return decodeURIComponent(RegExp["$1"]);}
+   else{
+      return null;
+   }
+}
+function loadprogram(){
+   var list = getCookie("ROMAN24");
+   if (list){
+      var List = list.split(",");
+      for (var i=0; i<List.length; i++){
+         var names = document.getElementsByName('modify' + List[i]);
+         if (names.length){
+            for (var j=0; j<names.length; j++){
+               names[j].checked = true;
+            }
+         }
+      }
+   }
+}
+function reset(){
+
+   // Uncheck all modify and addsession checkboxes
+
+   var ins = document.getElementsByTagName('input');
+   for (var i=0; i<ins.length; i++){
+      if (ins[i].type == 'checkbox' && ins[i].id && ins[i].id.substring(0,3) == 'mod'){
+         ins[i].checked = false;
+      }
+   }
+   
+   // Reload the program
+   
+   loadprogram();
+}
+function startreset(){
+   iIntervalId = setInterval(reset,2000);
+}
+function viewAbstract(number){
+   var box = document.getElementById('Ab' + number);
+   if (box.style.display == 'block'){
+      box.style.display = 'none';
+   }
+   else if (box && box.style.display == 'none'){
+      box.style.display = 'block';
+   }
+}
+function openAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   var count = d.length;
+   if (count == 0){return;}
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab' && d[i].style.display == 'none'){
+         d[i].style.display = 'block';
+      }
+   }
+}
+function closeAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab'){
+         d[i].style.display = 'none';
+      }
+   }
+}
+var uhash;
+var pColor;
+$(function() { 
+
+   // Check for URL hash
+
+   uhash = location.hash.substring(1);
+   if (uhash.slice(-1) == '_'){
+      uhash = null;
+   }
+   if (uhash){
+   
+      // Mark the session
+   
+      pColor = $('#' + uhash).parent().css('backgroundColor');
+      $('#' + uhash).parent().css('backgroundColor','#FF8888');
+   }
+});
+
+
+$(function() { 
+
+   // Check for URL hash
+
+   uhash = location.hash.substring(1);
+   if (uhash.slice(-1) == '_'){
+      uhash = null;
+   }
+   if (uhash){
+
+      // Set the widths
+      
+      setwidth();
+      
+      // If claasical view is required then return
+
+      if (!ghit){return;} 
+      
+      // Reset left margin for FF
+
+      document.getElementById('container').scrollLeft = 0;;
+
+      // Discover the table and the block and determine the block Id
+   
+      var rt = $('#' + uhash);
+      var done = false;
+      while (!done){
+         rt = rt.parent();    
+         var etype = rt.get(0).tagName;  
+         if (rt.is("table")){      
+            done = true;
+         }
+      }
+      rt = rt.parent().parent().parent();
+      var iid = rt.attr('id')
+
+      // Show the block
+
+      initialize();
+      $('#' + iid).show();
+      $( '#A' + iid ).focus();
+      var ypos = $('#' + iid).offset().top;      
+      window.scrollTo(0,ypos);
+
+      // Cancel the scroll to uhash
+
+      var url = location.href;
+      url += '_';
+      location.href = url;
+      
+      // Scroll into view
+
+      var leftPosition = $('#' + uhash).parent().position().left;
+      var topOffset = $('#' + uhash).parent().offset().top;
+      var divOffset = $('#' + iid).find('div').offset().top;
+      var topPosition = topOffset-divOffset;
+      $('#' + iid).find('div').scrollLeft(leftPosition);
+      $('#' + iid).find('div').scrollTop(topPosition);
+   }
+   else{
+      setwidth();
+      initialize();
+   }
+});
+
+var ghit = false;
+function setwidth(){
+   var viewportwidth = $( window ).width();
+   var viewportheight = $( window ).height();
+   var sdiv = $( ".sdiv" );
+   for (var i=0; i<sdiv.length; i++){
+      $(sdiv[i]).css({width: .98*viewportwidth + 'px'});
+      $(sdiv[i]).css("height", .9*viewportheight-50 + 'px');      
+   }
+
+   // Detect horizontal overflow on any of the divs
+   
+   var divs = document.getElementsByTagName('div');
+   for (var i=0; i<divs.length; i++){
+      if (divs[i].id && divs[i].id.substring(0,3) == 'div'){
+         if (divs[i].scrollWidth > divs[i].clientWidth){
+            ghit = true;
+            break;
+         }
+      }
+   }
+   if (!ghit){
+      for (var i=0; i<divs.length; i++){
+         divs[i].style.height = 'auto';
+      }
+   }
+}
+
+function selfollowing(hsh){
+   $('#' + uhash).parent().css('backgroundColor',pColor);
+   setwidth();
+   initialize();
+   if (hsh == 'TheTop'){
+      var ypos = $('#container').offset().top;
+      window.scrollTo(0,ypos)
+   }
+   else{
+      $('#' + hsh).show();
+      $( '#A' + hsh ).focus();
+      var ypos = $('#' + hsh).offset().top;
+      window.scrollTo(0,ypos)
+   }
+}
+
+function initialize(){
+
+   // Show all day blocks
+   
+   var blcks = $('.blck');
+   for (var i=0; i<blcks.length; i++){
+      blcks[i].style.display = 'block';
+   }
+
+   // Detect horizontal overflow on any of the divs
+   
+   var hit = false;
+   var divs = document.getElementsByTagName('div');
+   for (var i=0; i<divs.length; i++){
+      if (divs[i].id && divs[i].id.substring(0,3) == 'div'){
+         if (divs[i].scrollWidth > divs[i].clientWidth || divs[i].scrollHeight > divs[i].clientHeight){
+            hit = true;
+            break;
+         }
+      }
+   }
+   if (hit){
+   
+      // Set overflow hidden on body. This will prevent it from scrolling
+      
+      $("body").css("overflow", "hidden");
+      document.getElementById('start').style.display = 'inline';
+      
+      // Hide all day blocks
+   
+      var blcks = $('.blck');
+      for (var i=0; i<blcks.length; i++){
+         blcks[i].style.display = 'none';
+      }
+      var scrlis = $('.scrlis');
+      for (var i=0; i<scrlis.length; i++){
+         scrlis.show();
+      }
+   }
+   else{
+      $("body").css("overflow", "auto");
+      document.getElementById('start').style.display = 'none';
+      var blcks = $('.sdiv');
+      for (var i=0; i<blcks.length; i++){
+        blcks[i].style.height = 'auto';
+      }
+      var scrlis = $('.scrlis');
+      for (var i=0; i<scrlis.length; i++){
+         scrlis.hide();
+      }
+   }
+   return;
+}
+  </script>
+ </head>
+ <body onresize="setwidth(); initialize()">
+  <form action="https://ras.papercept.net/conferences/scripts/myprogram.pl" name="myprogram">
+   <div id="container">
+    <body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+     <link href="https://fonts.googleapis.com" rel="preconnect"/>
+     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+     <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@500;700;900&amp;display=swap" rel="stylesheet"/>
+     <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+       <td alt="" height="140;" nowrap="" style="background-color:#000;" width="100%">
+        <img alt="" border="0" height="140" src="/images/roman/roman24.png" style="position:absolute;top:0px;left:0px;"/>
+        <span style="font-size: 34px; font-family: Antonio, sans-serif; font-weight: 900; color: #fff;line-height:40px;transform:scale(1.25,1);
+text-align: left; position: absolute; top: 4px; left: 238px; text-shadow: 0px 0px 0px #ffffff, 0px 0px 0px #ffffff;">
+         IEEE RO-MAN 2024
+         <br/>
+        </span>
+        <span style="font-size: 18px; font-family: Antonio, sans-serif; font-weight: 900; color: #fff;line-height:40px;
+text-align: left; position: absolute; top: 40px; left: 212px; text-shadow: 0px 0px 0px #ffffff, 0px 0px 0px #ffffff;">
+         33RD IEEE INTERNATIONAL CONFERENCE ON ROBOT AND HUMAN INTERACTIVE COMMUNICATION
+        </span>
+        <span style="font-size: 16px; font-family: Antonio, sans-serif; font-weight: 900; color: #F5BB77;line-height:40px;
+text-align: left; position: absolute; top: 80px; left: 212px; text-shadow: 0px 0px 0px #ffffff, 0px 0px 0px #ffffff;">
+         EMBRACING HUMAN-CENTERED HRI
+        </span>
+        <span style="font-size: 12px; font-family: Antonio, sans-serif; font-weight: 900; color: #fff;line-height:40px;
+text-align: left; position: absolute; top: 100px; left: 212px; text-shadow: 0px 0px 0px #ffffff, 0px 0px 0px #ffffff;">
+         AUGUST 26-30, 2024 - PASADENA - CALIFORNIA, USA
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <td alt="" border="0" height="1" style="background-color:#000;" width="100%">
+       </td>
+      </tr>
+     </table>
+     <table border="0" cellpadding="0" cellspacing="0" height="80%" width="100%">
+      <tr>
+       <td height="100%" style="background-color:#000;" width="5">
+       </td>
+       <td width="5">
+       </td>
+       <td height="100%" valign="top" width="100%">
+        <br/>
+        <div class="c" id="TheTop">
+         <span id="pTitle">
+          <a href="http://www.ro-man2024.org" target="_blank">
+           <b>
+            2024 33rd IEEE International Conference on Robot and Human Interactive Communication (ROMAN)
+           </b>
+          </a>
+          <br/>
+         </span>
+         <span id="pSubTitle">
+          <b>
+           August 26-30, 2024, Pasadena, CA, USA
+          </b>
+         </span>
+         <br/>
+         <br/>
+        </div>
+        <div class="c" style="position: relative">
+         <a href="ROMAN24_ProgramAtAGlanceWeb.html">
+          Program at a Glance
+         </a>
+         <a href="ROMAN24_ContentListWeb_1.html">
+          Monday
+         </a>
+         <a href="ROMAN24_ContentListWeb_2.html">
+          Tuesday
+         </a>
+         <a href="ROMAN24_ContentListWeb_3.html">
+          Wednesday
+         </a>
+         <a href="ROMAN24_ContentListWeb_4.html">
+          Thursday
+         </a>
+         <a href="ROMAN24_ContentListWeb_5.html">
+          Friday
+         </a>
+         <a href="ROMAN24_AuthorIndexWeb.html">
+          Author Index
+         </a>
+         <a href="ROMAN24_KeywordIndexWeb.html">
+          Keyword Index
+         </a>
+        </div>
+        <div class="c">
+         <p style="color: gray">
+          Last updated on July 31, 2024. This conference program is tentative and subject to change
+         </p>
+        </div>
+        <div class="c">
+         <h3>
+          Technical Program for Friday August 30, 2024
+         </h3>
+        </div>
+        <p class="c">
+        </p>
+        <div class="c">
+         <span style="color:gray ">
+          To show or hide the keywords and abstract (text summary) of a paper (if available), click on the paper title
+         </span>
+         <br/>
+         <a href="javascript:openAllAbstracts()" title="Click to open all abstracts">
+          Open all abstracts
+         </a>
+         <a href="javascript:closeAllAbstracts()" title="Click to close all abstracts">
+          Close all abstracts
+         </a>
+        </div>
+        <div class="c">
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="frft1">
+             <b>
+              FrFT1
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room T1
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ROMAN24_ProgramAtAGlanceWeb.html#frft1" title="Click to go to the Program at a Glance">
+             <b>
+              Towards Conducting Non-Trivial, Multi-Site Replication Studies of
+              <br/>
+              Human-Robot Interaction Research
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop or Tutorial Session
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="frft1_01">
+             09:00-17:00, Paper FrFT1.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Towards Conducting Non-Trivial, Multi-Site Replication Studies of Human-Robot Interaction Research
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ROMAN24_AuthorIndexWeb.html#344119" title="Click to go to the Author Index">
+             Wilson, Cristina
+            </a>
+            (Oregon State University),
+            <a href="ROMAN24_AuthorIndexWeb.html#160571" title="Click to go to the Author Index">
+             Fitter, Naomi T.
+            </a>
+            (Oregon State University),
+            <a href="ROMAN24_AuthorIndexWeb.html#104078" title="Click to go to the Author Index">
+             Smart, William D.
+            </a>
+            (Oregon State University)
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="frft2">
+             <b>
+              FrFT2
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room T2
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ROMAN24_ProgramAtAGlanceWeb.html#frft2" title="Click to go to the Program at a Glance">
+             <b>
+              Studying Incidental Encounters with Robotic Autonomy (SIERA)
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop or Tutorial Session
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="frft2_01">
+             09:00-17:00, Paper FrFT2.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Studying Incidental Encounters with Robotic Autonomy (SIERA)
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ROMAN24_AuthorIndexWeb.html#389776" title="Click to go to the Author Index">
+             Hauser, Elliott
+            </a>
+            (University of Texas at Austin),
+            <a href="ROMAN24_AuthorIndexWeb.html#389777" title="Click to go to the Author Index">
+             Chan, Yao-Cheng
+            </a>
+            (University of Texas at Austin),
+            <a href="ROMAN24_AuthorIndexWeb.html#307559" title="Click to go to the Author Index">
+             Pelikan, Hannah
+            </a>
+            (Linköping University),
+            <a href="ROMAN24_AuthorIndexWeb.html#207398" title="Click to go to the Author Index">
+             Joshi, Swapna
+            </a>
+            (Northeastern University),
+            <a href="ROMAN24_AuthorIndexWeb.html#389779" title="Click to go to the Author Index">
+             Reeves, Stuart
+            </a>
+            (University of Nottingham)
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="frft3">
+             <b>
+              FrFT3
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room T3
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ROMAN24_ProgramAtAGlanceWeb.html#frft3" title="Click to go to the Program at a Glance">
+             <b>
+              Ethics Challenges in Socially Assistive Robots and Agents: Legality, Value
+              <br/>
+              Orientation, and Future Design for Human-Robot Interaction (HRI)
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop or Tutorial Session
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="frft3_01">
+             09:00-17:00, Paper FrFT3.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Ethics Challenges in Socially Assistive Robots and Agents: Legality, Value Orientation, and Future Design for Human-Robot Interaction (HRI)
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ROMAN24_AuthorIndexWeb.html#106757" title="Click to go to the Author Index">
+             Tapus, Adriana
+            </a>
+            (ENSTA Paris, Institut Polytechnique de Paris),
+            <a href="ROMAN24_AuthorIndexWeb.html#304203" title="Click to go to the Author Index">
+             ZHEGONG, SHANGGUAN
+            </a>
+            (ENSTA-Paris),
+            <a href="ROMAN24_AuthorIndexWeb.html#192025" title="Click to go to the Author Index">
+             Torresen, Jim
+            </a>
+            (University of Oslo),
+            <a href="ROMAN24_AuthorIndexWeb.html#389698" title="Click to go to the Author Index">
+             Søraa, Roger Andre
+            </a>
+            (NTNU),
+            <a href="ROMAN24_AuthorIndexWeb.html#389700" title="Click to go to the Author Index">
+             Cheng, Yu
+            </a>
+            (NTNU),
+            <a href="ROMAN24_AuthorIndexWeb.html#389743" title="Click to go to the Author Index">
+             Song, Le
+            </a>
+            (Telecom Paris)
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="frat4">
+             <b>
+              FrAT4
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room T5
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="ROMAN24_ProgramAtAGlanceWeb.html#frat4" title="Click to go to the Program at a Glance">
+             <b>
+              Human Behavior Data Acquisition for Human-Robot Interaction (HUBEDA)
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop or Tutorial Session
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="frat4_01">
+             12:30-17:00, Paper FrAT4.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Workshop on Human Behavior Data Acquisition for Human-Robot Interaction (HUBEDA)
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <a href="ROMAN24_AuthorIndexWeb.html#191250" title="Click to go to the Author Index">
+             Banerjee, Natasha Kholgade
+            </a>
+            (Wright State University),
+            <a href="ROMAN24_AuthorIndexWeb.html#195306" title="Click to go to the Author Index">
+             Kyrarini, Maria
+            </a>
+            (Santa Clara University),
+            <a href="ROMAN24_AuthorIndexWeb.html#268974" title="Click to go to the Author Index">
+             Banerjee, Sean
+            </a>
+            (Wright State Univeristy)
+           </td>
+          </tr>
+         </table>
+        </div>
+        <p>
+         <br/>
+        </p>
+        <p>
+         <br/>
+        </p>
+       </td>
+       <td height="100%" style="background-color:#000;" width="5">
+       </td>
+      </tr>
+     </table>
+     <table border="0" cellpadding="0" cellspacing="0" height="80%" width="100%">
+      <tr>
+       <td alt="" border="0" height="8" style="background-color:#000;" valign="center" width="100%">
+        <p align="center">
+         <span style="font-size:8pt;line-height:10pt;color:white;">
+          Technical Content ©
+IEEE Robotics &amp; Automation Society
+         </span>
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <td width="100%">
+        <p align="right">
+         <span style="text-decoration:none;">
+          <img align="right" border="0" src="/images/pc_logo_small.png" style="margin-left: 10px; margin-right: 10px"/>
+          This site is protected
+by copyright and trademark laws under US and International law.
+          <br/>
+          All rights
+reserved. © 2002-2024 PaperCept, Inc.
+          <br/>
+          Page generated 2024-07-31  01:22:01 PST
+          <a href="" onclick="window.open('/conferences/scripts/about.pl','tc','width=1000,scrollbars=yes'); return false">
+           Terms
+of use
+          </a>
+         </span>
+        </p>
+       </td>
+      </tr>
+     </table>
+    </body>
+   </div>
+  </form>
+ </body>
+</html>
