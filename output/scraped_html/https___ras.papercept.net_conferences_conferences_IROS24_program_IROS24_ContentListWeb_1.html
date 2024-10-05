@@ -1,0 +1,4725 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta content="en-us" http-equiv="Content-Language"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width" name="viewport"/>
+  <script src="https://ras.papercept.net/conferences/scripts/dom-drag.js" type="text/javascript">
+  </script>
+  <script src="jquery-1.11.1.min.js">
+  </script>
+  <title>
+   IROS 2024 Program | Monday October 14, 2024
+  </title>
+  <style type="text/css">
+   body, table, td, th{
+	Font-Family : sans-serif;
+	Font-Size : 10pt;
+}
+.r {text-align: right}
+.blue {color: #0000FF;}
+td {vertical-align: top; text-align: left}
+.c {text-align: center}
+table.s {
+	border-collapse:collapse;
+	border-width: 1px;
+}
+table.s td{
+	border-width: 1px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+table.t {
+	border-collapse: collapse;
+	border-width: 0px;
+}
+table.t td{
+	border-width: 0px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+.dots {
+    background:url('./images/dot.gif') repeat-x center;
+}
+.field {
+    background-color: #FFFFFF;
+}
+#pTitle { /* Page title */
+   font-size: 14pt;
+   line-height: 1.5em;
+}
+#pSubTitle { /* Page subtitle */
+   color: #909090;
+   font-size: 10pt; 
+   line-height: 1.5em;
+}
+#container {
+	position: absolute;
+	width: 100%;
+	margin-top: 2px;
+/*	overflow: hidden; */
+}
+
+.sHdr {   /* Session header Content list */
+   background-color: #F0E68C
+}
+      
+.sSHdr {   /* Subsession header Content list */
+   background-color: #f8f3c6 
+}
+      
+table.trk { /* Track table Content list */
+   border-collapse: collapse;
+   border-width: 0px;
+   margin: auto;
+/**   width: 640px; **/
+   width: 720px;
+}
+table.trk td{
+   border-width: 0px;
+   padding: 4px;
+   border-style: solid;
+   border-color: gray;
+ }
+      
+.pHdr {  /* Paper header Content list */
+   background-color: #E6E6FA;
+   color: black;
+}
+hr.thin { /* Horizontal rule content list */
+   border: 0px; 
+   height: .8px; 
+   background-color: #8888FF;
+}
+      
+.pTtl {  /* Paper title Content list */
+   font-size: 11pt;
+   font-style: italic;
+}
+      
+.ssHdr {  /* Subsession header container session Content list */
+   background-color: #DDDDDD;
+   color: black;
+}
+      
+.ssTtl {  /* Subsession title container session Content list */
+   font-size: 10pt;
+   font-style: normal;
+   font-weight: bold;
+}
+  </style>
+  <script language="JavaScript">
+   function initXMLHttp(){
+   var oRequest = false;
+   try {
+      oRequest = new XMLHttpRequest();
+   }  catch (trymicrosoft) {
+      try {
+         oRequest = new ActiveXObject("Msxml2.XMLHTTP");
+      }  catch (othermicrosoft) {
+         try {
+            oRequest = new ActiveXObject("Microsoft.XMLHTTP");
+         }  catch (failed) {
+            oRequest = false;
+         }
+      }
+   }
+   if (!oRequest){
+      alert("Error initializing XMLHttpRequest! Your browser does not support AJAX");
+   }
+   return oRequest;
+}
+function modify(number,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'Add';
+   }
+   else{
+      action = 'Delete';
+   }
+   
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=425&' + action + number;
+//   window.open(url,'myprogrampage');
+
+   modifyItem("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","425",action,number)
+
+}
+
+
+function modifyItem(url,ConfID,action,number){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&Number=' + number;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+var iIntervalId;  // Global variable
+function modsession(id,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'AddSession';
+   }
+   else{
+      action = 'DelSession';
+   }
+
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=425&' + action + id;
+//   window.open(url,'myprogrampage');
+
+   modifySession("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","425",action,id)
+
+}
+
+function modifySession(url,ConfID,action,id){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&ID=' + id;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+function getCookie(sName){
+   var sRE = "(?:; )?" + sName + "=([^;]*);?";   
+   var oRE = new RegExp(sRE);
+   if (oRE.test(document.cookie)){
+      return decodeURIComponent(RegExp["$1"]);}
+   else{
+      return null;
+   }
+}
+function loadprogram(){
+   var list = getCookie("IROS24");
+   if (list){
+      var List = list.split(",");
+      for (var i=0; i<List.length; i++){
+         var names = document.getElementsByName('modify' + List[i]);
+         if (names.length){
+            for (var j=0; j<names.length; j++){
+               names[j].checked = true;
+            }
+         }
+      }
+   }
+}
+function reset(){
+
+   // Uncheck all modify and addsession checkboxes
+
+   var ins = document.getElementsByTagName('input');
+   for (var i=0; i<ins.length; i++){
+      if (ins[i].type == 'checkbox' && ins[i].id && ins[i].id.substring(0,3) == 'mod'){
+         ins[i].checked = false;
+      }
+   }
+   
+   // Reload the program
+   
+   loadprogram();
+}
+function startreset(){
+   iIntervalId = setInterval(reset,2000);
+}
+function viewAbstract(number){
+   var box = document.getElementById('Ab' + number);
+   if (box.style.display == 'block'){
+      box.style.display = 'none';
+   }
+   else if (box && box.style.display == 'none'){
+      box.style.display = 'block';
+   }
+}
+function openAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   var count = d.length;
+   if (count == 0){return;}
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab' && d[i].style.display == 'none'){
+         d[i].style.display = 'block';
+      }
+   }
+}
+function closeAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab'){
+         d[i].style.display = 'none';
+      }
+   }
+}
+var uhash;
+var pColor;
+$(function() { 
+
+   // Check for URL hash
+
+   uhash = location.hash.substring(1);
+   if (uhash.slice(-1) == '_'){
+      uhash = null;
+   }
+   if (uhash){
+   
+      // Mark the session
+   
+      pColor = $('#' + uhash).parent().css('backgroundColor');
+      $('#' + uhash).parent().css('backgroundColor','#FF8888');
+   }
+});
+
+
+$(function() { 
+
+   // Check for URL hash
+
+   uhash = location.hash.substring(1);
+   if (uhash.slice(-1) == '_'){
+      uhash = null;
+   }
+   if (uhash){
+
+      // Set the widths
+      
+      setwidth();
+      
+      // If claasical view is required then return
+
+      if (!ghit){return;} 
+      
+      // Reset left margin for FF
+
+      document.getElementById('container').scrollLeft = 0;;
+
+      // Discover the table and the block and determine the block Id
+   
+      var rt = $('#' + uhash);
+      var done = false;
+      while (!done){
+         rt = rt.parent();    
+         var etype = rt.get(0).tagName;  
+         if (rt.is("table")){      
+            done = true;
+         }
+      }
+      rt = rt.parent().parent().parent();
+      var iid = rt.attr('id')
+
+      // Show the block
+
+      initialize();
+      $('#' + iid).show();
+      $( '#A' + iid ).focus();
+      var ypos = $('#' + iid).offset().top;      
+      window.scrollTo(0,ypos);
+
+      // Cancel the scroll to uhash
+
+      var url = location.href;
+      url += '_';
+      location.href = url;
+      
+      // Scroll into view
+
+      var leftPosition = $('#' + uhash).parent().position().left;
+      var topOffset = $('#' + uhash).parent().offset().top;
+      var divOffset = $('#' + iid).find('div').offset().top;
+      var topPosition = topOffset-divOffset;
+      $('#' + iid).find('div').scrollLeft(leftPosition);
+      $('#' + iid).find('div').scrollTop(topPosition);
+   }
+   else{
+      setwidth();
+      initialize();
+   }
+});
+
+var ghit = false;
+function setwidth(){
+   var viewportwidth = $( window ).width();
+   var viewportheight = $( window ).height();
+   var sdiv = $( ".sdiv" );
+   for (var i=0; i<sdiv.length; i++){
+      $(sdiv[i]).css({width: .98*viewportwidth + 'px'});
+      $(sdiv[i]).css("height", .9*viewportheight-50 + 'px');      
+   }
+
+   // Detect horizontal overflow on any of the divs
+   
+   var divs = document.getElementsByTagName('div');
+   for (var i=0; i<divs.length; i++){
+      if (divs[i].id && divs[i].id.substring(0,3) == 'div'){
+         if (divs[i].scrollWidth > divs[i].clientWidth){
+            ghit = true;
+            break;
+         }
+      }
+   }
+   if (!ghit){
+      for (var i=0; i<divs.length; i++){
+         divs[i].style.height = 'auto';
+      }
+   }
+}
+
+function selfollowing(hsh){
+   $('#' + uhash).parent().css('backgroundColor',pColor);
+   setwidth();
+   initialize();
+   if (hsh == 'TheTop'){
+      var ypos = $('#container').offset().top;
+      window.scrollTo(0,ypos)
+   }
+   else{
+      $('#' + hsh).show();
+      $( '#A' + hsh ).focus();
+      var ypos = $('#' + hsh).offset().top;
+      window.scrollTo(0,ypos)
+   }
+}
+
+function initialize(){
+
+   // Show all day blocks
+   
+   var blcks = $('.blck');
+   for (var i=0; i<blcks.length; i++){
+      blcks[i].style.display = 'block';
+   }
+
+   // Detect horizontal overflow on any of the divs
+   
+   var hit = false;
+   var divs = document.getElementsByTagName('div');
+   for (var i=0; i<divs.length; i++){
+      if (divs[i].id && divs[i].id.substring(0,3) == 'div'){
+         if (divs[i].scrollWidth > divs[i].clientWidth || divs[i].scrollHeight > divs[i].clientHeight){
+            hit = true;
+            break;
+         }
+      }
+   }
+   if (hit){
+   
+      // Set overflow hidden on body. This will prevent it from scrolling
+      
+      $("body").css("overflow", "hidden");
+      document.getElementById('start').style.display = 'inline';
+      
+      // Hide all day blocks
+   
+      var blcks = $('.blck');
+      for (var i=0; i<blcks.length; i++){
+         blcks[i].style.display = 'none';
+      }
+      var scrlis = $('.scrlis');
+      for (var i=0; i<scrlis.length; i++){
+         scrlis.show();
+      }
+   }
+   else{
+      $("body").css("overflow", "auto");
+      document.getElementById('start').style.display = 'none';
+      var blcks = $('.sdiv');
+      for (var i=0; i<blcks.length; i++){
+        blcks[i].style.height = 'auto';
+      }
+      var scrlis = $('.scrlis');
+      for (var i=0; i<scrlis.length; i++){
+         scrlis.hide();
+      }
+   }
+   return;
+}
+  </script>
+ </head>
+ <body onresize="setwidth(); initialize()">
+  <form action="https://ras.papercept.net/conferences/scripts/myprogram.pl" name="myprogram">
+   <div id="container">
+    <body leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+     <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+       <td border="0" height="140" style="background:linear-gradient(to right,#53A8E5,#F78B00);" width="100%">
+        <img alt="" border="0" height="140" src="/images/iros/iros24_l.png" style="position:absolute;left:200px;top:0px;"/>
+        <img alt="" border="0" height="130" src="/images/iros/iros24_r.png" style="position:absolute;right:200px;top:5px;"/>
+       </td>
+      </tr>
+     </table>
+     <table border="0" cellpadding="0" cellspacing="0" height="80%" width="100%">
+      <tr>
+       <td height="100%" style="background-color:#9F7F59;" width="5">
+       </td>
+       <td width="5">
+       </td>
+       <td height="100%" valign="top" width="100%">
+        <br/>
+        <div class="c" id="TheTop">
+         <span id="pTitle">
+          <a href="http://iros2024-abudhabi.org" target="_blank">
+           <b>
+            2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
+           </b>
+          </a>
+          <br/>
+         </span>
+         <span id="pSubTitle">
+          <b>
+           October 14-18, 2024, Abu Dhabi, UAE
+          </b>
+         </span>
+         <br/>
+         <br/>
+        </div>
+        <div class="c" style="position: relative">
+         <a href="IROS24_ProgramAtAGlanceWeb.html">
+          Program at a Glance
+         </a>
+         <a href="IROS24_ContentListWeb_1.html">
+          Monday
+         </a>
+         <a href="IROS24_ContentListWeb_2.html">
+          Tuesday
+         </a>
+         <a href="IROS24_ContentListWeb_3.html">
+          Wednesday
+         </a>
+         <a href="IROS24_ContentListWeb_4.html">
+          Thursday
+         </a>
+         <a href="IROS24_ContentListWeb_5.html">
+          Friday
+         </a>
+         <a href="IROS24_AuthorIndexWeb.html">
+          Author Index
+         </a>
+         <a href="IROS24_KeywordIndexWeb.html">
+          Keyword Index
+         </a>
+        </div>
+        <div class="c">
+         <p style="color: gray">
+          Last updated on October 5, 2024. This conference program is tentative and subject to change
+         </p>
+        </div>
+        <div class="c">
+         <h3>
+          Technical Program for Monday October 14, 2024
+         </h3>
+        </div>
+        <p class="c">
+        </p>
+        <div class="c">
+         <span style="color:gray ">
+          To show or hide the keywords and abstract (text summary) of a paper (if available), click on the paper title
+         </span>
+         <br/>
+         <a href="javascript:openAllAbstracts()" title="Click to open all abstracts">
+          Open all abstracts
+         </a>
+         <a href="javascript:closeAllAbstracts()" title="Click to close all abstracts">
+          Close all abstracts
+         </a>
+        </div>
+        <div class="c">
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt1">
+             <b>
+              MoWMT1
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 1
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt1" title="Click to go to the Program at a Glance">
+             <b>
+              Foundations of Interaction Control for Contact Robots (part I): Interaction
+              <br/>
+              Control in Humans and with Robots
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Tutorial
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt1_01">
+             09:00-13:00, Paper MoWMT1.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Foundations of Interaction Control for Contact Robots (part I): Interaction Control in Humans and with Robots
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#102286" title="Click to go to the Author Index">
+             Burdet, Etienne
+            </a>
+           </td>
+           <td class="r">
+            imperial college london
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#108317" title="Click to go to the Author Index">
+             Haddadin, Sami
+            </a>
+           </td>
+           <td class="r">
+            Technical University of Munich
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#292159" title="Click to go to the Author Index">
+             Swikir, Abdalla
+            </a>
+           </td>
+           <td class="r">
+            Technical University of Munich
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#180824" title="Click to go to the Author Index">
+             Shahriari, Erfan
+            </a>
+           </td>
+           <td class="r">
+            Technical University of Munich
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt2">
+             <b>
+              MoWMT2
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 2
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt2" title="Click to go to the Program at a Glance">
+             <b>
+              Real-World Challenges in Multi-Robot Cooperation
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt2_01">
+             09:00-13:00, Paper MoWMT2.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Real-World Challenges in Multi-Robot Cooperation
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#275356" title="Click to go to the Author Index">
+             Marino, Antonio
+            </a>
+           </td>
+           <td class="r">
+            University of Rennes
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#285982" title="Click to go to the Author Index">
+             Restrepo, Esteban
+            </a>
+           </td>
+           <td class="r">
+            CNRS, INRIA Rennes – Bretagne Atlantique
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#103169" title="Click to go to the Author Index">
+             Robuffo Giordano, Paolo
+            </a>
+           </td>
+           <td class="r">
+            IRISA CNRS UMR6074
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#103663" title="Click to go to the Author Index">
+             Kim, H. Jin
+            </a>
+           </td>
+           <td class="r">
+            Seoul National University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt3">
+             <b>
+              MoWMT3
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 3
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt3" title="Click to go to the Program at a Glance">
+             <b>
+              Multi-Robot Path Planning: Heuristic Search Meets Reinforcement Learning
+              <br/>
+              (Tutorial)
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Tutorial
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt3_01">
+             09:00-13:00, Paper MoWMT3.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Multi-Robot Path Planning: Heuristic Search Meets Reinforcement Learning (Tutorial)
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#226181" title="Click to go to the Author Index">
+             Yakovlev, Konstantin
+            </a>
+           </td>
+           <td class="r">
+            Federal Research Center for Computer Science and Control of Russian Academy of Sciences
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#294604" title="Click to go to the Author Index">
+             Panov, Aleksandr
+            </a>
+           </td>
+           <td class="r">
+            AIRI
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt4">
+             <b>
+              MoWMT4
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 4
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt4" title="Click to go to the Program at a Glance">
+             <b>
+              ML in Autonomous Systems and Mobile Robots: Security and Privacy Issues for
+              <br/>
+              ML
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Tutorial
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt4_01">
+             09:00-13:00, Paper MoWMT4.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             ML in Autonomous Systems and Mobile Robots: Security and Privacy Issues for ML
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#299310" title="Click to go to the Author Index">
+             Shafique, Muhammad
+            </a>
+           </td>
+           <td class="r">
+            New York University Abu Dhabi
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#397408" title="Click to go to the Author Index">
+             Ouni, Bassem
+            </a>
+           </td>
+           <td class="r">
+            Technology Innovation Institute
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt5">
+             <b>
+              MoWMT5
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 5
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt5" title="Click to go to the Program at a Glance">
+             <b>
+              From Hover to Horizon: Mastering Drone Control in MATLAB
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Tutorial
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt5_01">
+             09:00-13:00, Paper MoWMT5.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             From Hover to Horizon: Mastering Drone Control in MATLAB
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#142341" title="Click to go to the Author Index">
+             Lim, YJ (Yi-Je)
+            </a>
+           </td>
+           <td class="r">
+            MathWorks
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt6">
+             <b>
+              MoWMT6
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 6
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt6" title="Click to go to the Program at a Glance">
+             <b>
+              Maritime Heterogeneous Unmanned Robotic Systems
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt6_01">
+             09:00-13:00, Paper MoWMT6.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Maritime Heterogeneous Unmanned Robotic Systems
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#360178" title="Click to go to the Author Index">
+             Seneviratne, Lakmal
+            </a>
+           </td>
+           <td class="r">
+            Khalifa University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#237410" title="Click to go to the Author Index">
+             Lin, Defu
+            </a>
+           </td>
+           <td class="r">
+            Beijing Institute of Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#104593" title="Click to go to the Author Index">
+             Shim, David Hyunchul
+            </a>
+           </td>
+           <td class="r">
+            KAIST
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#216235" title="Click to go to the Author Index">
+             He, Shaoming
+            </a>
+           </td>
+           <td class="r">
+            Beijing Institute of Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#174021" title="Click to go to the Author Index">
+             Hussain, Irfan
+            </a>
+           </td>
+           <td class="r">
+            Khalifa University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt7">
+             <b>
+              MoWMT7
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 7
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt7" title="Click to go to the Program at a Glance">
+             <b>
+              Agricultural Robotics for a Sustainable Future
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt7_01">
+             09:00-13:00, Paper MoWMT7.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Agricultural Robotics for a Sustainable Future
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#293495" title="Click to go to the Author Index">
+             Sivakumar, Arun Narenthiran
+            </a>
+           </td>
+           <td class="r">
+            University of Illinois at Urbana Champaign
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#182532" title="Click to go to the Author Index">
+             Uppalapati, Naveen Kumar
+            </a>
+           </td>
+           <td class="r">
+            University of Illinois at Urbana-Champaign
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#206700" title="Click to go to the Author Index">
+             Mishra, Anand Kumar
+            </a>
+           </td>
+           <td class="r">
+            Cornell University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#193502" title="Click to go to the Author Index">
+             Popovic, Marija
+            </a>
+           </td>
+           <td class="r">
+            TU Delft
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#133090" title="Click to go to the Author Index">
+             Chowdhary, Girish
+            </a>
+           </td>
+           <td class="r">
+            University of Illinois at Urbana Champaign
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#151228" title="Click to go to the Author Index">
+             Krishnan, Girish
+            </a>
+           </td>
+           <td class="r">
+            University of Illinois Urbana Champaign
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#172563" title="Click to go to the Author Index">
+             Shepherd, Robert
+            </a>
+           </td>
+           <td class="r">
+            Cornell University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt8">
+             <b>
+              MoWMT8
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 8
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt8" title="Click to go to the Program at a Glance">
+             <b>
+              XR-ROB 2024 - Horizons of an Extended Robotics Reality - a Converging
+              <br/>
+              Future of XR and Robotics
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt8_01">
+             09:00-13:00, Paper MoWMT8.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             XR-ROB 2024 - Horizons of an Extended Robotics Reality - a Converging Future of XR and Robotics
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#112168" title="Click to go to the Author Index">
+             Deshpande, Nikhil
+            </a>
+           </td>
+           <td class="r">
+            University of Nottingham
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#145374" title="Click to go to the Author Index">
+             Delmerico, Jeffrey
+            </a>
+           </td>
+           <td class="r">
+            Microsoft
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#130054" title="Click to go to the Author Index">
+             Ben Amor, Heni
+            </a>
+           </td>
+           <td class="r">
+            Arizona State University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#299620" title="Click to go to the Author Index">
+             Kato, Fumihiro
+            </a>
+           </td>
+           <td class="r">
+            Waseda university
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#143883" title="Click to go to the Author Index">
+             Kucukyilmaz, Ayse
+            </a>
+           </td>
+           <td class="r">
+            University of Nottingham
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#230625" title="Click to go to the Author Index">
+             Hedayati, Hooman
+            </a>
+           </td>
+           <td class="r">
+            Kyoto University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#280205" title="Click to go to the Author Index">
+             Al-Sada, Mohammed
+            </a>
+           </td>
+           <td class="r">
+            Waseda University, Qatar University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt9">
+             <b>
+              MoWMT9
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 9
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt9" title="Click to go to the Program at a Glance">
+             <b>
+              The Grand Challenge of Cybernetic Avatars: Dreams and Facts
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt9_01">
+             09:00-13:00, Paper MoWMT9.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             The Grand Challenge of Cybernetic Avatars: Dreams and Facts
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#101694" title="Click to go to the Author Index">
+             Hagita, Norihiro
+            </a>
+           </td>
+           <td class="r">
+            ATR
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#400631" title="Click to go to the Author Index">
+             AlQama, Khalifa
+            </a>
+           </td>
+           <td class="r">
+            Dubai Future Labs
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#254682" title="Click to go to the Author Index">
+             Doi, Miwako
+            </a>
+           </td>
+           <td class="r">
+            NAIST/NICT
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#101596" title="Click to go to the Author Index">
+             Ishiguro, Hiroshi
+            </a>
+           </td>
+           <td class="r">
+            Osaka University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#101886" title="Click to go to the Author Index">
+             Menciassi, Arianna
+            </a>
+           </td>
+           <td class="r">
+            Scuola Superiore Sant'Anna - SSSA
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#101839" title="Click to go to the Author Index">
+             Dario, Paolo
+            </a>
+           </td>
+           <td class="r">
+            Scuola Superiore Sant'Anna
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt10">
+             <b>
+              MoWMT10
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 10
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt10" title="Click to go to the Program at a Glance">
+             <b>
+              3rd Workshop on Mobile Manipulation and Embodied Intelligence:
+              <br/>
+              Generalization Challenges for Real-World Deployment
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt10_01">
+             09:00-13:00, Paper MoWMT10.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             3rd Workshop on Mobile Manipulation and Embodied Intelligence: Generalization Challenges for Real-World Deployment
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#180049" title="Click to go to the Author Index">
+             Muthusamy, Rajkumar
+            </a>
+           </td>
+           <td class="r">
+            Dubai Future Foundation
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#106309" title="Click to go to the Author Index">
+             Taha, Tarek
+            </a>
+           </td>
+           <td class="r">
+            Dubai Future Labs
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#101839" title="Click to go to the Author Index">
+             Dario, Paolo
+            </a>
+           </td>
+           <td class="r">
+            Scuola Superiore Sant'Anna
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#168538" title="Click to go to the Author Index">
+             Chalvatzaki, Georgia
+            </a>
+           </td>
+           <td class="r">
+            Technische Universität Darmstadt
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#102257" title="Click to go to the Author Index">
+             Harada, Kensuke
+            </a>
+           </td>
+           <td class="r">
+            Osaka University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#214763" title="Click to go to the Author Index">
+             Jiang, Yuqian
+            </a>
+           </td>
+           <td class="r">
+            University of Texas at Austin
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#142950" title="Click to go to the Author Index">
+             Martín-Martín, Roberto
+            </a>
+           </td>
+           <td class="r">
+            University of Texas at Austin
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#109858" title="Click to go to the Author Index">
+             Wan, Weiwei
+            </a>
+           </td>
+           <td class="r">
+            Osaka University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt11">
+             <b>
+              MoWMT11
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 11
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt11" title="Click to go to the Program at a Glance">
+             <b>
+              Nonverbal Cues for Human-Robot Cooperative Intelligence
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt11_01">
+             09:00-13:00, Paper MoWMT11.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Nonverbal Cues for Human-Robot Cooperative Intelligence
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#164508" title="Click to go to the Author Index">
+             Chew, Jouh Yeong
+            </a>
+           </td>
+           <td class="r">
+            Honda Research Institute Japan
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#380410" title="Click to go to the Author Index">
+             Bulling, Andreas
+            </a>
+           </td>
+           <td class="r">
+            University of Stuttgart
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#100109" title="Click to go to the Author Index">
+             Kurabayashi, Daisuke
+            </a>
+           </td>
+           <td class="r">
+            Tokyo Institute of Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#103117" title="Click to go to the Author Index">
+             Yoshida, Eiichi
+            </a>
+           </td>
+           <td class="r">
+            Faculty of Advanced Engineering, Tokyo University of Science
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#115856" title="Click to go to the Author Index">
+             Leite, Iolanda
+            </a>
+           </td>
+           <td class="r">
+            KTH Royal Institute of Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#340298" title="Click to go to the Author Index">
+             Tang, Siyu
+            </a>
+           </td>
+           <td class="r">
+            ETH Zürich
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#380409" title="Click to go to the Author Index">
+             Zhang, Xucong
+            </a>
+           </td>
+           <td class="r">
+            Delft University of Technology
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt12">
+             <b>
+              MoWMT12
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 12
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt12" title="Click to go to the Program at a Glance">
+             <b>
+              3D/4D Printing and Smart Materials for Sustainable Soft Robotics
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt12_01">
+             09:00-13:00, Paper MoWMT12.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             3D/4D Printing and Smart Materials for Sustainable Soft Robotics
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#121997" title="Click to go to the Author Index">
+             Wang, Zhongkui
+            </a>
+           </td>
+           <td class="r">
+            Ritsumeikan University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#232813" title="Click to go to the Author Index">
+             Qi, Qiukai
+            </a>
+           </td>
+           <td class="r">
+            University of Bristol
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#194575" title="Click to go to the Author Index">
+             Zhang, Hongying
+            </a>
+           </td>
+           <td class="r">
+            National University of Singapore
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt13">
+             <b>
+              MoWMT13
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 13
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt13" title="Click to go to the Program at a Glance">
+             <b>
+              Interactive Robots and AI for Healthcare
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt13_01">
+             09:00-13:00, Paper MoWMT13.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Interactive Robots and AI for Healthcare
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#172614" title="Click to go to the Author Index">
+             Schneider, Sebastian
+            </a>
+           </td>
+           <td class="r">
+            University of Twente
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#176179" title="Click to go to the Author Index">
+             Vollmer, Anna-Lisa
+            </a>
+           </td>
+           <td class="r">
+            Bielefeld University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#153239" title="Click to go to the Author Index">
+             Cifuentes, Carlos A.
+            </a>
+           </td>
+           <td class="r">
+            University of the West of England, Bristol
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#381625" title="Click to go to the Author Index">
+             Munera, Marcela
+            </a>
+           </td>
+           <td class="r">
+            University of West England
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt14">
+             <b>
+              MoWMT14
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 14
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt14" title="Click to go to the Program at a Glance">
+             <b>
+              Advanced Robotics and Visualization for micrO Surgery. (ARVOS-IROS 2024)
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt14_01">
+             09:00-13:00, Paper MoWMT14.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Advanced Robotics and Visualization for micrO Surgery. (ARVOS-IROS 2024)
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#160079" title="Click to go to the Author Index">
+             Nasseri, M. Ali
+            </a>
+           </td>
+           <td class="r">
+            Technische Universitaet Muenchen
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#141354" title="Click to go to the Author Index">
+             Mathis-Ullrich, Franziska
+            </a>
+           </td>
+           <td class="r">
+            Friedrich-Alexander-University Erlangen-Nurnberg (FAU)
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#114412" title="Click to go to the Author Index">
+             Bergeles, Christos
+            </a>
+           </td>
+           <td class="r">
+            King's College London
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#127660" title="Click to go to the Author Index">
+             Kwok, Ka-Wai
+            </a>
+           </td>
+           <td class="r">
+            The Chinese University of Hong Kong
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#380273" title="Click to go to the Author Index">
+             Faridpooya, Kourosh
+            </a>
+           </td>
+           <td class="r">
+            Rotterdam Eye Hospital
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#108549" title="Click to go to the Author Index">
+             Iordachita, Ioan Iulian
+            </a>
+           </td>
+           <td class="r">
+            Johns Hopkins University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt15">
+             <b>
+              MoWMT15
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 15
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt15" title="Click to go to the Program at a Glance">
+             <b>
+              Brain Over Brawn: Workshop on Label Efficient Learning Paradigms for
+              <br/>
+              Autonomy at Scale
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt15_01">
+             09:00-13:00, Paper MoWMT15.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Brain Over Brawn: Workshop on Label Efficient Learning Paradigms for Autonomy at Scale
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#380275" title="Click to go to the Author Index">
+             Autio Mitchell, Nicholas
+            </a>
+           </td>
+           <td class="r">
+            University of Freiburg
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#244985" title="Click to go to the Author Index">
+             Bursuc, Andrei
+            </a>
+           </td>
+           <td class="r">
+            Valeo
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#205661" title="Click to go to the Author Index">
+             Cattaneo, Daniele
+            </a>
+           </td>
+           <td class="r">
+            University of Freiburg
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#380269" title="Click to go to the Author Index">
+             Doughty, Hazel
+            </a>
+           </td>
+           <td class="r">
+            Leiden University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#236626" title="Click to go to the Author Index">
+             Gosala, Nikhil
+            </a>
+           </td>
+           <td class="r">
+            University of Freiburg
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#274286" title="Click to go to the Author Index">
+             Petek, Kürsat
+            </a>
+           </td>
+           <td class="r">
+            University of Freiburg
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#180427" title="Click to go to the Author Index">
+             Skinner, Katherine
+            </a>
+           </td>
+           <td class="r">
+            University of Michigan
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#216561" title="Click to go to the Author Index">
+             Tulbure, Andreea Roxana
+            </a>
+           </td>
+           <td class="r">
+            ETH
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#160427" title="Click to go to the Author Index">
+             Valada, Abhinav
+            </a>
+           </td>
+           <td class="r">
+            University of Freiburg
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt16">
+             <b>
+              MoWMT16
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 16
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt16" title="Click to go to the Program at a Glance">
+             <b>
+              The Evolving Landscape of Haptic Technologies: Research Challenges and
+              <br/>
+              Industry Needs
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt16_01">
+             09:00-13:00, Paper MoWMT16.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             The Evolving Landscape of Haptic Technologies: Research Challenges and Industry Needs
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#192013" title="Click to go to the Author Index">
+             Afzal, Hafiz Malik Naqash
+            </a>
+           </td>
+           <td class="r">
+            UNSW Sydney
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#174021" title="Click to go to the Author Index">
+             Hussain, Irfan
+            </a>
+           </td>
+           <td class="r">
+            Khalifa University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#360178" title="Click to go to the Author Index">
+             Seneviratne, Lakmal
+            </a>
+           </td>
+           <td class="r">
+            Khalifa University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#124488" title="Click to go to the Author Index">
+             Wang, Dangxiao
+            </a>
+           </td>
+           <td class="r">
+            Beihang University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#100728" title="Click to go to the Author Index">
+             Prattichizzo, Domenico
+            </a>
+           </td>
+           <td class="r">
+            Università di Siena
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#113783" title="Click to go to the Author Index">
+             Khatib, Oussama
+            </a>
+           </td>
+           <td class="r">
+            Stanford University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt17">
+             <b>
+              MoWMT17
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 17
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt17" title="Click to go to the Program at a Glance">
+             <b>
+              AI Meets Autonomy: Vision, Language, and Autonomous Systems
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt17_01">
+             09:00-13:00, Paper MoWMT17.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             AI Meets Autonomy: Vision, Language, and Autonomous Systems
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#171185" title="Click to go to the Author Index">
+             Wang, Wenshan
+            </a>
+           </td>
+           <td class="r">
+            Carnegie Mellon University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#125279" title="Click to go to the Author Index">
+             Zhang, Ji
+            </a>
+           </td>
+           <td class="r">
+            Carnegie Mellon University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#400315" title="Click to go to the Author Index">
+             Zhang, Haochen
+            </a>
+           </td>
+           <td class="r">
+            Carnegie Mellon University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#226965" title="Click to go to the Author Index">
+             Zhao, Shibo
+            </a>
+           </td>
+           <td class="r">
+            Carnegie Mellon University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#111618" title="Click to go to the Author Index">
+             Gupta, Abhinav
+            </a>
+           </td>
+           <td class="r">
+            Carnegie Mellon University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#134179" title="Click to go to the Author Index">
+             Ramanan, Deva
+            </a>
+           </td>
+           <td class="r">
+            Carnegie Mellon University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#205686" title="Click to go to the Author Index">
+             Zeng, Andy
+            </a>
+           </td>
+           <td class="r">
+            Google DeepMind
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#126962" title="Click to go to the Author Index">
+             Kim, Ayoung
+            </a>
+           </td>
+           <td class="r">
+            Seoul National University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#103595" title="Click to go to the Author Index">
+             Nieto-Granda, Carlos
+            </a>
+           </td>
+           <td class="r">
+            DEVCOM U.S. Army Research Laboratory
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowmt18">
+             <b>
+              MoWMT18
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 18
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowmt18" title="Click to go to the Program at a Glance">
+             <b>
+              Collecting, Managing and Utilizing Data through Embodied Robots
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowmt18_01">
+             09:00-13:00, Paper MoWMT18.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Collecting, Managing and Utilizing Data through Embodied Robots
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#229949" title="Click to go to the Author Index">
+             Saito, Namiko
+            </a>
+           </td>
+           <td class="r">
+            the University of Edinburgh
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#280205" title="Click to go to the Author Index">
+             Al-Sada, Mohammed
+            </a>
+           </td>
+           <td class="r">
+            Waseda University, Qatar University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#171243" title="Click to go to the Author Index">
+             Shigemune, Hiroki
+            </a>
+           </td>
+           <td class="r">
+            Shibaura Institute of Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#190010" title="Click to go to the Author Index">
+             Tsumura, Ryosuke
+            </a>
+           </td>
+           <td class="r">
+            National Institute of Advanced Industrial Science and Technology（AIST）
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#184706" title="Click to go to the Author Index">
+             Funabashi, Satoshi
+            </a>
+           </td>
+           <td class="r">
+            Waseda University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#190668" title="Click to go to the Author Index">
+             Miyake, Tamon
+            </a>
+           </td>
+           <td class="r">
+            Waseda University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#101828" title="Click to go to the Author Index">
+             Ogata, Tetsuya
+            </a>
+           </td>
+           <td class="r">
+            Waseda University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="molu_br">
+             <b>
+              MoLU_BR
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Poster Area
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#molu_br" title="Click to go to the Program at a Glance">
+             <b>
+              Lunch (Mon)
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Session
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt1">
+             <b>
+              MoWPT1
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 1
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt1" title="Click to go to the Program at a Glance">
+             <b>
+              Foundations of Interaction Control for Contact Robots (part II):
+              <br/>
+              Energy-Based Methods and Interactive Learning
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Tutorial
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt1_01">
+             14:00-18:00, Paper MoWPT1.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Foundations of Interaction Control for Contact Robots (part II): Energy-Based Methods and Interactive Learning
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#108317" title="Click to go to the Author Index">
+             Haddadin, Sami
+            </a>
+           </td>
+           <td class="r">
+            Technical University of Munich
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#102286" title="Click to go to the Author Index">
+             Burdet, Etienne
+            </a>
+           </td>
+           <td class="r">
+            imperial college london
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#292159" title="Click to go to the Author Index">
+             Swikir, Abdalla
+            </a>
+           </td>
+           <td class="r">
+            Technical University of Munich
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#180824" title="Click to go to the Author Index">
+             Shahriari, Erfan
+            </a>
+           </td>
+           <td class="r">
+            Technical University of Munich
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt2">
+             <b>
+              MoWPT2
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 2
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt2" title="Click to go to the Program at a Glance">
+             <b>
+              Long-Term Perception for Autonomy in Dynamic Human-Centric Environments:
+              <br/>
+              What Do Robots Need?
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt2_01">
+             14:00-18:00, Paper MoWPT2.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Long-Term Perception for Autonomy in Dynamic Human-Centric Environments: What Do Robots Need?
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#238677" title="Click to go to the Author Index">
+             Schmid, Lukas M.
+            </a>
+           </td>
+           <td class="r">
+            Massachusetts Institute of Technology (MIT)
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#301042" title="Click to go to the Author Index">
+             Talak, Rajat
+            </a>
+           </td>
+           <td class="r">
+            MIT
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#312444" title="Click to go to the Author Index">
+             Zheng, Jianhao
+            </a>
+           </td>
+           <td class="r">
+            Stanford University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#180315" title="Click to go to the Author Index">
+             Andersson, Olov
+            </a>
+           </td>
+           <td class="r">
+            KTH Royal Institute
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#151594" title="Click to go to the Author Index">
+             Oleynikova, Helen
+            </a>
+           </td>
+           <td class="r">
+            ETH Zurich
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#142503" title="Click to go to the Author Index">
+             Park, Jong Jin
+            </a>
+           </td>
+           <td class="r">
+            Amazon Lab126
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#219301" title="Click to go to the Author Index">
+             Wald, Johanna
+            </a>
+           </td>
+           <td class="r">
+            Google
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#100088" title="Click to go to the Author Index">
+             Siegwart, Roland
+            </a>
+           </td>
+           <td class="r">
+            ETH Zurich
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#123306" title="Click to go to the Author Index">
+             Tombari, Federico
+            </a>
+           </td>
+           <td class="r">
+            Technische Universität München
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#119426" title="Click to go to the Author Index">
+             Carlone, Luca
+            </a>
+           </td>
+           <td class="r">
+            Massachusetts Institute of Technology
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt3">
+             <b>
+              MoWPT3
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 3
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt3" title="Click to go to the Program at a Glance">
+             <b>
+              Low-Code Design and Simulation of Robotics Capabilities
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Tutorial
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt3_01">
+             14:00-18:00, Paper MoWPT3.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Low-Code Design and Simulation of Robotics Capabilities
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#406728" title="Click to go to the Author Index">
+             Gadaleta, Francesco
+            </a>
+           </td>
+           <td class="r">
+            Intrepid AI
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#406729" title="Click to go to the Author Index">
+             Kocharin, Alexander
+            </a>
+           </td>
+           <td class="r">
+            Intrepid AI
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt4">
+             <b>
+              MoWPT4
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 4
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt4" title="Click to go to the Program at a Glance">
+             <b>
+              Case Studies of Reproducibility and Benchmarking in Robotic Research
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt4_01">
+             14:00-18:00, Paper MoWPT4.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             R-, R-, Reply Articles, What Are They? Case Studies of Reproducibility and Benchmarking in Robotic Research
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#106001" title="Click to go to the Author Index">
+             Bonsignorio, Fabio
+            </a>
+           </td>
+           <td class="r">
+            FER, University of Zagreb
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#159678" title="Click to go to the Author Index">
+             Faragasso, Angela
+            </a>
+           </td>
+           <td class="r">
+            Finger Vision Inc.
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#108955" title="Click to go to the Author Index">
+             Zereik, Enrica
+            </a>
+           </td>
+           <td class="r">
+            CNR - National Research Council
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#102932" title="Click to go to the Author Index">
+             Cervera, Enric
+            </a>
+           </td>
+           <td class="r">
+            Jaume-I University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#101679" title="Click to go to the Author Index">
+             Krovi, Venkat
+            </a>
+           </td>
+           <td class="r">
+            Clemson University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#129520" title="Click to go to the Author Index">
+             Mangharam, Rahul
+            </a>
+           </td>
+           <td class="r">
+            University of Pennsylvania
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#146406" title="Click to go to the Author Index">
+             Yamamoto, Tomoyuki
+            </a>
+           </td>
+           <td class="r">
+            ROBOCIP
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#107415" title="Click to go to the Author Index">
+             Redfield, Signe
+            </a>
+           </td>
+           <td class="r">
+            Naval Research Laboratory
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#155614" title="Click to go to the Author Index">
+             del Pobil, Angel P.
+            </a>
+           </td>
+           <td class="r">
+            Jaume-I University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt5">
+             <b>
+              MoWPT5
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 5
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt5" title="Click to go to the Program at a Glance">
+             <b>
+              Unlocking the Potential: Innovations in Drone-Assisted Infrastructure
+              <br/>
+              Inspection and Maintenance
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt5_01">
+             14:00-18:00, Paper MoWPT5.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Unlocking the Potential: Innovations in Drone-Assisted Infrastructure Inspection and Maintenance
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#268678" title="Click to go to the Author Index">
+             Ebeid, Emad
+            </a>
+           </td>
+           <td class="r">
+            University of Southern Denmark
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt6">
+             <b>
+              MoWPT6
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 6
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt6" title="Click to go to the Program at a Glance">
+             <b>
+              Autonomous Robotic Systems in Aquaculture: Research Challenges and Industry
+              <br/>
+              Needs
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt6_01">
+             14:00-18:00, Paper MoWPT6.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Autonomous Robotic Systems in Aquaculture: Research Challenges and Industry Needs
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#138305" title="Click to go to the Author Index">
+             Kelasidi, Eleni
+            </a>
+           </td>
+           <td class="r">
+            SINTEF Ocean
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#123944" title="Click to go to the Author Index">
+             Triantafyllou, Michael
+            </a>
+           </td>
+           <td class="r">
+            MIT
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#379062" title="Click to go to the Author Index">
+             Føre, Martin
+            </a>
+           </td>
+           <td class="r">
+            NTNU
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#380199" title="Click to go to the Author Index">
+             Sapsis, Themistoklis
+            </a>
+           </td>
+           <td class="r">
+            MIT
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt7">
+             <b>
+              MoWPT7
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 7
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt7" title="Click to go to the Program at a Glance">
+             <b>
+              AI and Robotics for Future Farming
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt7_01">
+             14:00-18:00, Paper MoWPT7.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             AI and Robotics for Future Farming
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#184027" title="Click to go to the Author Index">
+             Qiao, Yongliang
+            </a>
+           </td>
+           <td class="r">
+            University of Adelaide
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#187728" title="Click to go to the Author Index">
+             Karkee, Manoj
+            </a>
+           </td>
+           <td class="r">
+            Washington State University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#110174" title="Click to go to the Author Index">
+             Alempijevic, Alen
+            </a>
+           </td>
+           <td class="r">
+            University of Technology Sydney
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#400683" title="Click to go to the Author Index">
+             Elssawy, Wessam Essam
+            </a>
+           </td>
+           <td class="r">
+            Agricultural Engineering Research Institute
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt8">
+             <b>
+              MoWPT8
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 8
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt8" title="Click to go to the Program at a Glance">
+             <b>
+              Multisensory Transparency-Augmented Teleoperation in Extreme Environments
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt8_01">
+             14:00-18:00, Paper MoWPT8.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Multisensory Transparency-Augmented Teleoperation in Extreme Environments
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#237215" title="Click to go to the Author Index">
+             Wang, Ziwei
+            </a>
+           </td>
+           <td class="r">
+            Lancaster University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#159678" title="Click to go to the Author Index">
+             Faragasso, Angela
+            </a>
+           </td>
+           <td class="r">
+            Finger Vision Inc.
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#217682" title="Click to go to the Author Index">
+             Xiao, Bo
+            </a>
+           </td>
+           <td class="r">
+            Imperial College London
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#360178" title="Click to go to the Author Index">
+             Seneviratne, Lakmal
+            </a>
+           </td>
+           <td class="r">
+            Khalifa University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#106691" title="Click to go to the Author Index">
+             Asama, Hajime
+            </a>
+           </td>
+           <td class="r">
+            The University of Tokyo
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt9">
+             <b>
+              MoWPT9
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 9
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt9" title="Click to go to the Program at a Glance">
+             <b>
+              The Grand Challenge of Cybernetic Avatars: Ethical and Social
+              <br/>
+              Sustainability
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt9_01">
+             14:00-18:00, Paper MoWPT9.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             The Grand Challenge of Cybernetic Avatars: Ethical and Social Sustainability
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#101839" title="Click to go to the Author Index">
+             Dario, Paolo
+            </a>
+           </td>
+           <td class="r">
+            Scuola Superiore Sant'Anna
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#400631" title="Click to go to the Author Index">
+             AlQama, Khalifa
+            </a>
+           </td>
+           <td class="r">
+            Dubai Future Labs
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#203329" title="Click to go to the Author Index">
+             Horikawa, Yukiko
+            </a>
+           </td>
+           <td class="r">
+            Advanced Telecommunications Research Institute International
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#400642" title="Click to go to the Author Index">
+             Pirni, Alberto
+            </a>
+           </td>
+           <td class="r">
+            Sant'Anna School of Advanced Studies
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#227548" title="Click to go to the Author Index">
+             Takahashi, Toshie
+            </a>
+           </td>
+           <td class="r">
+            Waseda University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt10">
+             <b>
+              MoWPT10
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 10
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt10" title="Click to go to the Program at a Glance">
+             <b>
+              ROMADO: 4th Workshop on RObotic MAnipulation of Deformable Objects: Beyond
+              <br/>
+              Traditional Approaches
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt10_01">
+             14:00-18:00, Paper MoWPT10.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             ROMADO: 4th Workshop on RObotic MAnipulation of Deformable Objects: Beyond Traditional Approaches
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#255415" title="Click to go to the Author Index">
+             Alkhatib, Mohammad
+            </a>
+           </td>
+           <td class="r">
+            Université Clermont Auvergne
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#202506" title="Click to go to the Author Index">
+             Seita, Daniel
+            </a>
+           </td>
+           <td class="r">
+            University of Southern California
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#190390" title="Click to go to the Author Index">
+             Awad, Mohammad I.
+            </a>
+           </td>
+           <td class="r">
+            Khalifa University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#105837" title="Click to go to the Author Index">
+             Mezouar, Youcef
+            </a>
+           </td>
+           <td class="r">
+            Clermont Auvergne INP - SIGMA Clermont
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#104126" title="Click to go to the Author Index">
+             Dune, Claire
+            </a>
+           </td>
+           <td class="r">
+            Université de Toulon
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#223043" title="Click to go to the Author Index">
+             Zhu, Jihong
+            </a>
+           </td>
+           <td class="r">
+            University of York
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#114026" title="Click to go to the Author Index">
+             Borràs Sol, Júlia
+            </a>
+           </td>
+           <td class="r">
+            Institut de Robòtica i Informàtica Industrial (CSIC-UPC)
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#204376" title="Click to go to the Author Index">
+             Koessler, Adrien
+            </a>
+           </td>
+           <td class="r">
+            University of Lorraine
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#266640" title="Click to go to the Author Index">
+             Nguyen Le, Tran
+            </a>
+           </td>
+           <td class="r">
+            Aalto University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#211191" title="Click to go to the Author Index">
+             Blanco-Mulero, David
+            </a>
+           </td>
+           <td class="r">
+            Institut de Robòtica i Informàtica Industrial, CSIC-UPC
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt11">
+             <b>
+              MoWPT11
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 11
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt11" title="Click to go to the Program at a Glance">
+             <b>
+              Trustworthy Human-Swarm Interaction
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt11_01">
+             14:00-18:00, Paper MoWPT11.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Trustworthy Human-Swarm Interaction
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#196426" title="Click to go to the Author Index">
+             Soorati, Mohammad D.
+            </a>
+           </td>
+           <td class="r">
+            University of Southampton
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#171200" title="Click to go to the Author Index">
+             Maior, Horia Alexandru
+            </a>
+           </td>
+           <td class="r">
+            University of Lincoln
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#277193" title="Click to go to the Author Index">
+             Abioye, Ayodeji Opeyemi
+            </a>
+           </td>
+           <td class="r">
+            University of Southampton
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#346113" title="Click to go to the Author Index">
+             Hunt, William
+            </a>
+           </td>
+           <td class="r">
+            University of Southampton
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#375969" title="Click to go to the Author Index">
+             Agunloye, Ayomide Oluwaseyi
+            </a>
+           </td>
+           <td class="r">
+            University of Southampton
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#400749" title="Click to go to the Author Index">
+             Landowska, Aleksandra
+            </a>
+           </td>
+           <td class="r">
+            University of Nottingham
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt12">
+             <b>
+              MoWPT12
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 12
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt12" title="Click to go to the Program at a Glance">
+             <b>
+              Self-Healing and Damage Resilient Soft Robots
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt12_01">
+             14:00-18:00, Paper MoWPT12.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Self-Healing and Damage Resilient Soft Robots
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#178528" title="Click to go to the Author Index">
+             Terryn, Seppe
+            </a>
+           </td>
+           <td class="r">
+            Vrije Universiteit Brussel (VUB)
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#129946" title="Click to go to the Author Index">
+             Monje, Concepción A.
+            </a>
+           </td>
+           <td class="r">
+            University Carlos III of Madrid
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#101955" title="Click to go to the Author Index">
+             Vanderborght, Bram
+            </a>
+           </td>
+           <td class="r">
+            Vrije Universiteit Brussel
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#276524" title="Click to go to the Author Index">
+             Mena López, Lisbeth Karina
+            </a>
+           </td>
+           <td class="r">
+            Universidad Carlos III de Madrid
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#309191" title="Click to go to the Author Index">
+             Kashef Tabrizian, Seyedreza
+            </a>
+           </td>
+           <td class="r">
+            Brubotics, Vrije Universiteit Brussel (VUB) and Imec
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt13">
+             <b>
+              MoWPT13
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 13
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt13" title="Click to go to the Program at a Glance">
+             <b>
+              2nd Workshop on Machine Learning in Medical Robotics: Bridging ML Theory
+              <br/>
+              and Clinical Frontiers
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt13_01">
+             14:00-18:00, Paper MoWPT13.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             2nd Workshop on Machine Learning in Medical Robotics: Bridging ML Theory and Clinical Frontiers
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#256953" title="Click to go to the Author Index">
+             Wu, Di
+            </a>
+           </td>
+           <td class="r">
+            KU Leuven
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#217684" title="Click to go to the Author Index">
+             Guo, Jing
+            </a>
+           </td>
+           <td class="r">
+            Guangdong University of Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#157389" title="Click to go to the Author Index">
+             Fichera, Loris
+            </a>
+           </td>
+           <td class="r">
+            Worcester Polytechnic Institute
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#190490" title="Click to go to the Author Index">
+             Alambeigi, Farshid
+            </a>
+           </td>
+           <td class="r">
+            University of Texas at Austin
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#286018" title="Click to go to the Author Index">
+             Zhang, Yao
+            </a>
+           </td>
+           <td class="r">
+            KU Leuven
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#137547" title="Click to go to the Author Index">
+             Yip, Michael C.
+            </a>
+           </td>
+           <td class="r">
+            University of California, San Diego
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt14">
+             <b>
+              MoWPT14
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 14
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt14" title="Click to go to the Program at a Glance">
+             <b>
+              Embodied Neuromorphic AI for Robotic Perception and Control
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt14_01">
+             14:00-18:00, Paper MoWPT14.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Embodied Neuromorphic AI for Robotic Perception and Control
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#342751" title="Click to go to the Author Index">
+             Zayer, Fakhreddine
+            </a>
+           </td>
+           <td class="r">
+            khalifa University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#299310" title="Click to go to the Author Index">
+             Shafique, Muhammad
+            </a>
+           </td>
+           <td class="r">
+            New York University Abu Dhabi
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#101631" title="Click to go to the Author Index">
+             Dias, Jorge
+            </a>
+           </td>
+           <td class="r">
+            Khalifa University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#297923" title="Click to go to the Author Index">
+             Marchisio, Alberto
+            </a>
+           </td>
+           <td class="r">
+            New York University Abu Dhabi
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#284827" title="Click to go to the Author Index">
+             De Masi, Giulia
+            </a>
+           </td>
+           <td class="r">
+            Khalifa University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt15">
+             <b>
+              MoWPT15
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 15
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt15" title="Click to go to the Program at a Glance">
+             <b>
+              Equivariant Robotics: The Role of Symmetry; across Perception, Estimation,
+              <br/>
+              and Control
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt15_01">
+             14:00-18:00, Paper MoWPT15.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             ‭Equivariant Robotics: The Role of Symmetry ‭Across Perception, Estimation, and Control
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#104342" title="Click to go to the Author Index">
+             Kumar, Vijay
+            </a>
+           </td>
+           <td class="r">
+            University of Pennsylvania
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#101818" title="Click to go to the Author Index">
+             Daniilidis, Kostas
+            </a>
+           </td>
+           <td class="r">
+            University of Pennsylvania
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#400747" title="Click to go to the Author Index">
+             Allen-Blanchette, Christine
+            </a>
+           </td>
+           <td class="r">
+            Princeton University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#241273" title="Click to go to the Author Index">
+             van Goor, Pieter
+            </a>
+           </td>
+           <td class="r">
+            University of Twente
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#400750" title="Click to go to the Author Index">
+             Wang, Rui
+            </a>
+           </td>
+           <td class="r">
+            Massachusetts Institute of Technology
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#208740" title="Click to go to the Author Index">
+             Welde, Jake
+            </a>
+           </td>
+           <td class="r">
+            University of Pennsylvania
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#338203" title="Click to go to the Author Index">
+             Chatzipantazis, Evangelos
+            </a>
+           </td>
+           <td class="r">
+            University of Pennsylvania
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#400703" title="Click to go to the Author Index">
+             Xu, Yinshuang
+            </a>
+           </td>
+           <td class="r">
+            University of Pennsylvania
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt16">
+             <b>
+              MoWPT16
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 16
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt16" title="Click to go to the Program at a Glance">
+             <b>
+              The Workshop and Competition on Multi-Robot Perception and Navigation
+              <br/>
+              Challenges in Logistics and Inspection Tasks
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt16_01">
+             14:00-18:00, Paper MoWPT16.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             The Workshop and Competition on Multi-Robot Perception and Navigation Challenges in Logistics and Inspection Tasks
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#210732" title="Click to go to the Author Index">
+             Nguyen, Thien-Minh
+            </a>
+           </td>
+           <td class="r">
+            Nanyang Technological University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#224101" title="Click to go to the Author Index">
+             Cao, Muqing
+            </a>
+           </td>
+           <td class="r">
+            Nanyang Technological University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#185927" title="Click to go to the Author Index">
+             Yuan, Shenghai
+            </a>
+           </td>
+           <td class="r">
+            NANYANG TECHNOLOGICAL UNIVERSITY
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#171587" title="Click to go to the Author Index">
+             Chen, Ben M.
+            </a>
+           </td>
+           <td class="r">
+            Chinese University of Hong Kong
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#115410" title="Click to go to the Author Index">
+             Xie, Lihua
+            </a>
+           </td>
+           <td class="r">
+            NanyangTechnological University
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt17">
+             <b>
+              MoWPT17
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 17
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt17" title="Click to go to the Program at a Glance">
+             <b>
+              Standing the Test of Time: Retrospective and Future of World
+              <br/>
+              Representations for Lifelong Robotics
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt17_01">
+             14:00-18:00, Paper MoWPT17.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Standing the Test of Time: Retrospective and Future of World Representations for Lifelong Robotics
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#331390" title="Click to go to the Author Index">
+             Saavedra, Miguel
+            </a>
+           </td>
+           <td class="r">
+            Université de Montréal
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#235840" title="Click to go to the Author Index">
+             Lajoie, Pierre-Yves
+            </a>
+           </td>
+           <td class="r">
+            École Polytechnique de Montréal
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#195481" title="Click to go to the Author Index">
+             Nashed, Samer
+            </a>
+           </td>
+           <td class="r">
+            University of Massachusetts Amherst
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#187608" title="Click to go to the Author Index">
+             Romero-Cano, Victor
+            </a>
+           </td>
+           <td class="r">
+            Cardiff University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#136946" title="Click to go to the Author Index">
+             Paull, Liam
+            </a>
+           </td>
+           <td class="r">
+            Université de Montréal
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#133857" title="Click to go to the Author Index">
+             Meghjani, Malika
+            </a>
+           </td>
+           <td class="r">
+            Singapore University of Technology and Design
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#107631" title="Click to go to the Author Index">
+             Leonard, John
+            </a>
+           </td>
+           <td class="r">
+            MIT
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt18">
+             <b>
+              MoWPT18
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 18
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt18" title="Click to go to the Program at a Glance">
+             <b>
+              Environment Dynamics Matters: Embodied Navigation to Movable Objects
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Workshop
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt18_01">
+             14:00-18:00, Paper MoWPT18.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             Environment Dynamics Matters: Embodied Navigation to Movable Objects
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#101930" title="Click to go to the Author Index">
+             Liu, Huaping
+            </a>
+           </td>
+           <td class="r">
+            Tsinghua University
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#101988" title="Click to go to the Author Index">
+             Hsu, David
+            </a>
+           </td>
+           <td class="r">
+            National University of Singapore
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#171898" title="Click to go to the Author Index">
+             Guo, Di
+            </a>
+           </td>
+           <td class="r">
+            Beijing University of Posts and Telecommunications
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#180419" title="Click to go to the Author Index">
+             Gupta, Abhishek
+            </a>
+           </td>
+           <td class="r">
+            University of Washington
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#192738" title="Click to go to the Author Index">
+             Kong, Tao
+            </a>
+           </td>
+           <td class="r">
+            ByteDance
+           </td>
+          </tr>
+         </table>
+         <table class="trk">
+          <tr>
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td>
+            <a name="mowpt19">
+             <b>
+              MoWPT19
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Room 19
+           </td>
+          </tr>
+          <tr class="sHdr">
+           <td nowrap="">
+            <a href="IROS24_ProgramAtAGlanceWeb.html#mowpt19" title="Click to go to the Program at a Glance">
+             <b>
+              KOMPASS: An Event-Driven Advanced Navigation Stack for Autonomous Mobile
+              <br/>
+              Robots
+             </b>
+            </a>
+           </td>
+           <td class="r">
+            Tutorial
+           </td>
+          </tr>
+          <tr style="line-height: 0.2em">
+           <td colspan="2">
+           </td>
+          </tr>
+          <tr class="pHdr">
+           <td valign="bottom">
+            <a name="mowpt19_01">
+             14:00-18:00, Paper MoWPT19.1
+            </a>
+           </td>
+           <td class="r">
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2">
+            <span class="pTtl">
+             KOMPASS: An Event-Driven Advanced Navigation Stack for Autonomous Mobile Robots
+            </span>
+           </td>
+          </tr>
+          <tr>
+           <td colspan="2" style="height: 2px">
+            <hr class="thin"/>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#107673" title="Click to go to the Author Index">
+             Spalanzani, Anne
+            </a>
+           </td>
+           <td class="r">
+            INRIA / Univ. Grenoble Alpes
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#266553" title="Click to go to the Author Index">
+             Kabtoul, Maria
+            </a>
+           </td>
+           <td class="r">
+            Univ. Grenoble Alpes, Inria
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <a href="IROS24_AuthorIndexWeb.html#400690" title="Click to go to the Author Index">
+             Rasheed, Abdullah Haroon
+            </a>
+           </td>
+           <td class="r">
+            Inria, Automatika Robotics
+           </td>
+          </tr>
+         </table>
+        </div>
+        <p>
+         <br/>
+        </p>
+        <p>
+         <br/>
+        </p>
+        <p>
+         <p>
+         </p>
+        </p>
+       </td>
+       <td height="100%" style="background-color:#9F7F59;" width="5">
+       </td>
+      </tr>
+      <tr>
+       <td alt="" border="0" colspan="4" height="16" style="background-color:#9F7F59;" valign="center" width="100%">
+        <p align="center">
+         <span style="font-size:8pt;line-height:10pt;color:#ffffff;">
+          Technical Content © IEEE Robotics &amp; Automation Society
+         </span>
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <td colspan="4" width="100%">
+        <p align="right">
+         <span style="text-decoration:none;">
+          <img align="right" border="0" src="/images/pc_logo_small.jpg" style="margin-left: 10px; margin-right: 10px"/>
+          This site is protected
+by copyright and trademark laws under US and International law.
+          <br/>
+          All rights
+reserved. © 2002-2024 PaperCept, Inc.
+          <br/>
+          Page generated 2024-10-05  01:22:01 PST
+          <a href="" onclick="window.open('/conferences/scripts/about.pl','tc','width=1000,scrollbars=yes'); return false">
+           Terms of use
+          </a>
+         </span>
+        </p>
+       </td>
+      </tr>
+     </table>
+    </body>
+   </div>
+  </form>
+ </body>
+</html>

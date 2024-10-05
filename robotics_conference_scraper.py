@@ -5,16 +5,37 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import pickle
 
-#### 2024 33rd IEEE International Conference on Robot and Human Interactive Communication (ROMAN)
-conference = " International Conference on Robot and Human Interactive Communication (ROMAN)"
+#### 2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
+conference = "IROS 2024"
 daily_programs = [
-    "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_1.html",
-    "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_2.html",
-    "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_3.html",
-    "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_4.html",
-    "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_5.html",
+    "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_1.html",
+    "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_2.html",
+    "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_3.html",
+    "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_4.html",
+    "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_5.html",
 ]
-keyword_indx = "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_KeywordIndexWeb.html"
+keyword_indx = "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_KeywordIndexWeb.html"
+
+#### 40th Anniversary of the IEEE Conference on Robotics and Automation (ICRA@40)
+# conference = "ICRA@40 2024"
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/ICRAX24/program/ICRAX24_ContentListWeb_1.html",
+#     "https://ras.papercept.net/conferences/conferences/ICRAX24/program/ICRAX24_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/ICRAX24/program/ICRAX24_ContentListWeb_3.html",
+#     "https://ras.papercept.net/conferences/conferences/ICRAX24/program/ICRAX24_ContentListWeb_4.html",
+# ]
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRAX24/program/ICRAX24_KeywordIndexWeb.html"
+
+#### 2024 33rd IEEE International Conference on Robot and Human Interactive Communication (ROMAN)
+# conference = " International Conference on Robot and Human Interactive Communication (ROMAN)"
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_1.html",
+#     "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_3.html",
+#     "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_4.html",
+#     "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_ContentListWeb_5.html",
+# ]
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/ROMAN24/program/ROMAN24_KeywordIndexWeb.html"
 
 #### 2024 IEEE International Conference on Cybernetics and Intelligent Systems (CIS) and IEEE International Conference on Robotics, Automation and Mechatronics (RAM)
 # conference = "CIS and RAM"
@@ -88,7 +109,10 @@ keyword_indx = "https://ras.papercept.net/conferences/conferences/ROMAN24/progra
 # I perform a coarse search to eliminate ambiguity for the most popular unis.
 def remove_university_name_ambiguity(unis):
 
-    for i, item in enumerate(unis):
+    scraped_unis = unis
+    unis = []
+
+    for i, item in enumerate(scraped_unis):
         if (
             "Technical University of Munich" in item
             or "TU Munich" in item
@@ -96,73 +120,90 @@ def remove_university_name_ambiguity(unis):
             or "(TUM)" in item
             or item == "TUM"  # check equality
         ):
-            unis[i] = "Technical University of Munich"
+            unis.append("Technical University of Munich")
         if "ETH" in item:
-            unis[i] = "ETH Zurich"
+            unis.append("ETH Zurich")
         if "University of California" in item or "UC Berkeley" in item:
-            unis[i] = "UC Berkeley"
+            unis.append("UC Berkeley")
         if (
             "The Hong Kong University of Science and Technology" in item
             or "Hong Kong University of Science and Technology" in item
         ):
-            unis[i] = "The Hong Kong University of Science and Technology"
+            unis.append("The Hong Kong University of Science and Technology")
         if "(CMU)" in item or item == "CMU":  # check equality
-            unis[i] = "Carnegie Mellon University"
+            unis.append("Carnegie Mellon University")
         if "Zhejiang University" in item:
-            unis[i] = "Zhejiang University"
-        if "Shanghai Jiao Tong University" in item:
-            unis[i] = "Shanghai Jiao Tong University"
+            unis.append("Zhejiang University")
+        if (
+            "Shanghai Jiao Tong University" in item
+            or "Shanghai Jiaotong Universit" in item
+        ):
+            unis.append("Shanghai Jiao Tong University")
         if "Seoul National University" in item:
-            unis[i] = "Seoul National University"
+            unis.append("Seoul National University")
         if (
             "Massachusetts Institute of Technology" in item
             or "(MIT)" in item
             or item == "MIT"  # check equality
         ):
-            unis[i] = "Massachusetts Institute of Technology"
+            unis.append("Massachusetts Institute of Technology")
         if "Stanford University" in item:
-            unis[i] = "Stanford University"
+            unis.append("Stanford University")
         if (
             "Chinese University of Hong Kong" in item
             or "The Chinese University of Hong Kong" in item
         ):
-            unis[i] = "The Chinese University of Hong Kong"
+            unis.append("The Chinese University of Hong Kong")
         if "The University of Tokyo" in item or "University of Tokyo" in item:
-            unis[i] = "The University of Tokyo"
+            unis.append("The University of Tokyo")
         if "Beijing University of Technology" in item:
-            unis[i] = "Beijing University of Technology"
+            unis.append("Beijing University of Technology")
         if "Imperial College" in item or "Imperial College London" in item:
-            unis[i] = "Imperial College London"
-        if "Beihang University" in item:
-            unis[i] = "Beihang University"
+            unis.append("Imperial College London")
+        if "Beihang University" in item or "BEIHANG UNIVERSITY" in item:
+            unis.append("Beihang University")
         if "University of Oxford" in item or "Oxford University" in item:
-            unis[i] = "University of Oxford"
+            unis.append("University of Oxford")
         if (
             "Karlsruhe Institute of Technology" in item
             or "(KIT)" in item
             or item == "KIT"  # check equality
         ):
-            unis[i] = "Karlsruhe Institute of Technology"
+            unis.append("Karlsruhe Institute of Technology")
         if "RWTH" in item or "RWTH Aachen" in item:
-            unis[i] = "RWTH Aachen"
+            unis.append("RWTH Aachen")
         if "Peking University" in item:
-            unis[i] = "Peking University"
+            unis.append("Peking University")
         if (
             "NTNU - Norwegian University of Science and Technology" in item
             or "NTNU" in item
             or "Norwegian University of Science and Technology" in item
         ):
-            unis[i] = "Norwegian University of Science and Technology"
+            unis.append("Norwegian University of Science and Technology")
         if (
             "EPFL" in item
             or "École Polytechnique Fédérale De Lausanne" in item
             or "Swiss Federal Institute of Technology" in item
         ):
-            unis[i] = "École Polytechnique Fédérale De Lausanne (EPFL)"
+            unis.append("École Polytechnique Fédérale De Lausanne (EPFL)")
         if "TU Delft" in item or "Delft University of Technology" in item:
-            unis[i] = "Delft University of Technology"
+            unis.append("Delft University of Technology")
         if "Harbin Institute of Technology" in item:
-            unis[i] = "Harbin Institute of Technology"
+            unis.append("Harbin Institute of Technology")
+        if "University of Illinois" in item:
+            unis.append("University of Illinois")
+        if "inria" in item.lower():
+            unis.append("INRIA")
+        if "German Aerospace Center" in item or "(DLR)" in item:
+            unis.append("German Aerospace Center (DLR)")
+        if "University of Hamburg" in item or "Uni Hamburg" in item or "Hamburg University" in item:
+            unis.append("University of Hamburg")
+        if "University of Twente" in item:
+            unis.append("University of Twente")
+        if "Idiap Research Institute" in item:
+            unis.append("Idiap Research Institute")
+        if "Lulea University of Technology" in item or "Luleå University of Technology" in item:
+            unis.append("Luleå University of Technology")
 
     return unis
 
