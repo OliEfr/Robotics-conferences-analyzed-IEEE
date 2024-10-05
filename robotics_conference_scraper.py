@@ -380,15 +380,15 @@ with open(f"./output/{conference}_data.pkl", "wb") as f:
 
 plot(
     university_list,
-    "Top 15 Institutions by Authorships",
-    "Number of Authorships",
+    "Top 15 Institutions by number of papers",
+    "Number of papers",
     f"./output/university_contributions_{conference}.svg",
 )
 
 plot(
     contributors_list,
-    "Top 15 Authors by Authorships",
-    "Number of Authorships",
+    "Top 15 Authors by number of papers",
+    "Number of papers",
     f"./output/authors_contributions_{conference}.svg",
 )
 
