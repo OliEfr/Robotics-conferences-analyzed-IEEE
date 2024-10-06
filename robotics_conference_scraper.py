@@ -115,6 +115,8 @@ def remove_university_name_ambiguity(unis):
     for i, item in enumerate(scraped_unis):
         if (
             "Technical University of Munich" in item
+            or "Tech. Univ. Muenchen" in item
+            or "Tech. Univ. München" in item
             or "TU Munich" in item
             or "Technische Universität München" in item
             or "(TUM)" in item
