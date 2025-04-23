@@ -5,16 +5,26 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import pickle
 
-#### 2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
-conference = "IROS 2024"
+#### 2025 IEEE International Conference on Robotics and Automation (ICRA)
+conference = "ICRA 2025"
 daily_programs = [
-    "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_1.html",
-    "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_2.html",
-    "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_3.html",
-    "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_4.html",
-    "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_5.html",
+    "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_ContentListWeb_1.html",
+    "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_ContentListWeb_2.html",
+    "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_ContentListWeb_3.html"    
+    
 ]
-keyword_indx = "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_KeywordIndexWeb.html"
+keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_KeywordIndexWeb.html"
+
+#### 2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
+# conference = "IROS 2024"
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_1.html",
+#     "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_3.html",
+#     "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_4.html",
+#     "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_ContentListWeb_5.html",
+# ]
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/IROS24/program/IROS24_KeywordIndexWeb.html"
 
 #### 40th Anniversary of the IEEE Conference on Robotics and Automation (ICRA@40)
 # conference = "ICRA@40 2024"
@@ -115,6 +125,8 @@ def remove_university_name_ambiguity(unis):
     for i, item in enumerate(scraped_unis):
         if (
             "Technical University of Munich" in item
+            or "Technical University Munich" in item
+            or "TU München" in item
             or "Tech. Univ. Muenchen" in item
             or "Tech. Univ. München" in item
             or "TU Munich" in item
@@ -206,6 +218,8 @@ def remove_university_name_ambiguity(unis):
             unis.append("Idiap Research Institute")
         if "Lulea University of Technology" in item or "Luleå University of Technology" in item:
             unis.append("Luleå University of Technology")
+        if "Google" in item:
+            unis.append("Google")
 
     return unis
 
