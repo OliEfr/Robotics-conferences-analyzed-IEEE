@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 import pickle
 from institutions_synonyms import *
 
+plot_n_top = 15
+
 #### 2025 IEEE International Conference on Robotics and Automation (ICRA)
 conference = "ICRA 2025"
 daily_programs = [
@@ -370,7 +372,7 @@ def plot(list, title, xlabel, filename):
     sb.set(font_scale=1.3)
     ax = sb.countplot(
         y=list,
-        order=pd.Series(list).value_counts().iloc[:15].index,
+        order=pd.Series(list).value_counts().iloc[:plot_n_top].index,
         color="#485fc7",
         orient="h",
     )
@@ -400,21 +402,21 @@ with open(f"./output/{conference}_data.pkl", "wb") as f:
 
 plot(
     university_list,
-    "Top 15 Institutions by number of papers",
+    f"Top {plot_n_top} Institutions by number of papers",
     "Number of papers",
     f"./output/university_contributions_{conference}.svg",
 )
 
 plot(
     contributors_list,
-    "Top 15 Authors by number of papers",
+    f"Top {plot_n_top} Authors by number of papers",
     "Number of papers",
     f"./output/authors_contributions_{conference}.svg",
 )
 
 plot(
     keywords_list,
-    "Top 15 Keywords by Contributions",
+    f"Top {plot_n_top} Keywords by Contributions",
     "Number of Contributions",
     f"./output/keywords_contributions_{conference}.svg",
 )
