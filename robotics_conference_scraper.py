@@ -4,6 +4,7 @@ import seaborn as sb
 import pandas as pd
 import matplotlib.pyplot as plt
 import pickle
+from institutions_synonyms import *
 
 #### 2025 IEEE International Conference on Robotics and Automation (ICRA)
 conference = "ICRA 2025"
@@ -220,7 +221,8 @@ def remove_university_name_ambiguity(unis):
             unis.append("Luleå University of Technology")
         if "Google" in item:
             unis.append("Google")
-
+        if item in UT_AUSTIN_SYNONYMS or "University of Texas" in item:
+            unis.append("University of Texas at Austin")
     return unis
 
 
