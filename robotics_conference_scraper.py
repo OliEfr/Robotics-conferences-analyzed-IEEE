@@ -119,11 +119,10 @@ keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA25/program
 # Unfortunately, institution names are not unique.
 # I perform a coarse search to eliminate ambiguity for the most popular unis.
 def remove_university_name_ambiguity(unis):
+    
+    cleaned_unis = []
 
-    scraped_unis = unis
-    unis = []
-
-    for i, item in enumerate(scraped_unis):
+    for i, item in enumerate(unis):
         if (
             "Technical University of Munich" in item
             or "Technical University Munich" in item
@@ -135,95 +134,98 @@ def remove_university_name_ambiguity(unis):
             or "(TUM)" in item
             or item == "TUM"  # check equality
         ):
-            unis.append("Technical University of Munich")
-        if "ETH" in item:
-            unis.append("ETH Zurich")
-        if "University of California" in item or "UC Berkeley" in item:
-            unis.append("UC Berkeley")
-        if (
+            cleaned_unis.append("Technical University of Munich")
+        elif "ETH" in item:
+            cleaned_unis.append("ETH Zurich")
+        elif "University of California" in item or "UC Berkeley" in item:
+            cleaned_unis.append("UC Berkeley")
+        elif (
             "The Hong Kong University of Science and Technology" in item
             or "Hong Kong University of Science and Technology" in item
         ):
-            unis.append("The Hong Kong University of Science and Technology")
-        if "(CMU)" in item or item == "CMU":  # check equality
-            unis.append("Carnegie Mellon University")
-        if "Zhejiang University" in item:
-            unis.append("Zhejiang University")
-        if (
+            cleaned_unis.append("The Hong Kong University of Science and Technology")
+        elif "(CMU)" in item or item == "CMU" or "Carnegie Mellon University" in item:  # check equality
+            cleaned_unis.append("Carnegie Mellon University")
+        elif "Zhejiang University" in item:
+            cleaned_unis.append("Zhejiang University")
+        elif (
             "Shanghai Jiao Tong University" in item
             or "Shanghai Jiaotong Universit" in item
         ):
-            unis.append("Shanghai Jiao Tong University")
-        if "Seoul National University" in item:
-            unis.append("Seoul National University")
-        if (
+            cleaned_unis.append("Shanghai Jiao Tong University")
+        elif "Seoul National University" in item:
+            cleaned_unis.append("Seoul National University")
+        elif (
             "Massachusetts Institute of Technology" in item
             or "(MIT)" in item
             or item == "MIT"  # check equality
         ):
-            unis.append("Massachusetts Institute of Technology")
-        if "Stanford University" in item:
-            unis.append("Stanford University")
-        if (
+            cleaned_unis.append("Massachusetts Institute of Technology")
+        elif "Stanford University" in item:
+            cleaned_unis.append("Stanford University")
+        elif (
             "Chinese University of Hong Kong" in item
             or "The Chinese University of Hong Kong" in item
         ):
-            unis.append("The Chinese University of Hong Kong")
-        if "The University of Tokyo" in item or "University of Tokyo" in item:
-            unis.append("The University of Tokyo")
-        if "Beijing University of Technology" in item:
-            unis.append("Beijing University of Technology")
-        if "Imperial College" in item or "Imperial College London" in item:
-            unis.append("Imperial College London")
-        if "Beihang University" in item or "BEIHANG UNIVERSITY" in item:
-            unis.append("Beihang University")
-        if "University of Oxford" in item or "Oxford University" in item:
-            unis.append("University of Oxford")
-        if (
+            cleaned_unis.append("The Chinese University of Hong Kong")
+        elif "The University of Tokyo" in item or "University of Tokyo" in item:
+            cleaned_unis.append("The University of Tokyo")
+        elif "Beijing University of Technology" in item:
+            cleaned_unis.append("Beijing University of Technology")
+        elif "Imperial College" in item or "Imperial College London" in item:
+            cleaned_unis.append("Imperial College London")
+        elif "Beihang University" in item or "BEIHANG UNIVERSITY" in item:
+            cleaned_unis.append("Beihang University")
+        elif "University of Oxford" in item or "Oxford University" in item:
+            cleaned_unis.append("University of Oxford")
+        elif (
             "Karlsruhe Institute of Technology" in item
             or "(KIT)" in item
             or item == "KIT"  # check equality
         ):
-            unis.append("Karlsruhe Institute of Technology")
-        if "RWTH" in item or "RWTH Aachen" in item:
-            unis.append("RWTH Aachen")
-        if "Peking University" in item:
-            unis.append("Peking University")
-        if (
+            cleaned_unis.append("Karlsruhe Institute of Technology")
+        elif "RWTH" in item or "RWTH Aachen" in item:
+            cleaned_unis.append("RWTH Aachen")
+        elif "Peking University" in item:
+            cleaned_unis.append("Peking University")
+        elif (
             "NTNU - Norwegian University of Science and Technology" in item
             or "NTNU" in item
             or "Norwegian University of Science and Technology" in item
         ):
-            unis.append("Norwegian University of Science and Technology")
-        if (
+            cleaned_unis.append("Norwegian University of Science and Technology")
+        elif (
             "EPFL" in item
             or "École Polytechnique Fédérale De Lausanne" in item
             or "Swiss Federal Institute of Technology" in item
         ):
-            unis.append("École Polytechnique Fédérale De Lausanne (EPFL)")
-        if "TU Delft" in item or "Delft University of Technology" in item:
-            unis.append("Delft University of Technology")
-        if "Harbin Institute of Technology" in item:
-            unis.append("Harbin Institute of Technology")
-        if "University of Illinois" in item:
-            unis.append("University of Illinois")
-        if "inria" in item.lower():
-            unis.append("INRIA")
-        if "German Aerospace Center" in item or "(DLR)" in item:
-            unis.append("German Aerospace Center (DLR)")
-        if "University of Hamburg" in item or "Uni Hamburg" in item or "Hamburg University" in item:
-            unis.append("University of Hamburg")
-        if "University of Twente" in item:
-            unis.append("University of Twente")
-        if "Idiap Research Institute" in item:
-            unis.append("Idiap Research Institute")
-        if "Lulea University of Technology" in item or "Luleå University of Technology" in item:
-            unis.append("Luleå University of Technology")
-        if "Google" in item:
-            unis.append("Google")
-        if item in UT_AUSTIN_SYNONYMS or "University of Texas" in item:
-            unis.append("University of Texas at Austin")
-    return unis
+            cleaned_unis.append("École Polytechnique Fédérale De Lausanne (EPFL)")
+        elif "TU Delft" in item or "Delft University of Technology" in item:
+            cleaned_unis.append("Delft University of Technology")
+        elif "Harbin Institute of Technology" in item:
+            cleaned_unis.append("Harbin Institute of Technology")
+        elif "University of Illinois" in item:
+            cleaned_unis.append("University of Illinois")
+        elif "inria" in item.lower():
+            cleaned_unis.append("INRIA")
+        elif "German Aerospace Center" in item or "(DLR)" in item:
+            cleaned_unis.append("German Aerospace Center (DLR)")
+        elif "University of Hamburg" in item or "Uni Hamburg" in item or "Hamburg University" in item:
+            cleaned_unis.append("University of Hamburg")
+        elif "University of Twente" in item:
+            cleaned_unis.append("University of Twente")
+        elif "Idiap Research Institute" in item:
+            cleaned_unis.append("Idiap Research Institute")
+        elif "Lulea University of Technology" in item or "Luleå University of Technology" in item:
+            cleaned_unis.append("Luleå University of Technology")
+        elif "Google" in item:
+            cleaned_unis.append("Google")
+        elif item in UT_AUSTIN_SYNONYMS or "University of Texas" in item:
+            cleaned_unis.append("University of Texas at Austin")
+        else:
+            # if no match, append the original item
+            cleaned_unis.append(item)
+    return cleaned_unis
 
 
 # I am using the daily program to get the list of contributors.
@@ -332,7 +334,7 @@ def get_university_contributors_list_papers_adjusted():
             university_list.extend(list(set(paper_universities)))
             contributors_list.extend(paper_contributors)
 
-    return remove_university_name_ambiguity(university_list), contributors_list
+    return university_list, contributors_list
 
 
 def get_keywords_list():
