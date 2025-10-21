@@ -9,15 +9,14 @@ from rig_partners import AFFILIATION_SYNONYMS
 
 plot_n_top = 15
 
-#### 2025 IEEE International Conference on Robotics and Automation (ICRA)
-conference = "ICRA 2025"
+conference = "IROS 2025"
 daily_programs = [
-    "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_ContentListWeb_1.html",
-    "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_ContentListWeb_2.html",
-    "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_ContentListWeb_3.html"    
+    "https://ras.papercept.net/conferences/conferences/IROS25/program/IROS25_ContentListWeb_1.html",
+    "https://ras.papercept.net/conferences/conferences/IROS25/program/IROS25_ContentListWeb_2.html",
+    "https://ras.papercept.net/conferences/conferences/IROS25/program/IROS25_ContentListWeb_3.html"    
     
 ]
-keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_KeywordIndexWeb.html"
+keyword_indx = "https://ras.papercept.net/conferences/conferences/IROS25/program/IROS25_KeywordIndexWeb.html"
 
 
 def normalize_names(unis):
@@ -26,9 +25,8 @@ def normalize_names(unis):
         raw_norm = raw.strip()
         hit = None
         for key, matchers in AFFILIATION_SYNONYMS.items():
-            # stop at the first matcher that returns True
-            if any(fn(raw_norm) for fn in matchers):
-                # print(raw_norm)
+            # Check if any matcher string is contained in the raw normalized name
+            if any(matcher.lower() in raw_norm.lower() for matcher in matchers):
                 hit = key
                 break
         normalized.append(hit if hit is not None else raw_norm)
@@ -148,7 +146,7 @@ def count_rig_papers(university_list):
 
     return count
 
-print("RIG has contributed to {0} out of {1} papers at ICRA25".format(count_rig_papers(university_list), len(university_list)))
+print(f"RIG has contributed to {0} out of {1} papers at {conference}".format(count_rig_papers(university_list), len(university_list)))
 
 def count_papers_per_partner(university_list):
 
@@ -185,18 +183,35 @@ def plot_partner_counts_horizontal(partner_counts):
     # Prepare data sorted by count descending
     partners = sorted(partner_counts, key=lambda k: partner_counts[k], reverse=True)
     counts = [partner_counts[p] for p in partners]
+    
+    # Create DataFrame for consistency
+    df = pd.DataFrame({"RIG Partner": partners, "Count": counts})
 
-    # Set a clean whitegrid theme
-    sns.set_theme(style="whitegrid")
-    sns.set_color_codes("pastel")
+    # Plot aesthetics (matching the second function)
+    plt.style.use("seaborn-v0_8-whitegrid")
+    sns.set_context("talk")
+    sns.set_palette("crest")
 
-    plt.figure(figsize=(8, 10))
-    sns.barplot(x=counts, y=partners, orient="h")  # horizontal bars
-    plt.xlabel("Number of Papers")
-    plt.ylabel("RIG Partner")
-    # plt.title("Number of Papers per RIG Partner")
+    fig, ax = plt.subplots(figsize=(7, 7))
+
+    # Gradient-colored bars
+    ax.barh(df["RIG Partner"], df["Count"], color=sns.color_palette("crest", len(df)))
+
+    # Styling
+    ax.set_xlabel("Number of Papers", fontsize=14, labelpad=10)
+    ax.set_ylabel("")
+    # ax.set_title("Number of Papers per RIG Partner", fontsize=18, fontweight="bold", pad=20)
+    ax.invert_yaxis()  # Highest at top
+
+    # Remove top/right spines for cleaner look
+    for spine in ["top", "right"]:
+        ax.spines[spine].set_visible(False)
+
+    # Tidy layout
     plt.tight_layout()
-    plt.savefig("RIGatICRA.png")
-    plt.show()
+
+    # Save
+    plt.savefig("RIG/" + f"{conference}.svg", bbox_inches="tight", dpi=300)
+    plt.close()
 
 plot_partner_counts_horizontal(partner_counts)
