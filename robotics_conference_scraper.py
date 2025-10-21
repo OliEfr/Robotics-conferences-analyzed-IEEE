@@ -6,17 +6,26 @@ import matplotlib.pyplot as plt
 import pickle
 from institutions_synonyms import *
 
-plot_n_top = 15
+plot_n_top = 10
 
-#### 2025 IEEE International Conference on Robotics and Automation (ICRA)
-conference = "ICRA 2025"
+conference = "IROS 2025"
 daily_programs = [
-    "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_ContentListWeb_1.html",
-    "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_ContentListWeb_2.html",
-    "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_ContentListWeb_3.html"    
+    "https://ras.papercept.net/conferences/conferences/IROS25/program/IROS25_ContentListWeb_1.html",
+    "https://ras.papercept.net/conferences/conferences/IROS25/program/IROS25_ContentListWeb_2.html",
+    "https://ras.papercept.net/conferences/conferences/IROS25/program/IROS25_ContentListWeb_3.html"    
     
 ]
-keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_KeywordIndexWeb.html"
+keyword_indx = "https://ras.papercept.net/conferences/conferences/IROS25/program/IROS25_KeywordIndexWeb.html"
+
+#### 2025 IEEE International Conference on Robotics and Automation (ICRA)
+# conference = "ICRA 2025"
+# daily_programs = [
+#     "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_ContentListWeb_1.html",
+#     "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_ContentListWeb_2.html",
+#     "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_ContentListWeb_3.html"    
+    
+# ]
+# keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA25/program/ICRA25_KeywordIndexWeb.html"
 
 #### 2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
 # conference = "IROS 2024"
