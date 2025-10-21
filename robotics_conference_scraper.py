@@ -377,20 +377,38 @@ def get_keywords_list():
     return keywords_list
 
 
-def plot(list, title, xlabel, filename):
-    sb.set(font_scale=1.3)
-    ax = sb.countplot(
-        y=list,
-        order=pd.Series(list).value_counts().iloc[:plot_n_top].index,
-        color="#485fc7",
-        orient="h",
-    )
-    ax.figure.set_size_inches(20, 8.75)
-    ax.set_xlabel(xlabel)
-    ax.set_title(title, fontweight="bold", x=0.35, y=1.03)
-    plt.gcf().subplots_adjust(left=0.35, right=0.99)
-    ax.get_figure().savefig(filename)
-    plt.clf()
+def plot(data_list, title, xlabel, filename):
+    # Prepare data
+    top_data = pd.Series(data_list).value_counts().iloc[:plot_n_top]
+    df = top_data.reset_index()
+    df.columns = [xlabel, "Count"]
+
+    # Plot aesthetics
+    plt.style.use("seaborn-v0_8-whitegrid")
+    sb.set_context("talk")
+    sb.set_palette("crest")
+
+    fig, ax = plt.subplots(figsize=(14, 7))
+
+    # Gradient-colored bars
+    ax.barh(df[xlabel], df["Count"], color=sb.color_palette("crest", len(df)))
+
+    # Styling
+    ax.set_xlabel(xlabel, fontsize=14, labelpad=10)
+    ax.set_ylabel("")
+    ax.set_title(title, fontsize=18, fontweight="bold", pad=20)
+    ax.invert_yaxis()  # Highest at top
+
+    # Remove top/right spines for cleaner look
+    for spine in ["top", "right"]:
+        ax.spines[spine].set_visible(False)
+
+    # Tidy layout
+    plt.tight_layout()
+
+    # Save
+    plt.savefig(filename, bbox_inches="tight", dpi=300)
+    plt.close()
 
 
 university_list, contributors_list = (
