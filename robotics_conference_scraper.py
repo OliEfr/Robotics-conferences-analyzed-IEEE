@@ -404,11 +404,9 @@ def plot(data_list, title, xlabel, filename):
         ax.spines[spine].set_visible(False)
 
     # Tidy layout
-    plt.tight_layout()
-
-    # Save
-    plt.savefig(filename, bbox_inches="tight", dpi=300)
-    plt.close()
+    plt.gcf().subplots_adjust(left=0.35, right=0.99)
+    ax.get_figure().savefig(filename)
+    plt.clf()
 
 
 university_list, contributors_list = (
