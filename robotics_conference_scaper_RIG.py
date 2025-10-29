@@ -7,7 +7,7 @@ import pickle
 from institutions_synonyms import *
 from rig_partners import AFFILIATION_SYNONYMS
 
-plot_n_top = 15
+plot_n_top = 21
 
 conference = "IROS 2025"
 daily_programs = [
@@ -145,8 +145,10 @@ def count_rig_papers(university_list):
             # print(paper_unis)
 
     return count
+rig_papers = count_rig_papers(university_list)
+total_papers = len(university_list)
 
-print(f"RIG has contributed to {0} out of {1} papers at {conference}".format(count_rig_papers(university_list), len(university_list)))
+print(f"RIG has contributed to {rig_papers} out of {total_papers} papers at {conference}")
 
 def count_papers_per_partner(university_list):
 

@@ -193,3 +193,219 @@ DFKI_SYNONYMS = [
     "German Research Centre for Artificial Intelligence",
     "DFKI",
 ]
+
+AUGSBURG_SYNONYMS = [
+    # Universität Augsburg
+    "Universität Augsburg",
+    "Uni Augsburg",
+    "U Augsburg",
+    "University of Augsburg",
+    "University Augsburg",
+    "Augsburg University",
+    "Universität Augsburg (DE)",
+    "Augsburg Uni",
+]
+
+BAYREUTH_SYNONYMS = [
+    # Universität Bayreuth
+    "Universität Bayreuth",
+    "Uni Bayreuth",
+    "UBT",
+    "University of Bayreuth",
+    "Bayreuth University",
+    "UniBT",
+    "Universität Bayreuth (DE)",
+    "Bayreuth Uni",
+    "U Bayreuth",
+]
+
+BIELEFELD_SYNONYMS = [
+    # Universität Bielefeld
+    "Universität Bielefeld",
+    "Uni Bielefeld",
+    "Bielefeld University",
+    "University of Bielefeld",
+    "U Bielefeld",
+    "UBielefeld",
+    "UniBi",
+    "Uni-Bielefeld",
+    "Universität Bielefeld (DE)",
+    "Bielefeld Uni",
+]
+
+BRAUNSCHWEIG_SYNONYMS = [
+    # Technische Universität Braunschweig
+    "Technische Universität Braunschweig",
+    "TU Braunschweig",
+    "TUBS",
+    "Technische Uni Braunschweig",
+    "University of Braunschweig – Institute of Technology",
+    "Braunschweig University of Technology",
+    "TU BS",
+    "TU-Braunschweig",
+    "TU Braunschweig (DE)",
+    "Braunschweig Tech",
+]
+
+CHEMNITZ_SYNONYMS = [
+    # Technische Universität Chemnitz
+    "Technische Universität Chemnitz",
+    "TU Chemnitz",
+    "Chemnitz University of Technology",
+    "Chemnitz University",
+    "Technische Uni Chemnitz",
+    "TU-Chemnitz",
+    "TU Chemnitz (DE)",
+    "University of Chemnitz",
+    "TUChemnitz",
+]
+
+ERLANGEN_SYNONYMS = [
+    # Friedrich-Alexander-Universität Erlangen-Nürnberg
+    "Friedrich-Alexander-Universität Erlangen-Nürnberg",
+    "FAU Erlangen-Nürnberg",
+    "Universität Erlangen-Nürnberg",
+    "University of Erlangen-Nuremberg",
+    "Friedrich Alexander University",
+    "Uni Erlangen",
+    "Uni Erlangen-Nürnberg",
+    "Erlangen University",
+    "Friedrich-Alexander University",
+]
+
+FREIBURG_SYNONYMS = [
+    # Albert-Ludwigs-Universität Freiburg
+    "Albert-Ludwigs-Universität Freiburg",
+    "Universität Freiburg",
+    "Uni Freiburg",
+    "University of Freiburg",
+    "University Freiburg",
+    "ALU Freiburg",
+    "Freiburg University",
+    "Freiburg Uni",
+    "Universität Freiburg (DE)",
+]
+
+HAMBURG_SYNONYMS = [
+    # Universität Hamburg
+    "Universität Hamburg",
+    "Uni Hamburg",
+    "University of Hamburg",
+    "Hamburg University",
+    "U Hamburg",
+    "Uni-Hamburg",
+    "Universität Hamburg (DE)",
+    "Hamburg Uni",
+    "Hamburg U",
+]
+
+HANNOVER_SYNONYMS = [
+    # Leibniz Universität Hannover
+    "Leibniz Universität Hannover",
+    "Universität Hannover",
+    "Uni Hannover",
+    "Leibniz University Hannover",
+    "Hannover University",
+    "Uni-Hannover",
+    "LU Hannover",
+    "U Hannover",
+    "L.U. Hannover",
+]
+
+HEIDELBERG_SYNONYMS = [
+    # Ruprecht-Karls-Universität Heidelberg
+    "Ruprecht-Karls-Universität Heidelberg",
+    "Universität Heidelberg",
+    "Uni Heidelberg",
+    "Heidelberg University",
+    "University of Heidelberg",
+    "Ruperto Carola",
+    "U Heidelberg",
+    "Uni-HD",
+    "Heidelberg Uni",
+    "Universität Heidelberg (DE)",
+]
+
+ILMENAU_SYNONYMS = [
+    # Technische Universität Ilmenau
+    "Technische Universität Ilmenau",
+    "TU Ilmenau",
+    "Technische Uni Ilmenau",
+    "Ilmenau University of Technology",
+    "Ilmenau Tech",
+    "TU-Ilmenau",
+    "University of Ilmenau",
+    "Ilmenau University",
+    "TU Ilmenau (DE)",
+]
+
+RPTU_SYNONYMS = [
+    # Rheinland-Pfälzische Technische Universität Kaiserslautern-Landau
+    "Rheinland-Pfälzische Technische Universität Kaiserslautern-Landau",
+    "RPTU Kaiserslautern-Landau",
+    "RPTU",
+    "TU Kaiserslautern-Landau",
+    "University of Kaiserslautern-Landau",
+    "RPTU KL",
+    "RPTU KL-LD",
+    "Kaiserslautern University of Technology",
+    "Uni Kaiserslautern-Landau",
+    "Kaiserslautern-Landau University",
+]
+
+KONSTANZ_SYNONYMS = [
+    # Universität Konstanz
+    "Universität Konstanz",
+    "Uni Konstanz",
+    "University of Konstanz",
+    "Konstanz University",
+    "U Konstanz",
+    "Uni-KN",
+    "UniKonstanz",
+    "Universität Konstanz (DE)",
+    "Konstanz Uni",
+    "University Konstanz",
+]
+
+LUEBECK_SYNONYMS = [
+    # Universität zu Lübeck
+    "Universität zu Lübeck",
+    "Uni Lübeck",
+    "University of Lübeck",
+    "Lübeck University",
+    "Universität Lübeck",
+    "U Lübeck",
+    "Uni-Lübeck",
+    "Lübeck Uni",
+    "University Lübeck",
+    "Universität zu Lübeck (DE)",
+]
+
+LMU_SYNONYMS = [
+    # Ludwig-Maximilians-Universität München
+    "Ludwig-Maximilians-Universität München",
+    "LMU München",
+    "LMU",
+    "University of Munich",
+    "Munich University",
+    "Universität München",
+    "Uni München",
+    "LMU Munich",
+    "U München",
+    "Ludwig Maximilian University of Munich",
+]
+
+TUEBINGEN_SYNONYMS = [
+    # Eberhard Karls Universität Tübingen
+    "Eberhard Karls Universität Tübingen",
+    "Universität Tübingen",
+    "Uni Tübingen",
+    "University of Tübingen",
+    "Tübingen University",
+    "Uni-Tübingen",
+    "U Tübingen",
+    "Eberhard Karls University",
+    "Universität Tübingen (DE)",
+    "Tuebingen University",
+]
+
