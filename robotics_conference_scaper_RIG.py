@@ -9,14 +9,14 @@ from rig_partners import AFFILIATION_SYNONYMS
 
 plot_n_top = 21
 
-conference = "IROS 2025"
+conference = "ICRA 2026"
 daily_programs = [
-    "https://ras.papercept.net/conferences/conferences/IROS25/program/IROS25_ContentListWeb_1.html",
-    "https://ras.papercept.net/conferences/conferences/IROS25/program/IROS25_ContentListWeb_2.html",
-    "https://ras.papercept.net/conferences/conferences/IROS25/program/IROS25_ContentListWeb_3.html"    
+    "https://ras.papercept.net/conferences/conferences/ICRA26/program/ICRA26_ContentListWeb_3.html",
+    "https://ras.papercept.net/conferences/conferences/ICRA26/program/ICRA26_ContentListWeb_4.html",
+    "https://ras.papercept.net/conferences/conferences/ICRA26/program/ICRA26_ContentListWeb_5.html"    
     
 ]
-keyword_indx = "https://ras.papercept.net/conferences/conferences/IROS25/program/IROS25_KeywordIndexWeb.html"
+keyword_indx = "https://ras.papercept.net/conferences/conferences/ICRA26/program/ICRA26_KeywordIndexWeb.html"
 
 
 def normalize_names(unis):

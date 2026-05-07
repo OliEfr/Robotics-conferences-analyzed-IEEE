@@ -163,7 +163,7 @@ def remove_university_name_ambiguity(unis):
             "The Hong Kong University of Science and Technology" in item
             or "Hong Kong University of Science and Technology" in item
         ):
-            cleaned_unis.append("The Hong Kong University of Science and Technology")
+            cleaned_unis.append("HKUST, Hong Kong")
         elif "(CMU)" in item or item == "CMU" or "Carnegie Mellon University" in item:  # check equality
             cleaned_unis.append("Carnegie Mellon University")
         elif "Zhejiang University" in item:

@@ -19,6 +19,11 @@ UT_AUSTIN_SYNONYMS = [
     "UT Austin Machine Learning Lab",  # Machine Learning Lab division
 ]
 
+HKUST = [
+    "Hong Kong University of Science and Technology",
+    "HKUST",
+]
+
 # Synonyms for RIG partners 
 TUM_SYNONYMS = [
     # Technische Universität München
